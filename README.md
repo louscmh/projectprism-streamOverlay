@@ -1,8 +1,6 @@
 # otmt2024-streamOverlay
 The main repository for the overlay of OTMT2024, meant to run on tosu
 
-![role division](https://cdn.discordapp.com/attachments/793324125723820086/1214122088709881866/image.png?ex=65f7f64f&is=65e5814f&hm=3634df9ccb1b157029e64caa9f9c1438fc61d380ca0186101f63bc254c2be109&)
-
 ## To-do List
 
 ### Drafting

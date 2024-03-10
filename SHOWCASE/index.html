@@ -4,11 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../shared_assets/deps/reconnecting-websocket.min.js"></script>
 </head>
 
 <body>
 	<div id="main">
-		
+    <div id="beatmapTitle"></div>
+    <div id="beatmapArtist"></div>
+    <div id="beatmapDifficulty"></div>
+    <div id="beatmapMapper"></div>
+    <div id="mapPick"></div>
+    <div id="mapOD"></div>
+    <div id="mapSR"></div>
+    <div id="mapBPM"></div>
+    <div id="mapLength"></div>
+    <img id="beatmapImage">
+      <svg style="display: hidden; width: 0; height: 0; " hidden>
+        <filter id='sharpBlur'>
+          <feGaussianBlur stdDeviation='3'></feGaussianBlur>
+          <feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 9 0'></feColorMatrix>
+          <feComposite in2='SourceGraphic' operator='in'></feComposite>
+        </filter>
+      </svg>
+    </img>
 	</div>
 	<script src="index.js"></script>
   </body>

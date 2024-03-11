@@ -65,10 +65,10 @@ let mapSR = document.getElementById("mapSR");
 let mapBPM = document.getElementById("mapBPM");
 let mapLength = document.getElementById("mapLength");
 let beatmapImage = document.getElementById("beatmapImage");
+let bgVideo = document.getElementById("bgVideo");
 
 // PLACEHOLDER VARS /////////////////////////////////////////////////////////////////
 let currentId = 0;
-
 
 socket.onmessage = event => {
     let data = JSON.parse(event.data);
@@ -93,7 +93,6 @@ async function updateDetails(data) {
     if (beatmaps.includes(id)) {
         pick = beatmapSet.find(beatmap => beatmap["beatmapId"] === id)["pick"];
         let mod = pick.substring(0,2).toUpperCase();
-
         if (mod == "HR") {
             memoryOD = Math.min(memoryOD*1.4, 10).toFixed(2);
         } else if (mod == "DT") {
@@ -106,11 +105,10 @@ async function updateDetails(data) {
         }
 
     }
-
     mapPick.innerHTML = pick == null ? "" : pick;
     beatmapTitle.innerHTML = title;
     beatmapArtist.innerHTML = artist;
-    beatmapDifficulty.innerHTML = difficulty;
+    beatmapDifficulty.innerHTML = `[${difficulty}]`;
     beatmapMapper.innerHTML = mapper;
     mapOD.innerHTML = memoryOD;
     mapSR.innerHTML = fullSR;
@@ -146,3 +144,12 @@ const parseTime = ms => {
 	const minute = Math.floor(ms / 1000 / 60) + '';
 	return `${'0'.repeat(2 - minute.length) + minute}:${'0'.repeat(2 - second.length) + second}`;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Add an event listener to detect when the video has ended
+    bgVideo.addEventListener("ended", function () {
+        // Reset the video to the beginning and play again
+        video.currentTime = 0;
+        video.play();
+    });
+});

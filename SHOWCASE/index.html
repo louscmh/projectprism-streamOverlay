@@ -12,6 +12,7 @@
 <body>
 	<div id="main">
     <div id="beatmapContainer">
+      <div id="shadowGlow"></div>
       <img id="beatmapImage">
         <svg style="display: hidden; width: 0; height: 0; " hidden>
           <filter id='sharpBlur'>
@@ -37,6 +38,9 @@
       <div id="mapBPM"></div>
       <div id="mapLength"></div>
     </div>
+    <video id="bgVideo" autoplay muted loop>
+      <source src="../shared_assets/design/new-v2.mp4" type="video/mp4">
+    </video>
 	</div>
 	<script src="index.js"></script>
   </body>

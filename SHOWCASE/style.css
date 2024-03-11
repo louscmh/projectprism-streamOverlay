@@ -1,10 +1,104 @@
+@font-face {
+    font-family: "Upheavtt";
+    src: url("../shared_assets/fonts/upheavtt.ttf");
+}
+
 #main {
+    font-size: 40px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: white;
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    /* background-color: aqua; */
+}
+
+#beatmapContainer {
+    width:1500px;
+    height:164px;
+    position: absolute;
+    bottom: 36px;
+    left:210px;
     display:flex;
-    flex-direction: column;
-    font-size: large;
+    z-index: 0;
+}
+
+#shadowGlow {
+    width:inherit;
+    height: inherit;
+    z-index: -1 !important; 
+    position:absolute;
+    background-image: linear-gradient(180deg, rgb(0,0,0,0.8),rgb(0,0,0,0));
 }
 
 #beatmapImage {
-    width:300px;
-    height: auto;
+    width:inherit;
+    height: inherit;
+    z-index: -2 !important; 
+    position:absolute;
+	filter: brightness(90%) url("#sharpBlur");
+	object-fit: cover;
+	object-position: center;
+}
+
+#mapPick {
+    height: 100%;
+    width:250px;
+    font-size: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#songDetails {
+    height: 100%;
+    width:900px;
+    display: flex;
+    flex-direction: column;
+}
+
+#beatmapTitle {
+    height: 54%;
+    width: 100%;
+    font-size: 45px;
+    display: flex;
+    align-items: end;
+}
+
+#beatmapDifficulty {
+    height: 46%;
+    width: 100%;
+    display: flex;
+    align-items: start;
+}
+
+#beatmapDetails {
+    height: 100%;
+    width:350px;
+    display: flex;
+    flex-direction: column;
+}
+
+#beatmapDifficulty {
+    height:50%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+#beatmapMapper {
+    height:50%;
+    display: flex;
+    justify-content: end;
+    align-items: start;
+}
+
+#bgVideo {
+    position: absolute;
+    top:0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3 !important;
 }

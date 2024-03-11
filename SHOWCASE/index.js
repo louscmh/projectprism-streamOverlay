@@ -87,6 +87,7 @@ async function updateDetails(data) {
 	let { memoryOD, fullSR, BPM: { min, max } } = data.menu.bm.stats;
 	let { full } = data.menu.bm.time;
     let { difficulty, mapper, artist, title } = data.menu.bm.metadata;
+    let bg = `http://127.0.0.1:24050/Songs/${data.menu.bm.path.full.replace(/#/g,'%23').replace(/%/g,'%25').replace(/\\/g, '/')}?a=${Math.random(10000)}`;
     let pick;
 
     if (beatmaps.includes(id)) {
@@ -115,6 +116,10 @@ async function updateDetails(data) {
     mapSR.innerHTML = fullSR;
     mapBPM.innerHTML = min === max ? min : `${min}-${max}`;
     mapLength.innerHTML = parseTime(full);
+    beatmapImage.setAttribute('src', bg)
+    beatmapImage.onerror = function() {
+        beatmapImage.setAttribute('src',`https://cdn.discordapp.com/attachments/793324125723820086/1204380886213337158/bwc_mainbanner_2.png?ex=65d4861b&is=65c2111b&hm=1fe2aefa6667cedebf4908a692d87cf36962b4ab344f1e4a98a1a5cfc0b6d4de&`);
+    };
 }
 
 async function getDTSR(beatmapID) {

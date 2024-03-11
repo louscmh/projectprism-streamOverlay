@@ -3,3 +3,8 @@
     flex-direction: column;
     font-size: large;
 }
+
+#beatmapImage {
+    width:300px;
+    height: auto;
+}

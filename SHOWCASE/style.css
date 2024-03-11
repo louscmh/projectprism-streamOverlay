@@ -56,21 +56,56 @@
     width:900px;
     display: flex;
     flex-direction: column;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #beatmapTitle {
     height: 54%;
-    width: 100%;
+    width: fit-content;
     font-size: 45px;
     display: flex;
     align-items: end;
+	padding-right: 50px;
+}
+
+#beatmapTitleDelay {
+    height: 54%;
+    width: fit-content;
+    font-size: 45px;
+    display: flex;
+    align-items: end;
+    margin-top:-88.55px;
+	padding-right: 50px;
+}
+
+#beatmapArtist {
+    height: 75.45px;
+    width: fit-content;
+    display: flex;
+    align-items: start;
+	padding-right: 35px;
+}
+
+#beatmapArtistDelay {
+    height: 75.45px;
+    width: fit-content;
+    display: flex;
+    align-items: start;
+	padding-right: 35px;
+    margin-top:-75.45px;
 }
 
 #beatmapDifficulty {
     height: 46%;
     width: 100%;
+    font-size: 24px;
     display: flex;
     align-items: start;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #beatmapDetails {
@@ -101,4 +136,13 @@
     height: 100%;
     object-fit: cover;
     z-index: -3 !important;
+}
+
+@keyframes scrollText {
+	0% {
+	  transform: translateX(100%);
+	}
+	100% {
+	  transform: translateX(-100%);
+	}
 }

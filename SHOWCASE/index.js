@@ -56,7 +56,9 @@ let api;
 
 // HTML VARS /////////////////////////////////////////////////////////////////
 let beatmapTitle = document.getElementById("beatmapTitle");
+let beatmapTitleDelay = document.getElementById("beatmapTitleDelay");
 let beatmapArtist = document.getElementById("beatmapArtist");
+let beatmapArtistDelay = document.getElementById("beatmapArtistDelay");
 let beatmapDifficulty = document.getElementById("beatmapDifficulty");
 let beatmapMapper = document.getElementById("beatmapMapper");
 let mapPick = document.getElementById("mapPick");
@@ -78,11 +80,9 @@ socket.onmessage = event => {
         currentId = beatmapId;
         updateDetails(data);
     }
-
 }
 
 async function updateDetails(data) {
-
 	let { id } = data.menu.bm;
 	let { memoryOD, fullSR, BPM: { min, max } } = data.menu.bm.stats;
 	let { full } = data.menu.bm.time;
@@ -90,6 +90,7 @@ async function updateDetails(data) {
     let bg = `http://127.0.0.1:24050/Songs/${data.menu.bm.path.full.replace(/#/g,'%23').replace(/%/g,'%25').replace(/\\/g, '/')}?a=${Math.random(10000)}`;
     let pick;
 
+    // CHECKER FOR MAPPICK & MODS (TO RECALCULATE STATS)
     if (beatmaps.includes(id)) {
         pick = beatmapSet.find(beatmap => beatmap["beatmapId"] === id)["pick"];
         let mod = pick.substring(0,2).toUpperCase();
@@ -103,17 +104,23 @@ async function updateDetails(data) {
             let dtSR = await getDTSR(id);
             fullSR = parseFloat(dtSR.difficultyrating).toFixed(2);
         }
-
     }
+
     mapPick.innerHTML = pick == null ? "" : pick;
+
     beatmapTitle.innerHTML = title;
     beatmapArtist.innerHTML = artist;
+    makeScrollingText(beatmapTitle,beatmapTitleDelay,20,900);
+    makeScrollingText(beatmapArtist,beatmapArtistDelay,16,900);
+
     beatmapDifficulty.innerHTML = `[${difficulty}]`;
     beatmapMapper.innerHTML = mapper;
-    mapOD.innerHTML = memoryOD;
-    mapSR.innerHTML = fullSR;
-    mapBPM.innerHTML = min === max ? min : `${min}-${max}`;
-    mapLength.innerHTML = parseTime(full);
+
+    mapOD.innerHTML = `OD: ${memoryOD}`;
+    mapSR.innerHTML = `SR: ${fullSR}*`;
+    mapBPM.innerHTML = `BPM: ${min === max ? min : `${min}-${max}`}`;
+    mapLength.innerHTML = `Length: ${parseTime(full)}`;
+
     beatmapImage.setAttribute('src', bg)
     beatmapImage.onerror = function() {
         beatmapImage.setAttribute('src',`https://cdn.discordapp.com/attachments/793324125723820086/1204380886213337158/bwc_mainbanner_2.png?ex=65d4861b&is=65c2111b&hm=1fe2aefa6667cedebf4908a692d87cf36962b4ab344f1e4a98a1a5cfc0b6d4de&`);
@@ -138,6 +145,24 @@ async function getDTSR(beatmapID) {
         console.error(error);
     }
 };
+
+async function makeScrollingText(title, titleDelay, rate, boundaryWidth) {
+    if (title.scrollWidth > boundaryWidth) {
+		if (title.innerHTML != titleDelay.innerHTML) {
+			title.innerHTML += " ";
+			titleDelay.innerHTML = title.innerHTML;
+			titleDelay.style.opacity = "1";
+		}
+		let ratio = (title.scrollWidth/boundaryWidth)*rate
+		title.style.animation = `scrollText ${ratio}s linear infinite`;
+		titleDelay.style.animation = `scrollText ${ratio}s linear infinite`;
+		titleDelay.style.animationDelay = `${-ratio/2}s`;
+    } else {
+		title.style.animation = "none";
+		titleDelay.style.animation = "none";
+		titleDelay.style.opacity = "0";
+	}
+}
 
 const parseTime = ms => {
 	const second = Math.floor(ms / 1000) % 60 + '';

@@ -6,7 +6,7 @@ The main repository for the overlay of OTMT2024, meant to run on tosu
 ### Drafting
 - [ ] Draft Layout of Match Scene
 - [ ] Draft Layout of Mappool Scene
-- [ ] Draft Layout of Showcase Scene
+- [X] Draft Layout of Showcase Scene
 - [ ] Draft Layout of Winner Scene
 - [ ] Draft Layout of Schedule Scene
 - [ ] Draft Layout of Player Intro Scene

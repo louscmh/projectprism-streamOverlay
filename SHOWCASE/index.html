@@ -13,6 +13,9 @@
 	<div id="main">
     <div id="beatmapContainer">
       <div id="shadowGlow"></div>
+      <video id="bgVideo" autoplay muted loop>
+        <source src="../shared_assets/design/new-v2.mp4" type="video/mp4">
+      </video>
       <img id="beatmapImage">
         <svg style="display: hidden; width: 0; height: 0; " hidden>
           <filter id='sharpBlur'>
@@ -30,19 +33,26 @@
         <div id="beatmapArtistDelay"></div>
       </div>
       <div id="beatmapDetails">
-        <div id="beatmapDifficulty"></div>
-        <div id="beatmapMapper"></div>
+        <div id="diff">
+          <div class="detailFont">DIFFICULTY</div>
+          <div id="beatmapDifficulty" class="activeDetailFont"></div>
+          <div id="beatmapDifficultyDelay" class="activeDetailFont"></div>
+        </div>
+        <div id="mapper">
+          <div class="detailFont">MAPSET OWNER</div>
+          <div id="beatmapMapper" class="activeDetailFont"></div>
+        </div>
       </div>
     </div>
     <div id="statContainer">
-      <div id="mapOD"></div>
-      <div id="mapSR"></div>
-      <div id="mapBPM"></div>
-      <div id="mapLength"></div>
+      <div id="mapSR" class="statFont"></div>
+      <div id="mapOD" class="statFont"></div>
+      <div id="mapBPM" class="statFont"></div>
+      <div id="mapLength" class="statFont"></div>
     </div>
-    <video id="bgVideo" autoplay muted loop>
+    <!-- <video id="bgVideo" autoplay muted loop>
       <source src="../shared_assets/design/new-v2.mp4" type="video/mp4">
-    </video>
+    </video> -->
 	</div>
 	<script src="index.js"></script>
   </body>

@@ -15,11 +15,11 @@
 }
 
 #beatmapContainer {
-    width:1400px;
+    width:1500px;
     height:164px;
     position: absolute;
-    bottom: 68px;
-    left:260px;
+    bottom: 36px;
+    left:210px;
     display:flex;
     z-index: 0;
 }
@@ -29,21 +29,20 @@
     height: inherit;
     z-index: -1 !important; 
     position:absolute;
-    background-image: linear-gradient(180deg, rgba(29, 25, 31, 0.4),rgb(29, 25, 31,0.1));
+    background-image: linear-gradient(180deg, rgb(0,0,0,0.8),rgb(0,0,0,0));
 }
 
 #beatmapImage {
     width:inherit;
-    height: 100%;
-    z-index: -4 !important; 
+    height: inherit;
+    z-index: -2 !important; 
     position:absolute;
-	filter: brightness(50%) url("#sharpBlur");
+	filter: brightness(90%) url("#sharpBlur");
 	object-fit: cover;
 	object-position: center;
 }
 
 #mapPick {
-    margin-left:10px;
     height: 100%;
     width:250px;
     font-size: 120px;
@@ -54,7 +53,7 @@
 
 #songDetails {
     height: 100%;
-    width:840px !important;
+    width:900px;
     display: flex;
     flex-direction: column;
 	white-space: nowrap;
@@ -98,95 +97,45 @@
     margin-top:-75.45px;
 }
 
-#beatmapDetails {
-    height: 100%;
-    width:270px;
-    display: flex;
-    flex-direction: column;
-    margin-inline:15px;
-}
-
 #beatmapDifficulty {
-    height:32.9167px;
+    height: 46%;
+    width: 100%;
+    font-size: 24px;
     display: flex;
-    width: fit-content;
-    justify-content: end;
-    align-items: end;
-}
-
-#beatmapDifficultyDelay {
-    height:32.9167px;
-    width: fit-content;
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    margin-top:-32.9167px;
-	padding-right: 20px;
-}
-
-#beatmapMapper {
-    display: flex;
-    justify-content: end;
     align-items: start;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-#bgVideo {
-    width:inherit;
-    height: inherit;
-    z-index: -3 !important; 
-    position:absolute;
-	object-fit: cover;
-	object-position: center;
-}
-
-#statContainer {
-    display:flex;
-    width: 900px;
-    height:40px;
-    justify-content: space-around;
-    align-items: center;
-    background-color:#312f35;
-    border-radius: 20px;
-    position: absolute;
-    bottom:208px;
-    left:510px;
-}
-
-#diff, #mapper {
-    height:50%;
-    display:flex;
+#beatmapDetails {
+    height: 100%;
+    width:350px;
+    display: flex;
     flex-direction: column;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
-#diff {
-    justify-content: end;
-    align-items: end;
-    margin-bottom: 5px;
-}
-
-#mapper {
-    justify-content: start;
-    margin-top: 5px;
-}
-
-.detailFont {
-    font-size:22px;
+#beatmapDifficulty {
+    height:50%;
     display: flex;
     justify-content: end;
+    align-items: end;
 }
 
-.statFont {
-    font-size: 28px;
+#beatmapMapper {
+    height:50%;
+    display: flex;
+    justify-content: end;
+    align-items: start;
 }
 
-.activeDetailFont {
-    font-size:32px !important;
+#bgVideo {
+    position: absolute;
+    top:0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3 !important;
 }
 
 @keyframes scrollText {

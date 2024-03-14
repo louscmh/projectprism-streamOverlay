@@ -60,7 +60,6 @@ let beatmapTitleDelay = document.getElementById("beatmapTitleDelay");
 let beatmapArtist = document.getElementById("beatmapArtist");
 let beatmapArtistDelay = document.getElementById("beatmapArtistDelay");
 let beatmapDifficulty = document.getElementById("beatmapDifficulty");
-let beatmapDifficultyDelay = document.getElementById("beatmapDifficultyDelay");
 let beatmapMapper = document.getElementById("beatmapMapper");
 let mapPick = document.getElementById("mapPick");
 let mapOD = document.getElementById("mapOD");
@@ -111,12 +110,12 @@ async function updateDetails(data) {
 
     beatmapTitle.innerHTML = title;
     beatmapArtist.innerHTML = artist;
-    beatmapDifficulty.innerHTML = `[${difficulty}]`;
-    makeScrollingText(beatmapTitle,beatmapTitleDelay,24,840);
-    makeScrollingText(beatmapArtist,beatmapArtistDelay,20,840);
-    makeScrollingText(beatmapDifficulty,beatmapDifficultyDelay,10,270);
+    makeScrollingText(beatmapTitle,beatmapTitleDelay,20,900);
+    makeScrollingText(beatmapArtist,beatmapArtistDelay,16,900);
 
+    beatmapDifficulty.innerHTML = `[${difficulty}]`;
     beatmapMapper.innerHTML = mapper;
+
     mapOD.innerHTML = `OD: ${memoryOD}`;
     mapSR.innerHTML = `SR: ${fullSR}*`;
     mapBPM.innerHTML = `BPM: ${min === max ? min : `${min}-${max}`}`;

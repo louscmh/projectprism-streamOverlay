@@ -102,8 +102,7 @@ async function updateDetails(data) {
             full = full/1.5;
             min = Math.round(min*1.5);
             max = Math.round(max*1.5);
-            let dtSR = await getDTSR(id);
-            fullSR = parseFloat(dtSR.difficultyrating).toFixed(2);
+            fullSR = beatmapSet.find(beatmap => beatmap["beatmapId"] === id)["modSR"];
         }
     }
 
@@ -112,9 +111,9 @@ async function updateDetails(data) {
     beatmapTitle.innerHTML = title;
     beatmapArtist.innerHTML = artist;
     beatmapDifficulty.innerHTML = `[${difficulty}]`;
-    makeScrollingText(beatmapTitle,beatmapTitleDelay,24,840);
-    makeScrollingText(beatmapArtist,beatmapArtistDelay,20,840);
-    makeScrollingText(beatmapDifficulty,beatmapDifficultyDelay,10,270);
+    makeScrollingText(beatmapTitle,beatmapTitleDelay,24,760,50);
+    makeScrollingText(beatmapArtist,beatmapArtistDelay,20,760,35);
+    makeScrollingText(beatmapDifficulty,beatmapDifficultyDelay,10,270,20);
 
     beatmapMapper.innerHTML = mapper;
     mapOD.innerHTML = `OD: ${memoryOD}`;
@@ -147,21 +146,22 @@ async function getDTSR(beatmapID) {
     }
 };
 
-async function makeScrollingText(title, titleDelay, rate, boundaryWidth) {
+async function makeScrollingText(title, titleDelay, rate, boundaryWidth, padding) {
     if (title.scrollWidth > boundaryWidth) {
-		if (title.innerHTML != titleDelay.innerHTML) {
-			title.innerHTML += " ";
-			titleDelay.innerHTML = title.innerHTML;
-			titleDelay.style.opacity = "1";
-		}
+        titleDelay.innerHTML = title.innerHTML;
+        titleDelay.style.opacity = "1";
 		let ratio = (title.scrollWidth/boundaryWidth)*rate
 		title.style.animation = `scrollText ${ratio}s linear infinite`;
 		titleDelay.style.animation = `scrollText ${ratio}s linear infinite`;
 		titleDelay.style.animationDelay = `${-ratio/2}s`;
+		titleDelay.style.paddingRight = `${padding}px`;
+		title.style.paddingRight = `${padding}px`;
     } else {
 		title.style.animation = "none";
 		titleDelay.style.animation = "none";
 		titleDelay.style.opacity = "0";
+		titleDelay.style.paddingRight = "0px";
+		title.style.paddingRight = "0px";
 	}
 }
 

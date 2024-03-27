@@ -7,192 +7,112 @@
     font-size: 40px;
     font-family: "Upheavtt";
     font-weight: normal;
-    color: white;
+    color: grey;
     width: 1920px;
     height: 1080px;
-    position: relative;
-    /* background-color: aqua; */
-}
-
-#beatmapContainer {
-    width:1280px !important;
-    height:150px;
     position: absolute;
-    bottom: 148px;
-    left:320px;
+    top:0px;
+    left:0px;
+    /* background-color: aqua; */
     display:flex;
-    z-index: 0;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-#shadowGlow {
-    width:inherit;
-    height: inherit;
-    z-index: -1 !important; 
-    position:absolute;
-    background-image: linear-gradient(180deg, rgba(29, 25, 31, 0.4),rgb(29, 25, 31,0.1));
-}
-
-#beatmapImage {
-    width:inherit;
-    height: 100%;
-    z-index: -4 !important; 
-    position:absolute;
-	filter: brightness(50%) url("#sharpBlur");
-	object-fit: cover;
-	object-position: center;
+#bottomContainer {
+    width: inherit;
+    height:140px;
+    display:flex;
+    color:white;
+    transition: ease-in-out 2s;
 }
 
 #mapPick {
-    margin-left:10px;
-    margin-bottom:5px;
-    height: 145px;
-    width:225px;
-    font-size: 100px;
-    display: flex;
-    align-items: center;
+    height: inherit;
+    width:fit-content;
+    padding-inline: 20px;
+    display:flex;
+    flex-direction: column;
+    font-size: 190px;
     justify-content: center;
+    background-color: #312f35;
+    border-radius: 0px 40px 0px 0px;
 }
 
 #songDetails {
-    height: 100%;
-    width:760px !important;
-    display: flex;
+    height: inherit;
+    width:fit-content;
+    display:flex;
     flex-direction: column;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    justify-content: end;
 }
 
 #beatmapTitle {
-    height: 54%;
-    width: fit-content;
-    font-size: 40px;
-    display: flex;
-    align-items: end;
-}
-
-#beatmapTitleDelay {
-    height: 54%;
-    width: fit-content;
-    font-size: 40px;
-    display: flex;
-    align-items: end;
-    margin-top:-81px;
+    font-size: 70px;
+    width:fit-content;
+    background-color: #312f35;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-radius: 0px 50px 0px 0px;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 #beatmapArtist {
-    height: 75.45px;
-    width: fit-content;
-    display: flex;
-    align-items: start;
-    font-size: 35px;
+    font-size: 48px;
+    width:fit-content !important;
+    position: relative;
+    top:15px;
+    background-color: #312f35;
+    z-index: 1;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-radius: 0px 30px 30px 0px;
 }
 
-#beatmapArtistDelay {
-    height: 75.45px;
-    width: fit-content;
-    display: flex;
-    align-items: start;
-    margin-top:-75.45px;
-    font-size: 35px;
+#topContainer {
+    width: inherit;
+    display:flex;
+    flex-direction: row-reverse;
+    height:120px;
+    color:white;
+    transition: ease-in-out 2s;
 }
 
-#beatmapDetails {
-    height: 100%;
-    width:260px !important;
-    display: flex;
+#logoBox {
+    width: 120px;
+    height:inherit;
+    background-color: #312f35;
+    border-radius: 0px 0px 0px 20px;
+}
+
+#mapDetails {
+    display:flex;
     flex-direction: column;
-    margin-right:15px;
-    margin-left:10px;
-}
-
-#beatmapDifficulty {
-    height:30px;
-    display: flex;
-    width: fit-content;
-    justify-content: end;
+    justify-content: start;
     align-items: end;
-}
-
-#beatmapDifficultyDelay {
-    height:30px;
-    width: fit-content;
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    margin-top:-30px;
-}
-
-#beatmapMapper {
-    display: flex;
-    justify-content: end;
-    align-items: start;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-#bgVideo {
-    width:inherit;
-    height: inherit;
-    z-index: -3 !important; 
-    position:absolute;
-	object-fit: cover;
-	object-position: center;
 }
 
 #statContainer {
-    display:flex;
-    width: 900px;
-    height:40px;
-    justify-content: space-around;
-    align-items: center;
-    background-color:#312f35;
-    border-radius: 20px;
-    position: absolute;
-    bottom:128px;
-    left:510px;
-}
-
-#diff, #mapper {
-    height:50%;
-    display:flex;
-    flex-direction: column;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-#diff {
-    justify-content: end;
-    align-items: end;
-    margin-bottom: 5px;
-}
-
-#mapper {
-    justify-content: start;
-    margin-top: 5px;
-}
-
-.detailFont {
-    font-size:18px;
     display: flex;
-    justify-content: end;
+    padding-left: 5px;
+    padding-right: 10px;
+    background-color: #312f35;
+    padding-bottom:5px;
+    border-radius: 0px 0px 0px 30px;
 }
 
 .statFont {
-    font-size: 24px;
+    font-size: 48px;
+    margin-left: 20px;
 }
 
-.activeDetailFont {
-    font-size:28px !important;
-}
-
-@keyframes scrollText {
-	0% {
-	  transform: translateX(100%);
-	}
-	100% {
-	  transform: translateX(-100%);
-	}
+#mapper {
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-bottom:5px;
+    position:relative;
+    bottom:8px;
+    background-color: #312f35;
+    border-radius: 0px 0px 0px 30px;
 }

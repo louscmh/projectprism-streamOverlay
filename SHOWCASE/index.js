@@ -55,20 +55,16 @@ let api;
 })();
 
 // HTML VARS /////////////////////////////////////////////////////////////////
+let topContainer = document.getElementById("topContainer");
+let bottomContainer = document.getElementById("bottomContainer");
 let beatmapTitle = document.getElementById("beatmapTitle");
-let beatmapTitleDelay = document.getElementById("beatmapTitleDelay");
 let beatmapArtist = document.getElementById("beatmapArtist");
-let beatmapArtistDelay = document.getElementById("beatmapArtistDelay");
-let beatmapDifficulty = document.getElementById("beatmapDifficulty");
-let beatmapDifficultyDelay = document.getElementById("beatmapDifficultyDelay");
 let beatmapMapper = document.getElementById("beatmapMapper");
 let mapPick = document.getElementById("mapPick");
 let mapOD = document.getElementById("mapOD");
 let mapSR = document.getElementById("mapSR");
 let mapBPM = document.getElementById("mapBPM");
 let mapLength = document.getElementById("mapLength");
-let beatmapImage = document.getElementById("beatmapImage");
-let bgVideo = document.getElementById("bgVideo");
 
 // PLACEHOLDER VARS /////////////////////////////////////////////////////////////////
 let currentId = 0;
@@ -79,7 +75,14 @@ socket.onmessage = event => {
     let beatmapId = data.menu.bm.id;
     if (currentId != beatmapId) {
         currentId = beatmapId;
-        updateDetails(data);
+        topContainer.style.transform = "translateX(1820px)";
+        bottomContainer.style.transform = "translateX(-1820px)";
+        setTimeout(function() {
+            updateDetails(data);
+            topContainer.style.transform = "translateX(0)";
+            bottomContainer.style.transform = "translateX(0)";
+        }, 2000);
+    } else {
     }
 }
 
@@ -106,25 +109,17 @@ async function updateDetails(data) {
         }
     }
 
-    mapPick.innerHTML = pick == null ? "" : pick;
+    mapPick.innerHTML = pick == null ? "XX1" : pick;
 
     beatmapTitle.innerHTML = title;
     beatmapArtist.innerHTML = artist;
-    beatmapDifficulty.innerHTML = `[${difficulty}]`;
-    makeScrollingText(beatmapTitle,beatmapTitleDelay,24,760,50);
-    makeScrollingText(beatmapArtist,beatmapArtistDelay,20,760,35);
-    makeScrollingText(beatmapDifficulty,beatmapDifficultyDelay,10,270,20);
+    adjustFont(beatmapTitle,1500,70);
 
-    beatmapMapper.innerHTML = mapper;
-    mapOD.innerHTML = `OD: ${memoryOD}`;
-    mapSR.innerHTML = `SR: ${fullSR}*`;
-    mapBPM.innerHTML = `BPM: ${min === max ? min : `${min}-${max}`}`;
-    mapLength.innerHTML = `Length: ${parseTime(full)}`;
-
-    beatmapImage.setAttribute('src', bg)
-    beatmapImage.onerror = function() {
-        beatmapImage.setAttribute('src',`https://cdn.discordapp.com/attachments/793324125723820086/1204380886213337158/bwc_mainbanner_2.png?ex=65d4861b&is=65c2111b&hm=1fe2aefa6667cedebf4908a692d87cf36962b4ab344f1e4a98a1a5cfc0b6d4de&`);
-    };
+    beatmapMapper.innerHTML = `Mapset by ${mapper}`;
+    mapOD.innerHTML = `OD ${memoryOD}`;
+    mapSR.innerHTML = `SR ${fullSR}*`;
+    mapBPM.innerHTML = `BPM ${min === max ? min : `${min}-${max}`}`;
+    mapLength.innerHTML = `Length ${parseTime(full)}`;
 }
 
 async function getDTSR(beatmapID) {
@@ -146,22 +141,12 @@ async function getDTSR(beatmapID) {
     }
 };
 
-async function makeScrollingText(title, titleDelay, rate, boundaryWidth, padding) {
+async function adjustFont(title, boundaryWidth, originalFontSize) {
     if (title.scrollWidth > boundaryWidth) {
-        titleDelay.innerHTML = title.innerHTML;
-        titleDelay.style.opacity = "1";
-		let ratio = (title.scrollWidth/boundaryWidth)*rate
-		title.style.animation = `scrollText ${ratio}s linear infinite`;
-		titleDelay.style.animation = `scrollText ${ratio}s linear infinite`;
-		titleDelay.style.animationDelay = `${-ratio/2}s`;
-		titleDelay.style.paddingRight = `${padding}px`;
-		title.style.paddingRight = `${padding}px`;
+		let ratio = (title.scrollWidth/boundaryWidth);
+        title.style.fontSize = `${originalFontSize/ratio}px`;
     } else {
-		title.style.animation = "none";
-		titleDelay.style.animation = "none";
-		titleDelay.style.opacity = "0";
-		titleDelay.style.paddingRight = "0px";
-		title.style.paddingRight = "0px";
+		title.style.fontSize = `${originalFontSize}px`;
 	}
 }
 
@@ -170,12 +155,3 @@ const parseTime = ms => {
 	const minute = Math.floor(ms / 1000 / 60) + '';
 	return `${'0'.repeat(2 - minute.length) + minute}:${'0'.repeat(2 - second.length) + second}`;
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Add an event listener to detect when the video has ended
-    bgVideo.addEventListener("ended", function () {
-        // Reset the video to the beginning and play again
-        video.currentTime = 0;
-        video.play();
-    });
-});

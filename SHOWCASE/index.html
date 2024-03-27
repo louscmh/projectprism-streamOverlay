@@ -11,48 +11,29 @@
 
 <body>
 	<div id="main">
-    <div id="beatmapContainer">
-      <div id="shadowGlow"></div>
-      <video id="bgVideo" autoplay muted loop>
-        <source src="../shared_assets/design/new-v2.mp4" type="video/mp4">
-      </video>
-      <img id="beatmapImage">
-        <svg style="display: hidden; width: 0; height: 0; " hidden>
-          <filter id='sharpBlur'>
-            <feGaussianBlur stdDeviation='3'></feGaussianBlur>
-            <feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 9 0'></feColorMatrix>
-            <feComposite in2='SourceGraphic' operator='in'></feComposite>
-          </filter>
-        </svg>
-      </img>
-      <div id="mapPick"></div>
-      <div id="songDetails">
-        <div id="beatmapTitle"></div>
-        <div id="beatmapTitleDelay"></div>
-        <div id="beatmapArtist"></div>
-        <div id="beatmapArtistDelay"></div>
-      </div>
-      <div id="beatmapDetails">
-        <div id="diff">
-          <div class="detailFont">DIFFICULTY</div>
-          <div id="beatmapDifficulty" class="activeDetailFont"></div>
-          <div id="beatmapDifficultyDelay" class="activeDetailFont"></div>
+    <div id="topContainer">
+      <div id="logoBox"></div>
+      <div id="mapDetails">
+        <div id="statContainer">
+          <div id="mapSR" class="statFont"></div>
+          <div id="mapOD" class="statFont"></div>
+          <div id="mapBPM" class="statFont"></div>
+          <div id="mapLength" class="statFont"></div>
         </div>
         <div id="mapper">
-          <div class="detailFont">MAPSET OWNER</div>
           <div id="beatmapMapper" class="activeDetailFont"></div>
         </div>
       </div>
     </div>
-    <div id="statContainer">
-      <div id="mapSR" class="statFont"></div>
-      <div id="mapOD" class="statFont"></div>
-      <div id="mapBPM" class="statFont"></div>
-      <div id="mapLength" class="statFont"></div>
+    <div id="bottomContainer">
+      <div id="mapPick">NM1</div>
+      <div id="songDetails">
+        <div id="beatmapArtist"></div>
+        <div id="beatmapArtistDelay"></div>
+        <div id="beatmapTitle"></div>
+        <div id="beatmapTitleDelay"></div>
+      </div>
     </div>
-    <!-- <video id="bgVideo" autoplay muted loop>
-      <source src="../shared_assets/design/new-v2.mp4" type="video/mp4">
-    </video> -->
 	</div>
 	<script src="index.js"></script>
   </body>

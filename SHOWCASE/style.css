@@ -3,8 +3,13 @@
     src: url("../shared_assets/fonts/upheavtt.ttf");
 }
 
+@font-face {
+    font-family: "Madou";
+    src: url("../shared_assets/fonts/madoufmg.ttf");
+}
+
 #main {
-    font-size: 40px;
+    font-size: 30px;
     font-family: "Upheavtt";
     font-weight: normal;
     color: grey;
@@ -13,45 +18,61 @@
     position: absolute;
     top:0px;
     left:0px;
-    /* background-color: aqua; */
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
+    /* background-color: grey; */
 }
 
 #bottomContainer {
-    width: inherit;
-    height:140px;
+    position: absolute;
+    bottom:0px;
+    width:fit-content;
+    height:135px;
     display:flex;
+    align-items: center;
     color:white;
-    transition: ease-in-out 2s;
+    transition: ease-in-out 1.5s;
 }
 
 #mapPick {
-    height: inherit;
+    height: 65%;
     width:fit-content;
-    padding-inline: 20px;
+    padding-inline: 70px;
+    margin-left: 25px;
+    margin-right: 15px;
     display:flex;
     flex-direction: column;
-    font-size: 190px;
     justify-content: center;
-    background-color: #312f35;
-    border-radius: 0px 40px 0px 0px;
+    background-color: #313131;
+    border-style: solid;
+    border-color: white;
+    border-width: 4px;
+
+    /* border-radius: 0px 40px 0px 0px; */
+}
+
+#mapText {
+    font-size: 100px;
+    margin-bottom:7%;
+
+    /* border-radius: 0px 40px 0px 0px; */
 }
 
 #songDetails {
-    height: inherit;
     width:fit-content;
     display:flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
+    padding-left:15px;
+    padding-right:5px;
+    padding-block:10px;
+    background-color: rgba(111, 42, 164, 0.5);
+    border-radius: 20px;
 }
 
 #beatmapTitle {
-    font-size: 70px;
+    font-size: 50px;
     width:fit-content;
-    background-color: #312f35;
-    padding-left: 10px;
+    /* background-color: #312f35; */
+    padding-left: 5px;
     padding-right: 20px;
     border-radius: 0px 50px 0px 0px;
 	white-space: nowrap;
@@ -59,51 +80,58 @@
 }
 
 #beatmapArtist {
-    font-size: 48px;
+    font-size: 38px;
     width:fit-content !important;
-    position: relative;
-    top:15px;
-    background-color: #312f35;
+    /* background-color: #312f35; */
     z-index: 1;
-    padding-left: 10px;
+    padding-left: 5px;
     padding-right: 20px;
-    border-radius: 0px 30px 30px 0px;
+    /* border-radius: 0px 30px 30px 0px; */
 }
 
 #topContainer {
-    width: inherit;
+    position: absolute;
+    right:0px;
+    width:fit-content;
     display:flex;
     flex-direction: row-reverse;
-    height:120px;
+    align-items: center;
+    height:135px;
     color:white;
-    transition: ease-in-out 2s;
+    transition: ease-in-out 1.5s;
 }
 
 #logoBox {
     width: 120px;
     height:inherit;
-    background-color: #312f35;
-    border-radius: 0px 0px 0px 20px;
+    /* background-color: #312f35;
+    border-radius: 0px 0px 0px 20px; */
 }
 
 #mapDetails {
+    margin-right: 20px;
+    padding-right:15px;
+    padding-left:5px;
+    padding-block:10px;
     display:flex;
     flex-direction: column;
     justify-content: start;
     align-items: end;
+    background-color: rgba(34, 124, 34, 0.5);
+    border-radius: 20px;
 }
 
 #statContainer {
     display: flex;
     padding-left: 5px;
     padding-right: 10px;
-    background-color: #312f35;
+    /* background-color: #312f35; */
     padding-bottom:5px;
-    border-radius: 0px 0px 0px 30px;
+    /* border-radius: 0px 0px 0px 30px; */
 }
 
 .statFont {
-    font-size: 48px;
+    font-size: 46px;
     margin-left: 20px;
 }
 
@@ -113,6 +141,6 @@
     padding-bottom:5px;
     position:relative;
     bottom:8px;
-    background-color: #312f35;
+    /* background-color: #312f35; */
     border-radius: 0px 0px 0px 30px;
 }

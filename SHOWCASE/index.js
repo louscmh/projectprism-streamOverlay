@@ -61,6 +61,7 @@ let beatmapTitle = document.getElementById("beatmapTitle");
 let beatmapArtist = document.getElementById("beatmapArtist");
 let beatmapMapper = document.getElementById("beatmapMapper");
 let mapPick = document.getElementById("mapPick");
+let mapText = document.getElementById("mapText");
 let mapOD = document.getElementById("mapOD");
 let mapSR = document.getElementById("mapSR");
 let mapBPM = document.getElementById("mapBPM");
@@ -75,13 +76,13 @@ socket.onmessage = event => {
     let beatmapId = data.menu.bm.id;
     if (currentId != beatmapId) {
         currentId = beatmapId;
-        topContainer.style.transform = "translateX(1820px)";
-        bottomContainer.style.transform = "translateX(-1820px)";
+        topContainer.style.transform = `translateX(1080px)`;
+        bottomContainer.style.transform = `translateX(-1820px)`;
         setTimeout(function() {
             updateDetails(data);
             topContainer.style.transform = "translateX(0)";
             bottomContainer.style.transform = "translateX(0)";
-        }, 2000);
+        }, 1500);
     } else {
     }
 }
@@ -93,10 +94,12 @@ async function updateDetails(data) {
     let { difficulty, mapper, artist, title } = data.menu.bm.metadata;
     let bg = `http://127.0.0.1:24050/Songs/${data.menu.bm.path.full.replace(/#/g,'%23').replace(/%/g,'%25').replace(/\\/g, '/')}?a=${Math.random(10000)}`;
     let pick;
+    let customMapper = "";
 
     // CHECKER FOR MAPPICK & MODS (TO RECALCULATE STATS)
     if (beatmaps.includes(id)) {
         pick = beatmapSet.find(beatmap => beatmap["beatmapId"] === id)["pick"];
+        customMapper = beatmapSet.find(beatmap => beatmap["beatmapId"] === id)["mappers"];
         let mod = pick.substring(0,2).toUpperCase();
         if (mod == "HR") {
             memoryOD = Math.min(memoryOD*1.4, 10).toFixed(2);
@@ -108,18 +111,53 @@ async function updateDetails(data) {
             fullSR = beatmapSet.find(beatmap => beatmap["beatmapId"] === id)["modSR"];
         }
     }
-
-    mapPick.innerHTML = pick == null ? "XX1" : pick;
+    
+    mapText.innerHTML = pick == null ? "XX1" : pick;
+    paintMod(pick)
 
     beatmapTitle.innerHTML = title;
     beatmapArtist.innerHTML = artist;
-    adjustFont(beatmapTitle,1500,70);
+    adjustFont(beatmapTitle,1000,50);
 
-    beatmapMapper.innerHTML = `Mapset by ${mapper}`;
+    beatmapMapper.innerHTML = customMapper != "" ? `Mapped by ${customMapper}`:`Mapset by ${mapper}`;
     mapOD.innerHTML = `OD ${memoryOD}`;
     mapSR.innerHTML = `SR ${fullSR}*`;
     mapBPM.innerHTML = `BPM ${min === max ? min : `${min}-${max}`}`;
     mapLength.innerHTML = `Length ${parseTime(full)}`;
+}
+async function paintMod(modText) {
+    if (modText != null) {
+        switch (modText.substring(0,2)) {
+            case "NM":
+                mapPick.style.borderColor = "rgb(147, 165, 202)";
+                mapPick.style.backgroundColor = "#18242f";
+                break;
+            case "HD":
+                mapPick.style.borderColor = "rgb(202, 194, 147)";
+                mapPick.style.backgroundColor = "#2d2f18";
+                break;
+            case "HR":
+                mapPick.style.borderColor = "rgb(202, 147, 147)";
+                mapPick.style.backgroundColor = "#2f1818";
+                break;
+            case "DT":
+                mapPick.style.borderColor = "rgb(185, 147, 202)";
+                mapPick.style.backgroundColor = "#2a182f";
+                break;
+            case "FM":
+                mapPick.style.borderColor = "rgb(147, 202, 147)";
+                mapPick.style.backgroundColor = "#182f18";
+                break;
+            case "FL":
+                mapPick.style.borderColor = "rgb(201, 201, 201)";
+                mapPick.style.backgroundColor = "#303030";
+                break;
+            default:
+                mapPick.style.borderColor = "white";
+                mapPick.style.backgroundColor = "#313131";
+                break;
+        }
+    }
 }
 
 async function getDTSR(beatmapID) {

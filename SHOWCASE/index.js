@@ -26,7 +26,7 @@ let beatmapSet = [];
 let beatmaps = [];
 (async () => {
     try {
-        const jsonData = await $.getJSON("../data/beatmaps.json");
+        const jsonData = await $.getJSON("../_data/beatmaps.json");
         jsonData.map((beatmap) => {
             beatmapSet.push(beatmap);
         });

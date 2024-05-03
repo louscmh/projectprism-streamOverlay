@@ -44,7 +44,7 @@ const file = [];
 let api;
 (async () => {
     try {
-        const jsonData = await $.getJSON("../data/api.json");
+        const jsonData = await $.getJSON("../_data/api.json");
         jsonData.map((num) => {
             file.push(num);
         });
@@ -66,6 +66,7 @@ let mapOD = document.getElementById("mapOD");
 let mapSR = document.getElementById("mapSR");
 let mapBPM = document.getElementById("mapBPM");
 let mapLength = document.getElementById("mapLength");
+// let stinger = document.getElementById("stinger");
 
 // PLACEHOLDER VARS /////////////////////////////////////////////////////////////////
 let currentId = 0;
@@ -78,6 +79,7 @@ socket.onmessage = event => {
         currentId = beatmapId;
         topContainer.style.transform = `translateX(1080px)`;
         bottomContainer.style.transform = `translateX(-1820px)`;
+        // stinger.play;
         setTimeout(function() {
             updateDetails(data);
             topContainer.style.transform = "translateX(0)";

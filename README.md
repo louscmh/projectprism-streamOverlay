@@ -68,8 +68,8 @@ A sample example of the JSON is included as follows:
     { "beatmapId": 4069278, "pick": "NM3", "modSR":5.92, "mappers":""},
     { "beatmapId": 4069245, "pick": "HD1", "modSR":4.49, "mappers":""},
     { "beatmapId": 4082666, "pick": "HD2", "modSR":4.02, "mappers":""},
-    { "beatmapId": 4069215, "pick": "HR1", "modSR":4.91, "mappers":""},
-    { "beatmapId": 4082668, "pick": "HR2", "modSR":4.72, "mappers":""},
+    { "beatmapId": "takehirotei as Infinite Limit - I.R.I.S (Jerry) [Trials of IRIS].osu", "pick": "HR1", "modSR":4.91, "mappers":""},
+    { "beatmapId": "Null Specification - Aletheia (fake lover, fake summer) (Rinze) [fake promise].osu", "pick": "HR2", "modSR":4.72, "mappers":""},
     { "beatmapId": 4069232, "pick": "DT1", "modSR":5.62, "mappers":""},
     { "beatmapId": 2590170, "pick": "DT2", "modSR":6.67, "mappers":""},
     { "beatmapId": 4069219, "pick": "FM1", "modSR":4.7, "mappers":"me, my mother, and your dad"}

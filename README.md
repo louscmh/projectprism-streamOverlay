@@ -14,6 +14,7 @@ The json file will be named **projectprism_vX.X** in the directory.
 
 After importing the scene file, you should be prompted with a Missing Files tab.
 ![obs setup 1](_shared_assets/design/setup/image.png)
+
 Click on "Search Directory..." and select the _shared_assets folder in the project files. If it doesn't fully link all the missing files try selecting the subfolders in the _shared_assets folder. After that just click on Apply and the assets should be displayed.
 
 ### Tosu & Stream Directory
@@ -28,7 +29,9 @@ If you open the link in the browser and it doesn't project anything, contact lou
 
 ### Commentator Overlay
 In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in discord!)
+
 ![commentator setup 1](_shared_assets/design/setup/image2.png)
+
 ![commentator setup 2](_shared_assets/design/setup/image3.png)
 
 ### Mappool Showcase

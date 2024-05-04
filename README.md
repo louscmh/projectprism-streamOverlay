@@ -1,16 +1,26 @@
-# otmt2024-streamOverlay
-The main repository for the overlay of OTMT2024, meant to run on tosu
+# projectprism-streamOverlay
+The main repository for the overlay of Project Prism, meant to run on tosu
 ___
 ## Setup
 
-If you have any questions after reading all of below, do not hesitate to contact me for clarification!
+If you have any questions after reading all of below, do not hesitate to contact me for clarification! The following is required to successfully run this project:
+- OBS
+- Tosu/Gosumemory (if warrented)
+- osu! stable/cutting Edge client and osu! tournament client
+
+### OBS Scene
+The scene file is located in otmt2024-streamOverlay/_data/
+The json file will be named **projectprism_vX.X** in the directory.
 
 ### Tosu & Stream Directory
 **[Project link for tosu](https://github.com/KotRikD/tosu#readme)**
 
 To install the application, just download the latest release and export tosu.exe in whatever directory you want. Then in that same directory, create a static file and run tosu.
 
-To properly import all overlays, download the latest release of this project and import it into tosu. If you have an osu! client open the OBS scenes should be properly reflecting the scenes. 
+To properly import all overlays, download the latest release of this project and import it into the static folder. If you have an osu! client open the OBS scenes should be properly reflecting the scenes. If theres any issue on projecting the overlay on obs, you can try finding the url link of the individual overlays by scrolling down to the target overlay and click on the URL parameter.
+![Troubleshooting 1](https://cdn.discordapp.com/attachments/793324125723820086/1236153225892069376/image.png?ex=6636f8e7&is=6635a767&hm=c40919ab0206d5c8f31594228ee5c7dbd23d6d8a98e95b8fc0fc0b9e035e4a38&)
+
+If you open the link in the browser and it doesn't project anything, contact louscmh immedietely. If not, then OBS should be able to project the browser source.
 
 ### Mappool Showcase
 Example scene for reference

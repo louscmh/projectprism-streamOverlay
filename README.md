@@ -38,7 +38,8 @@ the json file contains 4 variables:
 This must be updated **every week** to reflect the changes in-stream and must be distributed to the person streaming the showcase overlay.
 
 A sample example of the json is included as follows:
-```[
+```
+[
     { "beatmapId": 4067283, "pick": "NM1", "modSR":5.64, "mappers":""},
     { "beatmapId": 4069079, "pick": "NM2", "modSR":5.12, "mappers":""},
     { "beatmapId": 4069278, "pick": "NM3", "modSR":5.92, "mappers":""},

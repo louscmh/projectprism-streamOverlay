@@ -79,8 +79,8 @@
             "name": "Stinger",
             "id": "obs_stinger_transition",
             "settings": {
-                "transition_point": 500,
-                "path": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/stinger_VP9.webm"
+                "path": "D:/tosu/static/otmt2024-streamOverlay/_shared_assets/design/stinger_VP9.webm",
+                "transition_point": 500
             }
         }
     ],
@@ -234,7 +234,7 @@
             "id": "ffmpeg_source",
             "versioned_id": "ffmpeg_source",
             "settings": {
-                "local_file": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/countdown-iris-optimized.mp4"
+                "local_file": "D:/tosu/static/otmt2024-streamOverlay/_shared_assets/design/countdown-iris-optimized.mp4"
             },
             "mixers": 255,
             "sync": 0,
@@ -340,7 +340,7 @@
             "id": "ffmpeg_source",
             "versioned_id": "ffmpeg_source",
             "settings": {
-                "local_file": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/endscreen.mp4",
+                "local_file": "D:/tosu/static/otmt2024-streamOverlay/_shared_assets/design/endscreen.mp4",
                 "looping": true
             },
             "mixers": 255,
@@ -447,7 +447,7 @@
             "id": "ffmpeg_source",
             "versioned_id": "ffmpeg_source",
             "settings": {
-                "local_file": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/mappool_showcase/qualifiers/quals_intro.mp4",
+                "local_file": "D:/tosu/static/otmt2024-streamOverlay/_shared_assets/design/mappool_showcase/qualifiers/quals_intro.mp4",
                 "looping": true
             },
             "mixers": 255,
@@ -483,7 +483,7 @@
             "id": "ffmpeg_source",
             "versioned_id": "ffmpeg_source",
             "settings": {
-                "local_file": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/showcase_loop.mp4",
+                "local_file": "D:/tosu/static/otmt2024-streamOverlay/_shared_assets/design/showcase_loop.mp4",
                 "looping": true
             },
             "mixers": 255,
@@ -519,7 +519,7 @@
             "id": "image_source",
             "versioned_id": "image_source",
             "settings": {
-                "file": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/overlay.png"
+                "file": "D:/tosu/static/otmt2024-streamOverlay/SHOWCASE/overlay.png"
             },
             "mixers": 0,
             "sync": 0,
@@ -545,7 +545,7 @@
             "id": "image_source",
             "versioned_id": "image_source",
             "settings": {
-                "file": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/psod.png"
+                "file": "D:/tosu/static/otmt2024-streamOverlay/_shared_assets/design/psod.png"
             },
             "mixers": 0,
             "sync": 0,

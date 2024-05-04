@@ -12,6 +12,10 @@ If you have any questions after reading all of below, do not hesitate to contact
 The scene file is located in otmt2024-streamOverlay/_data/
 The json file will be named **projectprism_vX.X** in the directory.
 
+After importing the scene file, you should be prompted with a Missing Files tab.
+![obs setup 1](_shared_assets/design/setup/image.png)
+Click on "Search Directory..." and select the _shared_assets folder in the project files. If it doesn't fully link all the missing files try selecting the subfolders in the _shared_assets folder. After that just click on Apply and the assets should be displayed.
+
 ### Tosu & Stream Directory
 **[Project link for tosu](https://github.com/KotRikD/tosu#readme)**
 
@@ -21,6 +25,11 @@ To properly import all overlays, download the latest release of this project and
 ![Troubleshooting 1](https://cdn.discordapp.com/attachments/793324125723820086/1236153225892069376/image.png?ex=6636f8e7&is=6635a767&hm=c40919ab0206d5c8f31594228ee5c7dbd23d6d8a98e95b8fc0fc0b9e035e4a38&)
 
 If you open the link in the browser and it doesn't project anything, contact louscmh immedietely. If not, then OBS should be able to project the browser source.
+
+### Commentator Overlay
+In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in discord!)
+![commentator setup 1](_shared_assets/design/setup/image2.png)
+![commentator setup 2](_shared_assets/design/setup/image3.png)
 
 ### Mappool Showcase
 Example scene for reference

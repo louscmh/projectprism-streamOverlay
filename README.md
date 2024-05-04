@@ -1,34 +1,35 @@
 # projectprism-streamOverlay
+
 The main repository for the overlay of Project Prism, meant to run on tosu
 ___
+
 ## Setup
 
-If you have any questions after reading all of below, do not hesitate to contact me for clarification! The following is required to successfully run this project:
+If you have any questions after reading all of the below, do not hesitate to contact me for clarification! The following is required to successfully run this project:
 - OBS
-- Tosu/Gosumemory (if warrented)
+- Tosu/Gosumemory (if warranted)
 - osu! stable/cutting Edge client and osu! tournament client
 
 ### OBS Scene
-The scene file is located in otmt2024-streamOverlay/_data/
-The json file will be named **projectprism_vX.X** in the directory.
+The scene file is located in `projectprism-streamOverlay/_data/`. The JSON file will be named **projectprism_vX.X** in the directory.
 
 After importing the scene file, you should be prompted with a Missing Files tab.
 ![obs setup 1](_shared_assets/design/setup/image.png)
 
-Click on "Search Directory..." and select the _shared_assets folder in the project files. If it doesn't fully link all the missing files try selecting the subfolders in the _shared_assets folder. After that just click on Apply and the assets should be displayed.
+Click on "Search Directory..." and select the `_shared_assets` folder in the project files. If it doesn't fully link all the missing files, try selecting the subfolders in the `_shared_assets` folder. After that, just click on Apply and the assets should be displayed.
 
 ### Tosu & Stream Directory
 **[Project link for tosu](https://github.com/KotRikD/tosu#readme)**
 
-To install the application, just download the latest release and export tosu.exe in whatever directory you want. Then in that same directory, create a static file and run tosu.
+To install the application, just download the latest release and export `tosu.exe` in whatever directory you want. Then in that same directory, create a static file and run `tosu.exe`.
 
-To properly import all overlays, download the latest release of this project and import it into the static folder. If you have an osu! client open the OBS scenes should be properly reflecting the scenes. If theres any issue on projecting the overlay on obs, you can try finding the url link of the individual overlays by scrolling down to the target overlay and click on the URL parameter.
+To properly import all overlays, download the latest release of this project and import it into the static folder. If you have an osu! client open, the OBS scenes should properly reflect the scenes. If there's any issue projecting the overlay on OBS, you can try finding the URL link of the individual overlays by scrolling down to the target overlay and clicking on the URL parameter.
 ![Troubleshooting 1](https://cdn.discordapp.com/attachments/793324125723820086/1236153225892069376/image.png?ex=6636f8e7&is=6635a767&hm=c40919ab0206d5c8f31594228ee5c7dbd23d6d8a98e95b8fc0fc0b9e035e4a38&)
 
-If you open the link in the browser and it doesn't project anything, contact louscmh immedietely. If not, then OBS should be able to project the browser source.
+If you open the link in the browser and it doesn't project anything, contact louscmh immediately. If not, then OBS should be able to project the browser source.
 
 ### Commentator Overlay
-In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in discord!)
+In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in Discord!)
 
 ![commentator setup 1](_shared_assets/design/setup/image2.png)
 
@@ -38,19 +39,20 @@ In numerous scenes, there will be an overlay for the commentators in their own s
 Example scene for reference
 ![Example of Showcase Scene](https://cdn.discordapp.com/attachments/793324125723820086/1236058474224423083/image.png?ex=6636a0a9&is=66354f29&hm=3dbf545782e0985d38cac4563afcccf32368444eebcad2206afc5222230551c1&)
 
-The showcase ovelay uses the following JSON to function:
-- beatmaps.json
+The showcase overlay uses the following JSON to function:
+- `beatmaps.json`
 
-the json file contains 4 variables:
-- beatmapId: the id of your beatmap, as displayed in the url of the beatmap link (beatmapsets/2019194#taiko/***4204844***)
-- pick: the pick name of your beatmap (NM1, HR2, TB, etc.). This overlay supports the following mods: NM, HD, HR, DT, FM, FL, TB
-- modSR: the star rating value of DT maps, inputted manually (float)
-- mapper: custom string used if you want to list down more than 1 mappers
+The JSON file contains 4 variables:
+- `beatmapId`: the id of your beatmap, as displayed in the URL of the beatmap link (`beatmapsets/2019194#taiko/***4204844***`)
+- `pick`: the pick name of your beatmap (NM1, HR2, TB, etc.). This overlay supports the following mods: NM, HD, HR, DT, FM, FL, TB
+- `modSR`: the star rating value of DT maps, inputted manually (float)
+- `mapper`: custom string used if you want to list down more than 1 mapper
 
 This must be updated **every week** to reflect the changes in-stream and must be distributed to the person streaming the showcase overlay.
 
-A sample example of the json is included as follows:
-```
+A sample example of the JSON is included as follows:
+
+```json
 [
     { "beatmapId": 4067283, "pick": "NM1", "modSR":5.64, "mappers":""},
     { "beatmapId": 4069079, "pick": "NM2", "modSR":5.12, "mappers":""},

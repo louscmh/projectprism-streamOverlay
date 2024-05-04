@@ -69,14 +69,15 @@ let mapLength = document.getElementById("mapLength");
 // let stinger = document.getElementById("stinger");
 
 // PLACEHOLDER VARS /////////////////////////////////////////////////////////////////
-let currentId = 0;
+let currentFile = "";
 
 socket.onmessage = event => {
     let data = JSON.parse(event.data);
 
-    let beatmapId = data.menu.bm.id;
-    if (currentId != beatmapId) {
-        currentId = beatmapId;
+    let file = data.menu.bm.path.file;
+    if (currentFile != file) {
+        console.log(`File Name: ${file}`);
+        currentFile = file;
         topContainer.style.transform = `translateX(1080px)`;
         bottomContainer.style.transform = `translateX(-1820px)`;
         // stinger.play;
@@ -85,7 +86,6 @@ socket.onmessage = event => {
             topContainer.style.transform = "translateX(0)";
             bottomContainer.style.transform = "translateX(0)";
         }, 1500);
-    } else {
     }
 }
 
@@ -95,6 +95,7 @@ async function updateDetails(data) {
 	let { full } = data.menu.bm.time;
     let { difficulty, mapper, artist, title } = data.menu.bm.metadata;
     let bg = `http://127.0.0.1:24050/Songs/${data.menu.bm.path.full.replace(/#/g,'%23').replace(/%/g,'%25').replace(/\\/g, '/')}?a=${Math.random(10000)}`;
+    let file = data.menu.bm.path.file;
     let pick;
     let customMapper = "";
 
@@ -111,6 +112,19 @@ async function updateDetails(data) {
             min = Math.round(min*1.5);
             max = Math.round(max*1.5);
             fullSR = beatmapSet.find(beatmap => beatmap["beatmapId"] === id)["modSR"];
+        }
+    } else if (beatmaps.includes(file)) {
+        pick = beatmapSet.find(beatmap => beatmap["beatmapId"] === file)["pick"];
+        customMapper = beatmapSet.find(beatmap => beatmap["beatmapId"] === file)["mappers"];
+        let mod = pick.substring(0,2).toUpperCase();
+        if (mod == "HR") {
+            memoryOD = Math.min(memoryOD*1.4, 10).toFixed(2);
+        } else if (mod == "DT") {
+            memoryOD = Math.min((79.5 - (Math.min(79.5, Math.max(19.5, 79.5 - Math.ceil(6 * memoryOD))) / 1.5)) / 6, 1.5 > 1.5 ? 12 : 11).toFixed(2);
+            full = full/1.5;
+            min = Math.round(min*1.5);
+            max = Math.round(max*1.5);
+            fullSR = beatmapSet.find(beatmap => beatmap["beatmapId"] === file)["modSR"];
         }
     }
     
@@ -155,10 +169,11 @@ async function paintMod(modText) {
                 mapPick.style.backgroundColor = "#303030";
                 break;
             default:
-                mapPick.style.borderColor = "white";
-                mapPick.style.backgroundColor = "#313131";
                 break;
         }
+    } else {
+        mapPick.style.borderColor = "white";
+        mapPick.style.backgroundColor = "#313131";
     }
 }
 

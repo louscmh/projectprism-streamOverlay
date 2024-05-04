@@ -43,10 +43,19 @@ The showcase overlay uses the following JSON to function:
 - `beatmaps.json`
 
 The JSON file contains 4 variables:
-- `beatmapId`: the id of your beatmap, as displayed in the URL of the beatmap link (`beatmapsets/2019194#taiko/***4204844***`)
+- `beatmapId`: the id of your beatmap, as displayed in the URL of the beatmap link (beatmapsets/2019194#taiko/***4204844***)
 - `pick`: the pick name of your beatmap (NM1, HR2, TB, etc.). This overlay supports the following mods: NM, HD, HR, DT, FM, FL, TB
 - `modSR`: the star rating value of DT maps, inputted manually (float)
 - `mapper`: custom string used if you want to list down more than 1 mapper
+
+***(NOTE FOR CUSTOM MAPS)*** As unreleased maps have no beatmapId, the beatmapId will be substituted with the map's file name instead. Replace the `beatmapId` parameter with a string following this format: `Arist - Song Title (Mapper Name) [Difficulty].osu`
+
+- `Artist`: The **ROMANIZED** name of the Artist of the song (ex: `Null Specification`)
+- `Song Title`: The **ROMANIZED** name of the song (ex: `Aletheia (fake love, fake summer)`)
+- `Mapper Name`: The name of the mapper associated with the beatmap (ex: `Rinze`)
+- `Difficulty`: The difficulty name of the beatmap (ex: `fake promise`)
+
+Combining all examples of the arguments, you will get `Null Specification - Aletheia (fake lover, fake summer) (Rinze) [fake promise].osu`. The string is **Case** and **Space** sensitive.
 
 This must be updated **every week** to reflect the changes in-stream and must be distributed to the person streaming the showcase overlay.
 

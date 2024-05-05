@@ -35,6 +35,11 @@ In numerous scenes, there will be an overlay for the commentators in their own s
 
 ![commentator setup 2](_shared_assets/design/setup/image3.png)
 
+If you don't plan to talk at all, you can do this to hide yourself in vc indicator:
+1. Right click on yourself in discord, Copy ID.
+2. Put your ID into the following code: `li[data-userid*="your user id here"] {display: none;}`
+3. Paste this code at the end of the respective commentator overlay's custom CSS.
+
 ### Mappool Showcase
 Example scene for reference
 ![Example of Showcase Scene](https://cdn.discordapp.com/attachments/793324125723820086/1236058474224423083/image.png?ex=6636a0a9&is=66354f29&hm=3dbf545782e0985d38cac4563afcccf32368444eebcad2206afc5222230551c1&)

@@ -66,10 +66,12 @@ let mapOD = document.getElementById("mapOD");
 let mapSR = document.getElementById("mapSR");
 let mapBPM = document.getElementById("mapBPM");
 let mapLength = document.getElementById("mapLength");
+let replayer = document.getElementById("replayer")
 // let stinger = document.getElementById("stinger");
 
 // PLACEHOLDER VARS /////////////////////////////////////////////////////////////////
 let currentFile = "";
+let gameState;
 
 socket.onmessage = event => {
     let data = JSON.parse(event.data);
@@ -87,6 +89,18 @@ socket.onmessage = event => {
             bottomContainer.style.transform = "translateX(0)";
         }, 1500);
     }
+    
+    if(gameState !== data.menu.state){
+        gameState = data.menu.state;
+        if(gameState === 2){
+            replayer.style.animation = "replayerIn 1s ease-in-out";
+            replayer.style.opacity = 1;
+        } else {
+            replayer.style.animation = "replayerOut 1s ease-in-out";
+            replayer.style.opacity = 0;
+        }
+    }
+    replayer.innerHTML = data.gameplay.name != "" ? "Replay by " + data.gameplay.name: "Replay by Anonymous";
 }
 
 async function updateDetails(data) {
@@ -141,6 +155,7 @@ async function updateDetails(data) {
     mapBPM.innerHTML = `BPM ${min === max ? min : `${min}-${max}`}`;
     mapLength.innerHTML = `Length ${parseTime(full)}`;
 }
+
 async function paintMod(modText) {
     if (modText != null) {
         switch (modText.substring(0,2)) {

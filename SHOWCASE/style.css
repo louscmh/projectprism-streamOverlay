@@ -3,11 +3,6 @@
     src: url("../_shared_assets/fonts/upheavtt.ttf");
 }
 
-@font-face {
-    font-family: "Madou";
-    src: url("../_shared_assets/fonts/madoufmg.ttf");
-}
-
 #main {
     font-size: 30px;
     font-family: "Upheavtt";
@@ -49,6 +44,7 @@
 }
 
 #mapPick {
+    font-family: "Upheavtt";
     height: 65%;
     width:fit-content;
     padding-inline: 70px;
@@ -93,9 +89,9 @@
 }
 
 #beatmapTitle {
+    font-family: "Upheavtt";
     font-size: 50px;
     width:fit-content;
-    /* background-color: #312f35; */
     padding-left: 5px;
     padding-right: 20px;
     border-radius: 0px 50px 0px 0px;
@@ -104,13 +100,12 @@
 }
 
 #beatmapArtist {
+    font-family: "Upheavtt";
     font-size: 38px;
     width:fit-content !important;
-    /* background-color: #312f35; */
     z-index: 1;
     padding-left: 5px;
     padding-right: 20px;
-    /* border-radius: 0px 30px 30px 0px; */
 }
 
 #topContainer {

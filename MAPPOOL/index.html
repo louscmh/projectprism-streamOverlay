@@ -4,12 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../_shared_assets/deps/reconnecting-websocket.min.js"></script>
 </head>
 
 <body>
 	<div id="main">
-		
-	</div>
+		<div id="playerOneContainer">
+      <div id="one">
+        <div id="playerOnePoint" class="point"></div>
+        <img id="playerOnePic" class="profilePic"></img>
+        <div id="playerOne" class="profileCont">
+          <div id="playerOneName" class="playerName">Player 1</div>
+          <div id="playerOneSeed" class="seed">Seed X</div>
+        </div>
+        <div id="playerOnePick">
+          <div id="pickText" class="playerName">PICKS</div>
+          <div id="pickOneContainer"></div>
+        </div>
+      </div>
+      <div id="oneOne">
+        <div id="pickOne">
+          <img src="../_shared_assets/design/_mappool/_picking_1.png">
+        </div>
+        <div id="playerOneBan" class="ban">
+          <div id="banText" class="playerName">BANNED</div>
+          <div id="banOneContainer" class="banBox">XX1</div>
+        </div>
+      </div>
+    </div>
+    <div id="mainMappoolContainer">
+      <div id="selectedMapContainer">
+        <div id="wrapper">
+          <div id="overlay"></div>
+				  <div id="beatmapImage"></div>
+        </div>
+        <div id="foregroundMap">
+          <div id="selectedMap">SELECTED MAP</div>
+          <div id="map">
+            <div id="pickID">XX1</div>
+            <div id="song">ARTIST - TITLE</div>
+            <div id="mapper">MAPSET BY MAPPER</div>
+            <div id="stats">
+              <div id="mapSR" class="statFont">SR 0.00*</div>
+              <div id="mapOD" class="statFont">OD 0.0</div>
+              <div id="mapBPM" class="statFont">BPM 000</div>
+              <div id="mapLength" class="statFont">LENGTH 00:00</div>
+            </div>
+          </div>
+        </div>
+        <div id="currentlyPicking">
+          <div id="pickingText"></div>
+        </div>
+      </div>
+      <div id="mappoolContainer">
+        <div id="NM" class="mapContainer"></div>
+        <div id="HD" class="mapContainer"></div>
+        <div id="HR" class="mapContainer"></div>
+        <div id="DT" class="mapContainer"></div>
+        <div id="FM" class="mapContainer"></div>
+        <div id="FL" class="mapContainer"></div>
+        <div id="TB" class="mapContainer"></div>
+    </div>
+    </div>
+    <div id="playerTwoContainer">
+      <div id="two">
+        <div id="playerTwoPoint" class="point"></div>
+        <img id="playerTwoPic" class="profilePic"></img>
+        <div id="playerTwo" class="profileCont">
+          <div id="playerTwoName" class="playerName">Player 2</div>
+          <div id="playerTwoSeed" class="seed">Seed X</div>
+        </div>
+        <div id="playerTwoPick">
+          <div id="pickText" class="playerName">PICKS</div>
+          <div id="pickTwoContainer"></div>
+        </div>
+      </div>
+      <div id="twoTwo">
+        <div id="pickTwo">
+          <img src="../_shared_assets/design/_mappool/_picking_2.png">
+        </div>
+        <div id="playerTwoBan" class="ban">
+          <div id="banText" class="playerName">BANNED</div>
+          <div id="banTwoContainer" class="banBox">XX1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="controlPanel">
+    <div id="banButton">BAN PHASE</div>
+    <div id="pickButton">PICK PHASE</div>
+    <div id="playerOneButton">TOGGLE LEFT PLAYER</div>
+    <div id="playerTwoButton">TOGGLE RIGHT PLAYER</div>
+    <div id="nextButton">NEXT PICK</div>
+  </div>
 	<script src="index.js"></script>
   </body>
   

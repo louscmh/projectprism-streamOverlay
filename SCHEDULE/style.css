@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "Upheavtt";
+    src: url("../_shared_assets/fonts/upheavtt.ttf");
+}
+
+@font-face {
+    font-family: "Madou";
+    src: url("../_shared_assets/fonts/madoufmg.ttf");
+}
+
+#main {
+    font-size: 30px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top:0px;
+    left:0px;
+    height:1080px;
+    width:1920px;
+    /* background-color: grey; */
+}
+
+#leftContainer {
+    width:50%;
+    height:inherit;
+}
+
+.match {
+    display:flex;
+    flex-direction: row;
+    height:60px;
+}
+
+.playerOne {
+    display:flex;
+    flex-direction: row;
+    height:inherit;
+}
+
+.playerTwo {
+    display:flex;
+    flex-direction: row-reverse;
+    height:inherit;
+}
+
+.playerName {
+    background-color: grey;
+    height:inherit;
+    display:flex;
+    align-items: center;
+    padding-inline: 20px;
+}
+
+.profilePic {
+    background-color: grey;
+    height:inherit;
+    width:60px;
+    margin-inline: 10px;
+}
+
+.versus {
+    color:black;
+    margin-inline:20px;
+    font-size:50px;
+}

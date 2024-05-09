@@ -1,0 +1,554 @@
+@font-face {
+    font-family: "Upheavtt";
+    src: url("../_shared_assets/fonts/upheavtt.ttf");
+}
+
+@font-face {
+    font-family: "Madou";
+    src: url("../_shared_assets/fonts/madoufmg.ttf");
+}
+
+#main {
+    font-size: 30px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: white;
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top:0px;
+    left:0px;
+    /* background-color: grey; */
+    display:flex;
+}
+
+#controlPanel {
+    font-size: 30px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: grey;
+    width: 1920px;
+    height: 150px;
+    position: absolute;
+    top:1080px;
+    left:0px;
+    background-color: grey;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mappoolContainer {
+    height:inherit;
+    width: 1360px;
+}
+
+#playerOneContainer, #playerTwoContainer {
+    height:inherit;
+    width: 280px;
+    /* background:lightgrey; */
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#one, #two {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height:fit-content;
+    width: 280px;
+
+}
+
+#oneOne, #twoTwo {
+    display:flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    height:fit-content;
+    width: 280px;
+    margin-bottom: 115px;
+}
+
+.point {
+    height:80px;
+    width:inherit;
+    background-color: #212121;
+    margin-top:20px;
+}
+
+.profilePic {
+    height:200px;
+    width:200px;
+    background-color: pink;
+    margin-top: 20px;
+}
+
+.profileCont {
+    width:200px;
+    display:flex;
+    flex-direction: column;
+}
+
+#playerOne {
+    align-items: start;
+}
+
+#playerTwo {
+    align-items: end;
+}
+
+.playerName {
+    font-size: 40px;
+}
+
+.seed {
+    font-size: 24px;
+    margin-top: -5px;
+}
+
+#playerOnePick, #playerTwoPick, #playerOneBan, #playerTwoBan {
+    display:flex;
+    flex-direction: column;
+    width:200px;
+    margin-top: 40px;
+}
+
+#playerTwoPick, #playerTwoBan {
+    align-items: end;
+}
+
+.banBox {
+    background-color: #9e4747;
+    color: white;
+    font-size: 36px;
+    width:inherit;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding-block:2px;
+    display:none;
+}
+
+#pickOne, #pickTwo {
+    height:130px;
+    width: inherit;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ban{
+    height:83px;
+}
+
+#mainMappoolContainer {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 1360px;
+}
+
+#selectedMapContainer {
+    width: 1280px;
+    height: 280px;
+}
+
+#wrapper {
+	position: absolute;
+    top:20px;
+    width: 1280px;
+    height: 280px;
+	z-index: -1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#overlay {
+	position: absolute;
+    width:inherit;
+    height: inherit;
+	z-index: -1;
+    background-color: rgba(0,0,0,0.5);
+}
+
+#beatmapImage {
+	z-index: -2;
+    width:105%;
+    height:105%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(5px);
+    opacity: 0;
+    transition: ease-in-out 500ms;
+}
+
+#foregroundMap {
+    position: absolute;
+    width: 1280px;
+    height: 280px;
+    /* background-color: grey; */
+    margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    color:white;
+}
+
+#currentlyPicking {
+    position: absolute;
+    width: 1280px;
+    height: 280px;
+    /* background-color: grey; */
+    margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 150%;
+}
+
+#map {
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    display: none;
+}
+
+#selectedMap {
+    margin-top: 10px;
+    display: none;
+}
+
+#pickID {
+    font-size: 300%;
+    margin-top: 18px;
+}
+
+#song {
+    font-size: 150%;
+    margin-top: -18px;
+    width: 1000px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+#mapper {
+    font-size: 75%;
+    margin-top: -3px;
+}
+
+#stats {
+    display:flex;
+    font-size: 90%;
+    margin-top: 35px;
+}
+
+.statFont {
+    margin-inline:10px;
+}
+
+#mappoolContainer {
+    position:relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    width: 1360px;
+    height: 720px;
+    margin-bottom: 20px;
+}
+
+.mapContainer {
+    height:fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-block:8px;
+}
+
+.map {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 5px;
+    width: 400px;
+    height: 60px;
+    background-color: rgba(0,0,0,0.80);
+    background-size: 100%;
+    background-position: center center;
+    color: #00080F;
+    box-shadow: 0px 5px 10px -3px black;
+    transition: ease-in-out 200ms;
+}
+
+.mapInfo {
+    width: 82%;
+    height: 80%;
+    margin-top:-1px;
+    display:flex;
+    align-items: center;
+    margin-inline:10px;
+    transform: translateY(8px);
+    color: #fff;
+    font-size: 24px;
+    text-shadow: 0 2px 3px black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pickingStatus {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 60px;
+    color: #fff;
+    line-height: 60px;
+    font-size: 34px;
+    text-align: center;
+    user-select: none;
+    opacity: 1;
+    text-shadow: 0 0 10px black;
+    border-style: hidden;
+    border-width: 3px;
+    border-color: rgba(0,0,0,0.1);
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0,0,0,0.85);
+    opacity: 0.5;
+    transition: ease-in-out 200ms;
+}
+
+.modIcon {
+    position: absolute;
+    top:-7.5px;
+    right: -10px;
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-filter: drop-shadow(0px 2px 2px #000);
+    filter: drop-shadow(0px 2px 2px #000);
+    transition: ease-in-out 200ms;
+}
+
+.clicker {
+    width: 400px;
+    height: 60px;
+    transition: ease-in-out 300ms;
+    margin-block: 8px;
+}
+
+.tb {
+    width: 1280px !important;
+    margin-bottom: 0px !important;
+}
+
+#TB {
+    padding-bottom: 0px !important;
+}
+
+.leftPick {
+    margin-block:5px;
+    background-color: grey;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rightPick {
+    margin-block:5px;
+    width:200px;
+    background-color: grey;
+    color:white;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.banBox {
+    margin-block:5px;
+    background-color: rgb(150, 68, 68);
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#banOneContainer, #banTwoContainer {
+    opacity:0;
+}
+
+.pickName, .status {
+    margin-inline: 10px;;
+    font-size:34px;
+}
+
+#playerOneButton, #playerTwoButton, #nextButton, #banButton, #pickButton {
+    height:70%;
+    width: 250px;
+    margin-inline: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style:solid;
+    border-width: 5px;
+    border-color: white;
+    text-align: center;
+    color:white;
+}
+
+#banButton {
+    background-color: rgb(153, 14, 14);
+}
+
+#pickButton {
+    background-color: rgb(161, 127, 34);
+}
+
+#playerOneButton {
+    background-color: rgb(97, 14, 153);
+}
+
+#playerTwoButton {
+    background-color: rgb(11, 95, 30);
+}
+
+#nextButton {
+    background-color: rgb(30, 47, 145);
+}
+
+@keyframes flashPurple {
+    from {
+        border-color: white;
+        background-color: rgba(255,255,255,0.5);
+    }
+    to {
+        border-color: rgb(184, 90, 255);
+        background-color: rgba(255,255,255,0);
+    }
+}
+
+@keyframes flashGreen {
+    from {
+        border-color: white;
+        background-color: rgba(255,255,255,0.5);
+    }
+    to {
+        border-color: rgb(94, 255, 94);
+        background-color: rgba(255,255,255,0);
+    }
+}
+
+@keyframes translateInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes translateInRight {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes translateOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+@keyframes pickingIn {
+    from {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pickingInSelected {
+    from {
+        transform: translateY(100px) translateX(-200px) scale(2);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(100px) translateX(0) scale(2);
+        opacity: 1;
+    }
+}
+
+@keyframes pickingOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+}
+
+@keyframes pickingUp {
+    from {
+        transform: translateY(100px) scale(2);
+    }
+    to {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

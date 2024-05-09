@@ -13,7 +13,6 @@ socket.onerror = error => {
 
 socket.onmessage = event => {
     let data = JSON.parse(event.data);
-
 }
 
 const mods = {
@@ -83,6 +82,8 @@ let pickTwoContainer = document.getElementById("pickTwoContainer");
 let banOneContainer = document.getElementById("banOneContainer");
 let banTwoContainer = document.getElementById("banTwoContainer");
 
+let upcomingText = document.getElementById("upcomingText");
+let selectedMapContainer = document.getElementById("selectedMapContainer");
 let foregroundMap = document.getElementById("foregroundMap");
 let pickingText = document.getElementById("pickingText");
 let selectedMap = document.getElementById("selectedMap");
@@ -94,6 +95,9 @@ let playerOneButton = document.getElementById("playerOneButton");
 let playerTwoButton = document.getElementById("playerTwoButton");
 let nextButton = document.getElementById("nextButton");
 
+let scoreBlue = document.getElementById("scoreBlue");
+let scoreRed = document.getElementById("scoreRed");
+
 // PLACEHOLDER VARS //////////////////////////////////////////////
 let tempLeft;
 let tempRight;
@@ -101,6 +105,11 @@ let hasSetup = false;
 let banCount = 0;
 let currentPlayer;
 let currentPhase;
+let bestOfTemp;
+let scoreBlueTemp;
+let scoreRedTemp;
+let scoreEvent;
+let picking = true;
 const beatmapData = new Set(); // Store beatmapID;
 
 // MAIN LOOP ////////////////////////////////////////////////////////////////
@@ -128,6 +137,73 @@ socket.onmessage = async event => {
         pickingText.style.animation = `pickingIn 0.75s ease-in-out`;
         updateElipsis();
     };
+
+    if (bestOfTemp !== Math.ceil(data.tourney.manager.bestOF / 2) || scoreBlueTemp !== data.tourney.manager.stars.left || scoreRedTemp !== data.tourney.manager.stars.right) {
+
+		// Courtesy of Victim-Crasher
+		bestOfTemp = Math.ceil(data.tourney.manager.bestOF / 2);
+
+		// To know where to blow or pop score
+		if (scoreBlueTemp < data.tourney.manager.stars.left) {
+			scoreEvent = "blue-add";
+		} else if (scoreBlueTemp > data.tourney.manager.stars.left) {
+			scoreEvent = "blue-remove";
+		} else if (scoreRedTemp < data.tourney.manager.stars.right) {
+			scoreEvent = "red-add";
+		} else if (scoreRedTemp > data.tourney.manager.stars.right) {
+			scoreEvent = "red-remove";
+		}
+
+		scoreBlueTemp = data.tourney.manager.stars.left;
+		scoreBlue.innerHTML = "";
+		for (var i = 0; i < scoreBlueTemp; i++) {
+			if (scoreEvent === "blue-add" && i === scoreBlueTemp - 1) {
+				let scoreFill = document.createElement("div");
+				scoreFill.setAttribute("class", "score scoreFillAnimate");
+				scoreBlue.appendChild(scoreFill);
+			} else {
+				let scoreFill = document.createElement("div");
+				scoreFill.setAttribute("class", "score scoreFill");
+				scoreBlue.appendChild(scoreFill);
+			}
+		}
+		for (var i = 0; i < bestOfTemp - scoreBlueTemp; i++) {
+			if (scoreEvent === "blue-remove" && i === 0) {
+				let scoreNone = document.createElement("div");
+				scoreNone.setAttribute("class", "score scoreNoneAnimate");
+				scoreBlue.appendChild(scoreNone);
+			} else {
+				let scoreNone = document.createElement("div");
+				scoreNone.setAttribute("class", "score");
+				scoreBlue.appendChild(scoreNone);
+			}
+		}
+
+		scoreRedTemp = data.tourney.manager.stars.right;
+		scoreRed.innerHTML = "";
+		for (var i = 0; i < bestOfTemp - scoreRedTemp; i++) {
+			if (scoreEvent === "red-remove" && i === bestOfTemp - scoreRedTemp - 1) {
+				let scoreNone = document.createElement("div");
+				scoreNone.setAttribute("class", "score scoreNoneAnimate");
+				scoreRed.appendChild(scoreNone);
+			} else {
+				let scoreNone = document.createElement("div");
+				scoreNone.setAttribute("class", "score");
+				scoreRed.appendChild(scoreNone);
+			}
+		}
+		for (var i = 0; i < scoreRedTemp; i++) {
+			if (scoreEvent === "red-add" && i === 0) {
+				let scoreFill = document.createElement("div");
+				scoreFill.setAttribute("class", "score scoreFillAnimate");
+				scoreRed.appendChild(scoreFill);
+			} else {
+				let scoreFill = document.createElement("div");
+				scoreFill.setAttribute("class", "score scoreFill");
+				scoreRed.appendChild(scoreFill);
+			}
+		}
+	}
 }
 
 // SETTING UP CONTROL PANEL
@@ -152,12 +228,19 @@ playerTwoButton.addEventListener("click", function(event) {
 })
 
 nextButton.addEventListener("click", function(event) {
+    picking = true;
     if (currentPlayer == tempRight) {
         currentPlayer = tempLeft;
     } else {
         currentPlayer = tempRight;
     }
     foregroundMap.style.animation = "pickingOut 0.75s ease-in-out";
+    selectedMapContainer.style.transform = "translateY(0px)"
+    mappoolContainer.style.transform = "translateY(0px)"
+    selectedMapContainer.style.animation = "unHighlightMap 1s ease-in-out"
+    mappoolContainer.style.animation = "raiseMappool 1s ease-in-out"
+    upcomingText.style.animation = "pickingOut 1s ease-in-out";
+    upcomingText.style.opacity = 0;
     setTimeout(function() {
         beatmapImage.style.opacity = 0;
         selectedMap.style.display = `none`;
@@ -591,20 +674,32 @@ async function getDataSet(beatmapID) {
 };
 
 function showMap() {
+    picking = false;
     if (mapFrame.style.display != "flex") {
-        selectedMap.style.transform = "translateY(100px) scale(2)"
-        selectedMap.style.display = "initial"
-        selectedMap.style.animation = "pickingInSelected 0.5s ease-out"
+        selectedMap.innerHTML = `SELECTED MAP - ${currentPlayer}`;
+        selectedMap.style.transform = "translateY(100px) scale(2)";
+        selectedMap.style.display = "initial";
+        selectedMap.style.animation = "pickingInSelected 0.5s ease-out";
         setTimeout(function() {
-            selectedMap.style.animation = "pickingUp 0.75s ease-in-out"
-            selectedMap.style.transform = "translateY(0) scale(1)"
+            selectedMap.style.animation = "pickingUp 0.75s ease-in-out";
+            selectedMap.style.transform = "translateY(0) scale(1)";
         },1000);
     }
     setTimeout(function() {
-        mapFrame.style.display = "flex"
-        mapFrame.style.animation = "pickingIn 0.75s ease-in-out"
+        mapFrame.style.display = "flex";
+        mapFrame.style.animation = "pickingIn 0.75s ease-in-out";
         beatmapImage.style.opacity = 1;
     }, 1000);
+    setTimeout(function() {
+        if (!picking) {
+            selectedMapContainer.style.transform = "translateY(360px)";
+            mappoolContainer.style.transform = "translateY(720px)";
+            selectedMapContainer.style.animation = "highlightMap 1s ease-in-out";
+            mappoolContainer.style.animation = "lowerMappool 1s ease-in-out";
+            upcomingText.style.animation = "pickingIn 1s ease-in-out";
+            upcomingText.style.opacity = 1;
+        }
+    }, 5000);
 }
 
 function updateElipsis() {
@@ -620,7 +715,14 @@ function updateElipsis() {
 }
 
 function cancelPick() {
+    picking = true;
     foregroundMap.style.animation = "pickingOut 0.75s ease-in-out";
+    selectedMapContainer.style.transform = "translateY(0px)"
+    mappoolContainer.style.transform = "translateY(0px)"
+    selectedMapContainer.style.animation = "unHighlightMap 1s ease-in-out"
+    mappoolContainer.style.animation = "raiseMappool 1s ease-in-out"
+    upcomingText.style.animation = "pickingOut 1s ease-in-out";
+    upcomingText.style.opacity = 0;
     beatmapImage.style.opacity = 0;
     setTimeout(function() {
         selectedMap.style.display = `none`;

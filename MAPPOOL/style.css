@@ -70,13 +70,6 @@
     margin-bottom: 115px;
 }
 
-.point {
-    height:80px;
-    width:inherit;
-    background-color: #212121;
-    margin-top:20px;
-}
-
 .profilePic {
     height:200px;
     width:200px;
@@ -153,6 +146,17 @@
 #selectedMapContainer {
     width: 1280px;
     height: 280px;
+}
+
+#upcomingText {
+    width: 1280px;
+    height: 60px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:-60px;
+    font-size: 200%;
+    opacity: 0;
 }
 
 #wrapper {
@@ -551,4 +555,142 @@
     to {
         opacity: 0;
     }
+}
+
+@keyframes highlightMap {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(360px);
+    }
+}
+
+@keyframes unHighlightMap {
+    from {
+        transform: translateY(360px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes lowerMappool {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(720px);
+    }
+}
+
+@keyframes raiseMappool {
+    from {
+        transform: translateY(720px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* SCORE RELATED STUFF */
+#playerOnePoint, #playerTwoPoint {
+    width: inherit;
+    height:80px;
+    width:inherit;
+    background-color: #212121;
+    margin-top:20px;
+    display:flex;
+    justify-content: center;
+}
+
+.point {
+    width:94%;
+}
+
+#scoreBlue {
+	left: 180px;
+	display: flex;
+    justify-content: space-between;
+	height: 136px;
+}
+#scoreRed {
+	right: 180px;
+	display: flex;
+    justify-content: space-between;
+	height: 136px;
+}
+
+#scoreBlue>.score {
+	width: 25px;
+	height: 66px;
+	margin-inline:7px;
+    background-color: #362744;
+}
+
+#scoreRed>.score {
+	width: 25px;
+	height: 66px;
+	margin-inline:7px;
+    background-color: #1f3a1f;
+}
+
+#scoreBlue>.scoreFill{
+	background-color: #58ff00 !important
+}
+
+#scoreRed>.scoreFill{
+	background-color: #b152d8 !important
+}
+
+#scoreBlue>.score.scoreFillAnimate {
+	animation: addScoreBlue 500ms forwards;
+}
+
+#scoreRed>.score.scoreFillAnimate {
+	animation: addScoreRed 500ms forwards;
+}
+
+#scoreBlue>.score.scoreNoneAnimate {
+	animation: removeScoreBlue 500ms forwards;
+}
+
+#scoreRed>.score.scoreNoneAnimate {
+	animation: removeScoreRed 500ms forwards;
+}
+
+@keyframes addScoreBlue {
+	from {
+        background-color: #362744;
+	}
+	to {
+		background-color: #58ff00;
+	}
+}
+
+@keyframes addScoreRed {
+	from {
+        background-color: #1f3a1f;
+	}
+	to {
+		background-color: #b152d8;
+	}
+}
+
+@keyframes removeScoreBlue {
+	from {
+		background-color: #58ff00;
+	}
+	to {
+        background-color: #362744;
+	}
+}
+
+@keyframes removeScoreRed {
+	from {
+		background-color: #b152d8;
+	}
+	to {
+        background-color: #1f3a1f;
+	}
 }

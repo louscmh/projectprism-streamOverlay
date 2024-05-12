@@ -111,7 +111,7 @@
 #topContainer {
     position: absolute;
     right:0px;
-    width:1220px;
+    width:1240px;
     display:flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -124,9 +124,8 @@
     color:white;
     background-color: rgba(34, 124, 34, 0.5);
     border-radius: 20px;
-    padding-inline:30px;
     padding-block:5px;
-    margin-right: 20px;
+    margin-right: 10px;
     margin-top: -54px;
     text-align: center;
     flex-grow:1;
@@ -162,7 +161,7 @@
 }
 
 .statFont {
-    font-size: 46px;
+    font-size: 44px;
     margin-left: 20px;
 }
 

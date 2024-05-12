@@ -111,13 +111,25 @@
 #topContainer {
     position: absolute;
     right:0px;
-    width:fit-content;
+    width:1220px;
     display:flex;
     flex-direction: row-reverse;
     align-items: center;
     height:135px;
     color:white;
     transition: ease-in-out 1.5s;
+}
+
+#progressBar {
+    color:white;
+    background-color: rgba(34, 124, 34, 0.5);
+    border-radius: 20px;
+    padding-inline:30px;
+    padding-block:5px;
+    margin-right: 20px;
+    margin-top: -54px;
+    text-align: center;
+    flex-grow:1;
 }
 
 #logoBox {
@@ -175,4 +187,16 @@
 {
   from {transform: translateX(0); opacity: 1;}
   to { transform: translateX(200px); opacity: 0;}
+}
+
+@keyframes timeIn
+{
+    from {transform: translateY(-200px); opacity: 0;}
+    to { transform: translateY(0); opacity: 1;}
+}
+
+@keyframes timeOut
+{
+    from {transform: translateY(0); opacity: 1;}
+    to { transform: translateY(-200px); opacity: 0;}
 }

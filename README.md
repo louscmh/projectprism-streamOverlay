@@ -85,14 +85,14 @@ ___
 
 ### Drafting
 - [ ] Draft Layout of Match Scene
-- [ ] Draft Layout of Mappool Scene
+- [X] Draft Layout of Mappool Scene
 - [X] Draft Layout of Showcase Scene
 - [ ] Draft Layout of Winner Scene
-- [ ] Draft Layout of Schedule Scene
+- [X] Draft Layout of Schedule Scene
 - [ ] Draft Layout of Player Intro Scene
 ### Implementation (Design + Functionality)
 - [ ] Implementation of Match Scene
-- [ ] Implementation of Mappool Scene
+- [X] Implementation of Mappool Scene
 - [x] Implementation of Showcase Scene
 - [ ] Implementation of Winner Scene
 - [ ] Implementation of Schedule Scene

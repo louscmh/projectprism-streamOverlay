@@ -67,6 +67,7 @@ let mapSR = document.getElementById("mapSR");
 let mapBPM = document.getElementById("mapBPM");
 let mapLength = document.getElementById("mapLength");
 let replayer = document.getElementById("replayer")
+let progressBar = document.getElementById("progressBar")
 // let stinger = document.getElementById("stinger");
 
 // PLACEHOLDER VARS /////////////////////////////////////////////////////////////////
@@ -95,11 +96,16 @@ socket.onmessage = event => {
         if(gameState === 2){
             replayer.style.animation = "replayerIn 1s ease-in-out";
             replayer.style.opacity = 1;
+            progressBar.style.animation = "timeIn 1s ease-in-out";
+            progressBar.style.opacity = 1;
         } else {
             replayer.style.animation = "replayerOut 1s ease-in-out";
             replayer.style.opacity = 0;
+            progressBar.style.animation = "timeOut 1s ease-in-out";
+            progressBar.style.opacity = 0;
         }
     }
+    progressBar.innerHTML = `TIME LEFT: ${parseTime(data.menu.bm.time.full-data.menu.bm.time.current)}`;
     replayer.innerHTML = data.gameplay.name != "" ? "Replay by " + data.gameplay.name: "Replay by Anonymous";
 }
 

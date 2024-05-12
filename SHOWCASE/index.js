@@ -105,7 +105,7 @@ socket.onmessage = event => {
             progressBar.style.opacity = 0;
         }
     }
-    progressBar.innerHTML = `TIME LEFT: ${parseTime(data.menu.bm.time.full-data.menu.bm.time.current)}`;
+    progressBar.innerHTML = `TIME: ${parseTime(data.menu.bm.time.full-data.menu.bm.time.current)}`;
     replayer.innerHTML = data.gameplay.name != "" ? "Replay by " + data.gameplay.name: "Replay by Anonymous";
 }
 

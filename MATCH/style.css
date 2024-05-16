@@ -1,0 +1,466 @@
+@font-face {
+    font-family: "Upheavtt";
+    src: url("../_shared_assets/fonts/upheavtt.ttf");
+}
+
+#main {
+    font-size: 30px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: white;
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top:0px;
+    left:0px;
+    /* background-color: grey; */
+}
+
+#top {
+    height:130px;
+    width:inherit;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mapDetails {
+    height:100px;
+    width:900px;
+    background-color: #212121;
+    display:flex;
+    align-items: center;
+}
+
+#map {
+    height:75px;
+    width:230px;
+    /* background-color: green; */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 10px;
+    margin-right:20px;
+    border-radius: 15px;
+    font-size: 65px;
+}
+
+#bg {
+    width:inherit;
+    height: inherit;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 0;
+	filter: brightness(70%) url("#sharpBlur");
+	object-fit: cover;
+	object-position: center;
+}
+
+#pickID {
+    z-index:1;
+}
+
+#beatmapDetails {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width:630px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#song {
+    font-size:40px;
+	white-space: nowrap;
+    width:fit-content;
+}
+
+#songDelay {
+    font-size:40px;
+    margin-top: -41.25px;
+    width:fit-content;
+	white-space: nowrap;
+    display:none;
+}
+
+#mapper {
+    font-size:20px;
+}
+
+#stats {
+    display:flex;
+    flex-direction: row;
+}
+
+.statFont {
+    font-size:20px;
+    margin-right: 10px;
+}
+
+#clients {
+    width:inherit;
+    height:700px;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: start;
+}
+
+.client {
+    width:900px;
+    height:675px;
+    /* background-color: rgb(163, 83, 96); */
+    display:flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    font-size:50px;
+}
+
+.stats {
+    display:flex;
+}
+
+.good, .miss {
+    margin-right:20px;
+}
+
+#bottom {
+    width:inherit;
+    height:fit-content;
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#score {
+    width:inherit;
+    height:fit-content;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 250ms ease-in-out;
+}
+
+#scoreBar {
+    width:1480px;
+    display:flex;
+    justify-content: center;
+}
+
+#scoreBarLeft, #scoreBarRight {
+    width:710px;
+    height:20px;
+}
+
+#scoreBarLeft {
+    display:flex;
+    flex-direction: row-reverse;
+}
+
+#middleBar {
+    background-color: white;
+    width:40px;
+    height:45px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+#leftContent {
+    width:inherit;
+    height:20px;
+    background-color: #900f93;
+    border-radius: 0px 0px 0px 20px;
+    transition: ease-in-out 100ms;
+}
+
+#rightContent {
+    width:inherit;
+    height:20px;
+    background-color: #377a17;
+    border-radius: 0px 0px 20px 0px;
+    transition: ease-in-out 100ms;
+}
+
+#numericScore {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#scoreDifference {
+    text-align: center;
+}
+
+#playerScore {
+    margin-top:-10px;
+    width: 950px;
+    display:flex;
+    justify-content: space-evenly;
+    font-size:70px;
+}
+
+#playerOneScore , #playerTwoScore {
+    width: 350px;
+    text-align: center;
+}
+
+#playerDetails {
+    width:inherit;
+    height:150px;
+    display:flex;
+    justify-content: space-between;
+    position: absolute;
+}
+
+.pfp {
+    width:150px;
+    height:150px;
+    background-color: white;
+    margin-inline:40px;
+}
+
+#playerOne {
+    display:flex;
+    align-items: center;
+}
+
+#playerTwo {
+    display:flex;
+    flex-direction: row-reverse;
+    text-align: right;
+    align-items: center;
+}
+
+#playerOneName, #playerTwoName {
+    font-size:60px;
+    margin-top:10px;
+}
+
+#playerOneSeed, #playerTwoSeed {
+    margin-top: -10px;
+}
+
+#playerOneRank, #playerTwoRank {
+    margin-top:-8px;
+}
+
+#otherDetails {
+    margin-top:30px;
+    height:50px;
+    width:inherit;
+    display:flex;
+    justify-content: space-between;
+}
+
+#leftPick, #rightPick {
+    height:inherit;
+    width:150px;
+    margin-inline:40px;
+    background-color: #212121;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:40px;
+}
+
+#bottomBoard {
+    width:1460px;
+    height:inherit;
+    background-color: #212121;
+    display:flex;
+    justify-content: space-between;
+}
+
+#progressBar {
+    width: 700px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#progressBarText {
+    font-size:22px;
+    margin-top:5px;
+}
+
+#content {
+    height:12px;
+    width: inherit;
+    border-radius: 12px;
+    display:flex;
+    background-image: linear-gradient(to right, #643466, #335620);
+}
+
+#fill {
+    position: absolute;
+    height:12px;
+    border-radius: 12px;
+    background-color: white;
+    transition: ease-in-out 100ms;
+}
+
+#winScreen {
+    font-size: 30px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: white;
+    width: 1920px;
+    height: 200px;
+    /* background-color: grey; */
+    position: absolute;
+    top:1080px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#winText, #percentage {
+    display:flex;
+    font-size:40px;
+}
+
+#winnerName {
+    margin-right:12px;
+}
+
+#finalScore {
+    display:flex;
+    font-size: 60px;
+}
+
+#playerOneFinal, #playerTwoFinal, #versus {
+    margin-inline: 25px;
+    margin-top:-15px;
+}
+
+#percentage {
+    margin-top:-10px;
+}
+
+/* SCORE RELATED STUFF */
+#playerOnePoint, #playerTwoPoint {
+    width: 360px;
+    height:inherit;
+    display:flex;
+    justify-content: center;
+}
+
+.point {
+    width:94%;
+}
+
+#scoreBlue {
+	left: 180px;
+	display: flex;
+    align-items: center;
+	height: inherit;
+}
+#scoreRed {
+	right: 180px;
+	display: flex;
+    justify-content: end;
+    align-items: center;
+	height: inherit;
+}
+
+#scoreBlue>.score {
+	width: 32px;
+	height: 32px;
+	margin-inline:5px;
+    background-color: #362744;
+}
+
+#scoreRed>.score {
+	width: 32px;
+	height: 32px;
+	margin-inline:5px;
+    background-color: #1f3a1f;
+}
+
+#scoreBlue>.scoreFill{
+	background-color: #58ff00 !important
+}
+
+#scoreRed>.scoreFill{
+	background-color: #b152d8 !important
+}
+
+#scoreBlue>.score.scoreFillAnimate {
+	animation: addScoreBlue 500ms forwards;
+}
+
+#scoreRed>.score.scoreFillAnimate {
+	animation: addScoreRed 500ms forwards;
+}
+
+#scoreBlue>.score.scoreNoneAnimate {
+	animation: removeScoreBlue 500ms forwards;
+}
+
+#scoreRed>.score.scoreNoneAnimate {
+	animation: removeScoreRed 500ms forwards;
+}
+
+@keyframes addScoreBlue {
+	from {
+        background-color: #362744;
+	}
+	to {
+		background-color: #58ff00;
+	}
+}
+
+@keyframes addScoreRed {
+	from {
+        background-color: #1f3a1f;
+	}
+	to {
+		background-color: #b152d8;
+	}
+}
+
+@keyframes removeScoreBlue {
+	from {
+		background-color: #58ff00;
+	}
+	to {
+        background-color: #362744;
+	}
+}
+
+@keyframes removeScoreRed {
+	from {
+		background-color: #b152d8;
+	}
+	to {
+        background-color: #1f3a1f;
+	}
+}
+
+@keyframes scrollText {
+	0% {
+	  transform: translateX(100%);
+	}
+	100% {
+	  transform: translateX(-100%);
+	}
+}
+
+@keyframes moveUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-300px);
+    }
+}
+
+@keyframes moveDown {
+    from {
+        transform: translateY(-300px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}

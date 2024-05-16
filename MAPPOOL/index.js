@@ -11,10 +11,6 @@ socket.onerror = error => {
     console.log("Socket Error: ", error);
 };
 
-socket.onmessage = event => {
-    let data = JSON.parse(event.data);
-}
-
 const mods = {
     NM: 0,
     HD: 8,
@@ -28,11 +24,16 @@ const mods = {
 // BEATMAP DATA /////////////////////////////////////////////////////////////////
 let beatmapSet = [];
 let beatmaps = [];
+let seeds = [];
 (async () => {
     try {
         const jsonData = await $.getJSON("../_data/beatmaps.json");
         jsonData.map((beatmap) => {
             beatmapSet.push(beatmap);
+        });
+        const seedData = await $.getJSON("../_data/prism_seed.json");
+        seedData.map((seed) => {
+            seeds.push(seed);
         });
     } catch (error) {
         console.error("Could not read JSON file", error);
@@ -62,8 +63,10 @@ let api;
 // HTML VARS /////////////////////////////////////////////////////////////////
 let playerOne = document.getElementById("playerOneName");
 let playerOneSeed = document.getElementById("playerOneSeed");
+let playerOneRank = document.getElementById("playerOneRank");
 let playerTwo = document.getElementById("playerTwoName");
 let playerTwoSeed = document.getElementById("playerTwoSeed");
+let playerTwoRank = document.getElementById("playerTwoRank");
 let playerOnePic = document.getElementById("playerOnePic");
 let playerTwoPic = document.getElementById("playerTwoPic");
 
@@ -122,11 +125,11 @@ socket.onmessage = async event => {
     // Player Names
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
-        setAvatar(playerOnePic,tempLeft);
+        setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft);
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
-        setAvatar(playerTwoPic,tempRight);
+        setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
     }
 
     if (!hasSetup) {
@@ -249,7 +252,7 @@ nextButton.addEventListener("click", function(event) {
         pickingText.style.display = "initial";
         pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
         pickingText.style.animation = `pickingIn 0.75s ease-in-out`;
-    }, 750);
+    }, 700);
 })
 
 // CLASS
@@ -430,7 +433,7 @@ async function setupBeatmaps() {
                 setTimeout(function() {
                     pickingText.style.display = `none`;
                     showMap();
-                }, 750);
+                }, 700);
             }
         });
         bm.clicker.addEventListener("contextmenu", function(event) {
@@ -476,7 +479,7 @@ async function setupBeatmaps() {
                 setTimeout(function() {
                     pickingText.style.display = `none`;
                     showMap();
-                }, 750);
+                }, 700);
             }
         });
         const mapData = await getDataSet(beatmap.beatmapId);
@@ -624,7 +627,7 @@ async function formatTime(seconds) {
     return `${minutes}:${remainingSeconds}`;
 }
 
-async function setAvatar(element, username) {
+async function setPlayerDetails(element, seed, rank, username) {
     if (username === "") {
         return false;
     }
@@ -633,6 +636,9 @@ async function setAvatar(element, username) {
     if (data !== null) {
         source = `http://s.ppy.sh/a/${data.user_id}`
         element.setAttribute('src',source);
+        playerSeed = seeds.find(seed => seed["playerID"] == data.user_id)["Seed"];
+        seed.innerHTML = `SEED ${playerSeed}`;
+        rank.innerHTML = `RANK #${data.pp_rank}`;
         return true;
     } else {
         return false;

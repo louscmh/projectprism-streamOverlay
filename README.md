@@ -28,25 +28,7 @@ To properly import all overlays, download the latest release of this project and
 
 If you open the link in the browser and it doesn't project anything, contact louscmh immediately. If not, then OBS should be able to project the browser source.
 
-### Commentator Overlay
-In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in Discord!)
-
-![commentator setup 1](_shared_assets/design/setup/image2.png)
-
-![commentator setup 2](_shared_assets/design/setup/image3.png)
-
-If you don't plan to talk at all, you can do this to hide yourself in vc indicator:
-1. Right click on yourself in discord, Copy ID.
-2. Put your ID into the following code: `li[data-userid*="your user id here"] {display: none;}`
-3. Paste this code at the end of the respective commentator overlay's custom CSS.
-
-### Mappool Showcase
-Example scene for reference
-![Example of Showcase Scene](https://cdn.discordapp.com/attachments/793324125723820086/1236058474224423083/image.png?ex=6636a0a9&is=66354f29&hm=3dbf545782e0985d38cac4563afcccf32368444eebcad2206afc5222230551c1&)
-
-The showcase overlay uses the following JSON to function:
-- `beatmaps.json`
-
+### Setting up `beatmaps.json`
 The JSON file contains 4 variables:
 - `beatmapId`: the id of your beatmap, as displayed in the URL of the beatmap link (beatmapsets/2019194#taiko/***4204844***)
 - `pick`: the pick name of your beatmap (NM1, HR2, TB, etc.). This overlay supports the following mods: NM, HD, HR, DT, FM, FL, TB
@@ -80,18 +62,85 @@ A sample example of the JSON is included as follows:
     { "beatmapId": 4069219, "pick": "FM1", "modSR":4.7, "mappers":"me, my mother, and your dad"}
 ]
 ```
+
+### Commentator Overlay
+In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in Discord!)
+
+![commentator setup 1](_shared_assets/design/setup/image2.png)
+
+![commentator setup 2](_shared_assets/design/setup/image3.png)
+
+If you don't plan to talk at all, you can do this to hide yourself in vc indicator:
+1. Right click on yourself in discord, Copy ID.
+2. Put your ID into the following code: `li[data-userid*="your user id here"] {display: none;}`
+3. Paste this code at the end of the respective commentator overlay's custom CSS.
+
+### Mappool Overlay
+Example scene for reference
+![Example of Showcase Scene](https://lous.s-ul.eu/ksLQeJ0w)
+
+**IMPORTANT SETUP STEP**
+The showcase overlay uses the following JSON to function:
+- `beatmaps.json`
+- `api.json`
+
+For the mappool overlay to properly function & display both player & beatmap details, it will require you to insert an API key into `_data/api.json`.
+
+You can find your own osu! API at old.ppy.sh/p/api (wait for awhile after logging in!), make sure to not reveal this api key to anyone else (otherwise they will have the potential to steal your credentials)
+
+Within the Mappool Overlay there are a few interactable elemenets that requires the streamer to manually click on them to properly display what is being picked, who is it being picked by, moving on to the next map etc. To interact with the Overlay, click on the `Interact` Button when selecting the Mappool Overlay in OBS.
+
+![how to interact](image-1.png)
+
+**INTERACTING WITH THE BEATMAPS**
+![alt text](image-2.png)
+- Left Click to pick for **Player 1**
+- Right Click to pick for **Player 2**
+- Shift + Left Click to ban for **Player 1**
+- Shift + Right Click to ban for **Player 2**
+- Ctrl + Left Click to retract any actions (This will call back the pick in the player column aswell)
+
+**INTERACTING WITH MAPPICKS**
+![alt text](image-3.png)
+- Left Click to set the pick as a **WIN**
+- Right Click to set the pick as a **LOSS**
+- Ctrl + Left Click to retract any actions
+
+Under normal circumstances, this will be updated automatically upon reaching tbe result screen of each pick. But should the unique situation occur where this doesn't happen, you can adjust it by yourself by doing the above.
+
+**INTERACTING WITH THE CONTROL PANEL**
+![alt text](image-4.png)
+- **BAN PHASE**: Switches phase back to banning on the screen (This is the default phase upon initializing)
+- **PICK PHASE**: Switches phase to picking on the screen (Will automatically switch after both bans)
+- **TOGGLE LEFT PLAYER**: Toggle current player to **Player 1**
+- **TOGGLE RIGHT PLAYER**: Toggle current player to **Player 2**
+- **NEXT PICK**: Swithces current player to the next player. If map screen is moved to the center it will return to picking position. This will be activated automatically upon reaching the result screen of the map.
+
+### Match Overlay
+Example scene for reference
+![alt text](image-5.png)
+
+The match overlay uses the following JSON to function:
+- `beatmaps.json`
+
+### Mappool Showcase
+Example scene for reference
+![alt text](image-6.png)
+
+The showcase overlay uses the following JSON to function:
+- `beatmaps.json`
 ___
 ## To-do List
 
 ### Drafting
-- [ ] Draft Layout of Match Scene
+- [X] Draft Layout of Match Scene
 - [X] Draft Layout of Mappool Scene
 - [X] Draft Layout of Showcase Scene
 - [ ] Draft Layout of Winner Scene
 - [X] Draft Layout of Schedule Scene
 - [ ] Draft Layout of Player Intro Scene
 ### Implementation (Design + Functionality)
-- [ ] Implementation of Match Scene
+- [X] Implementation of Match Scene
 - [X] Implementation of Mappool Scene
 - [x] Implementation of Showcase Scene
 - [ ] Implementation of Winner Scene

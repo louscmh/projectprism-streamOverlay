@@ -14,6 +14,7 @@
     top:0px;
     left:0px;
     /* background-color: grey; */
+	text-shadow: 0px 0px 8px black;
 }
 
 #top {
@@ -78,7 +79,6 @@
 
 #songDelay {
     font-size:40px;
-    margin-top: -41.25px;
     width:fit-content;
 	white-space: nowrap;
     display:none;
@@ -113,16 +113,75 @@
     display:flex;
     flex-direction: row;
     align-items: end;
-    justify-content: space-between;
-    font-size:50px;
+    border: 5px solid white;
 }
 
-.stats {
+#clientOne {
+    box-shadow: rgba(211, 83, 243, 0.8) 0 100px 200px -125px;
+}
+
+#clientTwo {
+    box-shadow: rgba(87, 223, 98, 0.8) 0 100px 200px -125px;
+}
+
+#statColumnOne, #statColumnTwo {
+    width:900px;
     display:flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    font-size:40px;
+    opacity: 0;
 }
 
 .good, .miss {
+    width:70px;
+    display:flex;
+    margin-left:15px;
+}
+
+.good {
     margin-right:20px;
+}
+
+.ur {
+    margin-left:15px;
+}
+
+.statIcon {
+    height:50px;
+}
+
+#urBarOne, #urBarTwo {
+    width:250px;
+    justify-content: center;
+}
+
+#statsOne, #statsTwo {
+    width:350px;
+    justify-content: center;
+}
+
+#statsOne, #urBarOne {
+    display:flex;
+    align-items: center;
+    background-color: rgba(119, 75, 128, 0.5);
+    border-radius: 20px;
+    padding-inline:15px;
+    margin-inline: 10px;
+    height:50px;
+    margin-bottom:245px;
+}
+
+#statsTwo, #urBarTwo {
+    display:flex;
+    align-items: center;
+    background-color: rgba(75, 128, 79, 0.5);
+    border-radius: 20px;
+    padding-inline:15px;
+    margin-inline: 10px;
+    height:50px;
+    margin-bottom:245px;
 }
 
 #bottom {
@@ -170,7 +229,7 @@
     height:20px;
     background-color: #900f93;
     border-radius: 0px 0px 0px 20px;
-    transition: ease-in-out 100ms;
+    transition: ease-in-out 500ms;
 }
 
 #rightContent {
@@ -178,7 +237,7 @@
     height:20px;
     background-color: #377a17;
     border-radius: 0px 0px 20px 0px;
-    transition: ease-in-out 100ms;
+    transition: ease-in-out 500ms;
 }
 
 #numericScore {
@@ -313,6 +372,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+	text-shadow: 0px 0px 8px black;
 }
 
 #winText, #percentage {
@@ -452,15 +512,105 @@
         transform: translateY(0);
     }
     to {
-        transform: translateY(-300px);
+        transform: translateY(-275px);
     }
 }
 
 @keyframes moveDown {
     from {
-        transform: translateY(-300px);
+        transform: translateY(-275px);
     }
     to {
         transform: translateY(0);
     }
+}
+
+@keyframes statIn {
+    from {
+        transform: translateY(150px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+@keyframes statOut {
+    from {
+        transform: translateY(0);
+        opacity: 1
+    }
+    to {
+        transform: translateY(150px);
+        opacity: 0;
+    }
+}
+
+@keyframes highlightScore {
+    from {
+        transform: scale(0.9);
+        color: rgb(150,150,150);
+    }
+    to {
+        transform: scale(1);
+        color: white;
+    }
+}
+
+@keyframes unhighlightScore {
+    from {
+        transform: scale(1);
+        color: white;
+    }
+    to {
+        transform: scale(0.9);
+        color: rgb(150,150,150);
+    }
+}
+
+@keyframes flashMissOne {
+    from {
+        border-color: red;
+        box-shadow: rgba(243, 83, 83, 0.8) 0 100px 200px -125px;
+    }
+    to {
+        border-color: white;
+        box-shadow: rgba(211, 83, 243, 0.8) 0 100px 200px -125px;
+    }
+}
+
+@keyframes flashMissBarOne {
+    from {
+        background-color: red;
+    }
+    to {
+        background-color: #900f93;
+    }
+}
+
+@keyframes flashMissTwo {
+    from {
+        border-color: red;
+        box-shadow: rgba(243, 83, 83, 0.8) 0 100px 200px -125px;
+    }
+    to {
+        border-color: white;
+        box-shadow: rgba(87, 223, 98, 0.8) 0 100px 200px -125px;
+    }
+}
+
+@keyframes flashMissBarTwo {
+    from {
+        background-color: red;
+    }
+    to {
+        background-color: #377a17;
+    }
+}
+
+#ss {
+    position:absolute;
+    top:0px;
+    z-index: -1;
 }

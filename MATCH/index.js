@@ -107,6 +107,13 @@ let playerOneFinal = document.getElementById("playerOneFinal");
 let playerTwoFinal = document.getElementById("playerTwoFinal");
 let percentage = document.getElementById("percentage");
 
+let clientOne = document.getElementById("clientOne");
+let clientTwo = document.getElementById("clientTwo");
+let statColumnOne = document.getElementById("statColumnOne");
+let statColumnTwo = document.getElementById("statColumnTwo");
+
+let chats = document.getElementById("chats");
+
 // PLACEHOLDER VARS //////////////////////////////////////////////
 let tempLeft;
 let tempRight;
@@ -119,6 +126,8 @@ let previousState;
 let cachedPlayerOneScore;
 let cachedPlayerTwoScore;
 let cachedDifference;
+let cachedComboOne;
+let cachedComboTwo;
 let currentFile = "";
 let barThreshold = 100000;
 
@@ -348,9 +357,21 @@ async function updateScore(playScoreOne, playScoreTwo) {
     if (playScoreOne > playScoreTwo) {
         leftContent.style.width = `${(difference/barThreshold > 1 ? 1 : difference/barThreshold)*710}px`;
         rightContent.style.width = "0px";
+        playerOneScore.style.animation = "highlightScore 0.5s ease-in-out";
+        playerOneScore.style.color = "white";
+        playerOneScore.style.transform = "scale(1)";
+        playerTwoScore.style.animation = "unhighlightScore 0.5s ease-in-out";
+        playerTwoScore.style.color = "rgb(150,150,150)";
+        playerTwoScore.style.transition = "scale(0.9)";
     } else if (playScoreOne < playScoreTwo) {
         rightContent.style.width = `${(difference/barThreshold > 1 ? 1 : difference/barThreshold)*710}px`;
         leftContent.style.width = "0px";
+        playerTwoScore.style.animation = "highlightScore 0.5s ease-in-out";
+        playerTwoScore.style.color = "white";
+        playerTwoScore.style.transform = "scale(1)";
+        playerOneScore.style.animation = "unhighlightScore 0.5s ease-in-out";
+        playerOneScore.style.color = "rgb(150,150,150)";
+        playerOneScore.style.transition = "scale(0.9)";
     } else {
         leftContent.style.width = "0px";
         rightContent.style.width = "0px";
@@ -358,57 +379,139 @@ async function updateScore(playScoreOne, playScoreTwo) {
 }
 
 async function updateClientStats(data) {
-    playerOneData = data[0].gameplay.hits;
-    playerTwoData = data[1].gameplay.hits;
+    playerOneData = data[0].gameplay;
+    playerTwoData = data[1].gameplay;
 
-    animationScore.urOne.update(playerOneData.unstableRate);
-    animationScore.urTwo.update(playerTwoData.unstableRate);
+    animationScore.urOne.update(playerOneData.hits.unstableRate);
+    animationScore.urTwo.update(playerTwoData.hits.unstableRate);
+    // console.log("current: "+playerOneData.combo.current);
+    // console.log("cached: "+cachedComboOne);
 
-    goodOne.innerHTML = playerOneData["100"];
-    missOne.innerHTML = playerOneData["0"];
-    goodTwo.innerHTML = playerTwoData["100"];
-    missTwo.innerHTML = playerTwoData["0"];
+    if (playerOneData.combo.current < cachedComboOne && cachedComboOne > 100) {
+        // console.log("happened");
+        flashMiss(true);
+    }
+    if (playerTwoData.combo.current < cachedComboTwo && cachedComboTwo > 100) {
+        flashMiss(false);
+    }
+    
+    cachedComboOne = playerOneData.combo.current;
+    cachedComboTwo = playerTwoData.combo.current;
+
+    goodOne.innerHTML = playerOneData.hits["100"];
+    missOne.innerHTML = playerOneData.hits["0"];
+    goodTwo.innerHTML = playerTwoData.hits["100"];
+    missTwo.innerHTML = playerTwoData.hits["0"];
 }
 
 async function makeScrollingText(title, titleDelay, rate, boundaryWidth, padding) {
     if (title.scrollWidth > boundaryWidth) {
         titleDelay.innerHTML = title.innerHTML;
-        titleDelay.style.opacity = "1";
 		let ratio = (title.scrollWidth/boundaryWidth)*rate
 		title.style.animation = `scrollText ${ratio}s linear infinite`;
 		titleDelay.style.animation = `scrollText ${ratio}s linear infinite`;
 		titleDelay.style.animationDelay = `${-ratio/2}s`;
 		titleDelay.style.paddingRight = `${padding}px`;
 		title.style.paddingRight = `${padding}px`;
+        titleDelay.style.marginTop = `-${title.offsetHeight}px`;
         titleDelay.style.display = "initial";
     } else {
         titleDelay.style.display = "none";
 		title.style.animation = "none";
 		titleDelay.style.animation = "none";
-		titleDelay.style.opacity = "0";
 		titleDelay.style.paddingRight = "0px";
+        titleDelay.style.marginTop = `0px`;
 		title.style.paddingRight = "0px";
 	}
 }
 
 async function checkState(ipcState) {
-    if (ipcState == 4 & previousState == 3 & cachedPlayerOneScore != cachedPlayerTwoScore) {
-        console.log("happened1");
+    if (ipcState == 3) {
+        score.style.opacity = 1;
+        statColumnOne.style.animation ="statIn 1s ease-in-out";
+        statColumnTwo.style.animation ="statIn 1s ease-in-out";
+        statColumnOne.style.opacity = 1;
+        statColumnTwo.style.opacity = 1;
+    } else if (ipcState == 4 & cachedPlayerOneScore != cachedPlayerTwoScore) {
+        let oneWinner = cachedPlayerOneScore > cachedPlayerTwoScore ? true : false;
         playerOneFinal.innerHTML = cachedPlayerOneScore;
         playerTwoFinal.innerHTML = cachedPlayerTwoScore;
-        let ratio = cachedDifference/cachedPlayerOneScore>cachedPlayerTwoScore?cachedPlayerOneScore:cachedPlayerTwoScore;
-        winnerName.innerHTML = cachedPlayerOneScore > cachedPlayerTwoScore ? playerOne.innerHTML : playerTwo.innerHTML;
-        winnerName.color = cachedPlayerOneScore > cachedPlayerTwoScore ? "#900f93" : "#377a17";
-        percentage = `${ratio*100}%`
+        playerOneFinal.style.color = oneWinner?"white":"rgb(150,150,150)";
+        playerTwoFinal.style.color = !oneWinner?"white":"rgb(150,150,150)";
         score.style.opacity = 0;
+        let ratio = oneWinner?cachedDifference/cachedPlayerOneScore:cachedDifference/cachedPlayerTwoScore;
+        winnerName.innerHTML = cachedPlayerOneScore > cachedPlayerTwoScore ? playerOne.innerHTML : playerTwo.innerHTML;
+        winnerName.style.color = cachedPlayerOneScore > cachedPlayerTwoScore ? "#900f93" : "#377a17";
+        percentage.innerHTML = `${Math.trunc(ratio*100)}%`;
         winScreen.style.animation = "moveUp 1s ease-in-out";
-        winScreen.style.transform = "translateY(-300px)";
-    } else if (ipcState == 3 & previousState == 1) {
-        console.log("happened2");
+        winScreen.style.transform = "translateY(-275px)";
+        statColumnOne.style.animation ="statOut 1s ease-in-out";
+        statColumnTwo.style.animation ="statOut 1s ease-in-out";
+        statColumnOne.style.opacity = 0;
+        statColumnTwo.style.opacity = 0;
+    } else {
         winScreen.style.animation = "moveDown 1s ease-in-out";
         winScreen.style.transform = "translateY(0px)";
-    } else if (ipcState == 1 & previousState == 4) {
-        console.log("happened3");
-        score.style.opacity = 1;
+        score.style.opacity = 0;
+        statColumnOne.style.animation ="statOut 1s ease-in-out";
+        statColumnTwo.style.animation ="statOut 1s ease-in-out";
+        statColumnOne.style.opacity = 0;
+        statColumnTwo.style.opacity = 0;
+    }
+}
+
+async function flashMiss(playerOneYes) {
+    if (playerOneYes) {
+        console.log("happened");
+        clientOne.style.animation = "flashMissOne 1s ease-in-out";
+        leftContent.style.animation = "flashMissBarOne 1s ease-in-out";
+        setTimeout(function() {
+            clientOne.style.animation = "";
+            leftContent.style.animation = "";
+        },1000);
+    } else {
+        console.log("happened");
+        clientTwo.style.animation = "flashMissTwo 1s ease-in-out";
+        rightContent.style.animation = "flashMissBarTwo 1s ease-in-out";
+        setTimeout(function() {
+            clientTwo.style.animation = "";
+            rightContent.style.animation = "";
+        },1000);
+    }
+}
+
+async function paintMod(modText) {
+    if (modText != null) {
+        switch (modText.substring(0,2)) {
+            case "NM":
+                mapPick.style.borderColor = "rgb(147, 165, 202)";
+                mapPick.style.backgroundColor = "#18242f";
+                break;
+            case "HD":
+                mapPick.style.borderColor = "rgb(202, 194, 147)";
+                mapPick.style.backgroundColor = "#2d2f18";
+                break;
+            case "HR":
+                mapPick.style.borderColor = "rgb(202, 147, 147)";
+                mapPick.style.backgroundColor = "#2f1818";
+                break;
+            case "DT":
+                mapPick.style.borderColor = "rgb(185, 147, 202)";
+                mapPick.style.backgroundColor = "#2a182f";
+                break;
+            case "FM":
+                mapPick.style.borderColor = "rgb(147, 202, 147)";
+                mapPick.style.backgroundColor = "#182f18";
+                break;
+            case "FL":
+                mapPick.style.borderColor = "rgb(201, 201, 201)";
+                mapPick.style.backgroundColor = "#303030";
+                break;
+            default:
+                break;
+        }
+    } else {
+        mapPick.style.borderColor = "white";
+        mapPick.style.backgroundColor = "#313131";
     }
 }

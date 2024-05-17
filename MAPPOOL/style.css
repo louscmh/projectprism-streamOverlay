@@ -23,6 +23,7 @@
 }
 
 #controlPanel {
+    z-index: 999999;
     font-size: 30px;
     font-family: "Upheavtt";
     font-weight: normal;
@@ -73,7 +74,7 @@
 .profilePic {
     height:200px;
     width:200px;
-    background-color: pink;
+    background-color: white;
     margin-top: 20px;
 }
 
@@ -129,6 +130,8 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    transition: ease-in-out 500ms;
+    opacity: 0;
 }
 
 .ban{
@@ -177,6 +180,7 @@
     height: inherit;
 	z-index: -1;
     background-color: rgba(0,0,0,0.5);
+    transition: 750ms ease-in-out;
 }
 
 #beatmapImage {
@@ -593,6 +597,24 @@
     }
 }
 
+@keyframes raiseChat {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-380px);
+    }
+}
+
+@keyframes lowerChat {
+    from {
+        transform: translateY(-380px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
 /* SCORE RELATED STUFF */
 #playerOnePoint, #playerTwoPoint {
     width: inherit;
@@ -693,4 +715,98 @@
 	to {
         background-color: #1f3a1f;
 	}
+}
+
+/* MATCH RELATED STUFF */
+
+#matchPickColumn {
+    height:50px;
+    width:inherit;
+    display:flex;
+    justify-content: space-between;
+    font-size: 30px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: rgb(150,150,150);
+    width: 1920px;
+    position: absolute;
+    top:1230px;
+    left:0px;
+    /* background-color: grey; */
+}
+
+#leftPickMatch, #rightPickMatch {
+    height:inherit;
+    width:150px;
+    margin-inline:40px;
+    background-color: #212121;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:40px;
+    transition: 500ms ease-in-out;
+}
+
+/* CHAT RELATED STUFF */
+
+#chatContainer {
+    z-index:0;
+    position:absolute;
+	top: 1280px;
+    left:0px;
+	width: 1920px;
+	height: 300px;
+    display:flex;
+    justify-content: center;
+    align-items: start;
+}
+
+#chats {
+    width: 1000px;
+    height: 150px;
+	background: rgba(0,0,0,0.80);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 5px 15px;
+	font-size: 24px;
+    font-family: "Upheavtt", monospace;
+    transition: ease-in-out 500ms;
+    color:white;
+}
+
+.chat {
+	display: flex;
+	text-align: left;
+}
+
+.chatTime {
+	width: 5%;
+	color: silver;
+	margin-right: 25px;
+}
+.wholeChat {
+	width: 95%;
+	display: flex;
+}
+.chatName {
+	color: white;
+	white-space: nowrap;
+	width: max-content;
+}
+.chatText {
+	white-space: normal;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+.unknown {
+	color: rgb(192, 130, 48);
+}
+.bot {
+	color: #FF66AA;
+}
+.left {
+	color: #b152d8;
+}
+.right {
+	color: #56c51b;
 }

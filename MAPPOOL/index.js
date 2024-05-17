@@ -101,12 +101,22 @@ let nextButton = document.getElementById("nextButton");
 let scoreBlue = document.getElementById("scoreBlue");
 let scoreRed = document.getElementById("scoreRed");
 
+let leftPickMatch = document.getElementById("leftPickMatch");
+let rightPickMatch = document.getElementById("rightPickMatch");
+
+let pickOne = document.getElementById("pickOne");
+let pickTwo = document.getElementById("pickTwo");
+
+let chatContainer = document.getElementById("chatContainer");
+let beatmapOverlay = document.getElementById("overlay");
+
 // PLACEHOLDER VARS //////////////////////////////////////////////
 let tempLeft;
 let tempRight;
 let hasSetup = false;
 let banCount = 0;
 let currentPlayer;
+let turn;
 let currentPhase;
 let bestOfTemp;
 let scoreBlueTemp;
@@ -114,27 +124,60 @@ let scoreRedTemp;
 let scoreEvent;
 let picking = true;
 const beatmapData = new Set(); // Store beatmapID;
+let cachePlayerOneScore;
+let cacbePlayerTwoScore;
+let currentPick;
+let previousPhase;
+let chatLen;
 
 // MAIN LOOP ////////////////////////////////////////////////////////////////
 socket.onmessage = async event => {
     let data = JSON.parse(event.data);
 
-    tempLeft = data.tourney.manager.teamName.left;
-    tempRight = data.tourney.manager.teamName.right;
+    if (previousPhase != data.tourney.manager.ipcState) {
+        if (data.tourney.manager.bools.scoreVisible && data.tourney.manager.ipcState != 4) {
+            cachedPlayerOneScore = data.tourney.manager.gameplay.score.left;
+            cachedPlayerTwoScore = data.tourney.manager.gameplay.score.right;
+        } else if (data.tourney.manager.ipcState == 4) {
+            if (cachedPlayerOneScore > cachedPlayerTwoScore) {
+                console.log("happened win");
+                markWin(`pick${currentPick}Clicker`, true);
+            } else {
+                console.log("happened lose");
+                markWin(`pick${currentPick}Clicker`, false);
+            }
+            nextButton.click();
+        }
+        previousPhase = data.tourney.manager.ipcState;
+    }
+
+    if (tempLeft != data.tourney.manager.teamName.left) {
+        tempLeft = data.tourney.manager.teamName.left == "" ? "PLAYER 1":data.tourney.manager.teamName.left;
+    }
+    if (tempRight != data.tourney.manager.teamName.right) {
+        tempRight = data.tourney.manager.teamName.right==""?"PLAYER 2":data.tourney.manager.teamName.right;
+    }
+
+    if (chatLen != data.tourney.manager.chat.length) {
+        updateChat(data);
+    }
 
     // Player Names
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
-        setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft);
+        tempLeft != "PLAYER 1" ? setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft):null;
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
-        setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
+        tempRight != "PLAYER 2" ? setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight):null;
     }
 
     if (!hasSetup) {
         setupBeatmaps();
         currentPlayer = tempLeft;
+        turn = 0;
+        overlay.style.backgroundColor = "rgba(86, 38, 122, 0.5)";
+        pickOne.style.opacity = 1;
         currentPhase = "banning";
         pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
         pickingText.style.animation = `pickingIn 0.75s ease-in-out`;
@@ -223,25 +266,42 @@ pickButton.addEventListener("click", function(event) {
 playerOneButton.addEventListener("click", function(event) {
     currentPlayer = tempLeft;
     pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
+    if (picking) {
+        overlay.style.backgroundColor = "rgba(86, 38, 122, 0.5)";
+    }
 })
 
 playerTwoButton.addEventListener("click", function(event) {
     currentPlayer = tempRight;
     pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
+    if (picking) {
+        overlay.style.backgroundColor = "rgba(25, 103, 25, 0.5)";
+    }
 })
 
 nextButton.addEventListener("click", function(event) {
+    console.log("happened");
     picking = true;
     if (currentPlayer == tempRight) {
         currentPlayer = tempLeft;
+        turn = 0;
+        overlay.style.backgroundColor = "rgba(86, 38, 122, 0.5)";
+        pickOne.style.opacity = 1;
+        pickTwo.style.opacity = 0;
     } else {
         currentPlayer = tempRight;
+        turn = 1;
+        overlay.style.backgroundColor = "rgba(25, 103, 25, 0.5)";
+        pickOne.style.opacity = 0;
+        pickTwo.style.opacity = 1;
     }
     foregroundMap.style.animation = "pickingOut 0.75s ease-in-out";
-    selectedMapContainer.style.transform = "translateY(0px)"
-    mappoolContainer.style.transform = "translateY(0px)"
-    selectedMapContainer.style.animation = "unHighlightMap 1s ease-in-out"
-    mappoolContainer.style.animation = "raiseMappool 1s ease-in-out"
+    selectedMapContainer.style.transform = "translateY(0px)";
+    mappoolContainer.style.transform = "translateY(0px)";
+    chatContainer.style.transform = "translateY(0px)";
+    selectedMapContainer.style.animation = "unHighlightMap 1s ease-in-out";
+    mappoolContainer.style.animation = "raiseMappool 1s ease-in-out";
+    chatContainer.style.animation = "lowerChat 1s ease-in-out";
     upcomingText.style.animation = "pickingOut 1s ease-in-out";
     upcomingText.style.opacity = 0;
     setTimeout(function() {
@@ -250,7 +310,7 @@ nextButton.addEventListener("click", function(event) {
         mapFrame.style.display = `none`;
         foregroundMap.style.animation = "";
         pickingText.style.display = "initial";
-        pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
+        pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`;
         pickingText.style.animation = `pickingIn 0.75s ease-in-out`;
     }, 700);
 })
@@ -417,23 +477,30 @@ async function setupBeatmaps() {
                     bm.pickedStatus.style.animation = ""
                 }, 150);
             }  else {
-                bm.pickedStatus.innerHTML = "";
-                bm.overlay.style.opacity = "0.5";
-                bm.pickedStatus.style.textShadow = "0 0 0 rgba(0,0,0,0)";
-                bm.pickedStatus.style.borderStyle = "solid";
-                bm.pickedStatus.innerHTML = "";
-                bm.pickedStatus.style.animation = "flashPurple 1s ease-out";
-                bm.pickedStatus.style.borderColor = "rgb(184, 90, 255)";
-                adjustSelectedMap(bm.mapData);
-                addLeftPick(bm.mapData);
-                pickingText.style.animation = `pickingOut 0.75s ease-in-out`;
-                setTimeout(function() {
-                    bm.pickedStatus.style.opacity = "1";
-                }, 25);
-                setTimeout(function() {
-                    pickingText.style.display = `none`;
-                    showMap();
-                }, 700);
+                currentPick = bm.pick;
+                if (currentPick.substring(0,2) == "TB") {
+                    promptTB(bm.mapData);
+                    return;
+                } else {
+                    paintMatchPick(true);
+                    bm.pickedStatus.innerHTML = "";
+                    bm.overlay.style.opacity = "0.5";
+                    bm.pickedStatus.style.textShadow = "0 0 0 rgba(0,0,0,0)";
+                    bm.pickedStatus.style.borderStyle = "solid";
+                    bm.pickedStatus.innerHTML = "";
+                    bm.pickedStatus.style.animation = "flashPurple 1s ease-out";
+                    bm.pickedStatus.style.borderColor = "rgb(184, 90, 255)";
+                    adjustSelectedMap(bm.mapData);
+                    addLeftPick(bm.mapData);
+                    pickingText.style.animation = `pickingOut 0.75s ease-in-out`;
+                    setTimeout(function() {
+                        bm.pickedStatus.style.opacity = "1";
+                    }, 25);
+                    setTimeout(function() {
+                        pickingText.style.display = `none`;
+                        showMap(false);
+                    }, 700);
+                }
             }
         });
         bm.clicker.addEventListener("contextmenu", function(event) {
@@ -464,22 +531,28 @@ async function setupBeatmaps() {
                     bm.pickedStatus.style.animation = ""
                 }, 150);
             } else {
-                bm.pickedStatus.innerHTML = "";
-                bm.overlay.style.opacity = "0.5";
-                bm.pickedStatus.style.textShadow = "0 0 0 rgba(0,0,0,0)";
-                bm.pickedStatus.style.borderStyle = "solid";
-                bm.pickedStatus.style.animation = "flashGreen 1s ease-out";
-                bm.pickedStatus.style.borderColor = "rgb(94, 255, 94)";
-                adjustSelectedMap(bm.mapData);
-                addRightPick(bm.mapData);
-                pickingText.style.animation = `pickingOut 0.75s ease-in-out`;
-                setTimeout(function() {
-                    bm.pickedStatus.style.opacity = "1";
-                }, 25);
-                setTimeout(function() {
-                    pickingText.style.display = `none`;
-                    showMap();
-                }, 700);
+                currentPick = bm.pick;
+                if (currentPick.substring(0,2) == "TB") {
+                    promptTB(bm.mapData);
+                } else {
+                    paintMatchPick(false);
+                    bm.pickedStatus.innerHTML = "";
+                    bm.overlay.style.opacity = "0.5";
+                    bm.pickedStatus.style.textShadow = "0 0 0 rgba(0,0,0,0)";
+                    bm.pickedStatus.style.borderStyle = "solid";
+                    bm.pickedStatus.style.animation = "flashGreen 1s ease-out";
+                    bm.pickedStatus.style.borderColor = "rgb(94, 255, 94)";
+                    adjustSelectedMap(bm.mapData);
+                    addRightPick(bm.mapData);
+                    pickingText.style.animation = `pickingOut 0.75s ease-in-out`;
+                    setTimeout(function() {
+                        bm.pickedStatus.style.opacity = "1";
+                    }, 25);
+                    setTimeout(function() {
+                        pickingText.style.display = `none`;
+                        showMap(false);
+                    }, 700);
+                }
             }
         });
         const mapData = await getDataSet(beatmap.beatmapId);
@@ -653,6 +726,7 @@ async function getUserDataSet(name) {
                 params: {
                     k: api,
                     u: name,
+                    m: 1,
                 },
             })
         )["data"];
@@ -679,10 +753,10 @@ async function getDataSet(beatmapID) {
     }
 };
 
-function showMap() {
+function showMap(tb) {
     picking = false;
     if (mapFrame.style.display != "flex") {
-        selectedMap.innerHTML = `SELECTED MAP - ${currentPlayer}`;
+        selectedMap.innerHTML = tb == false ? `SELECTED MAP - ${currentPlayer}` : "FINAL MAP";
         selectedMap.style.transform = "translateY(100px) scale(2)";
         selectedMap.style.display = "initial";
         selectedMap.style.animation = "pickingInSelected 0.5s ease-out";
@@ -694,14 +768,17 @@ function showMap() {
     setTimeout(function() {
         mapFrame.style.display = "flex";
         mapFrame.style.animation = "pickingIn 0.75s ease-in-out";
+        beatmapOverlay.style.backgroundColor = "rgba(0,0,0,0.5)";
         beatmapImage.style.opacity = 1;
     }, 1000);
     setTimeout(function() {
         if (!picking) {
             selectedMapContainer.style.transform = "translateY(360px)";
             mappoolContainer.style.transform = "translateY(720px)";
+            chatContainer.style.transform = "translateY(-380px)";
             selectedMapContainer.style.animation = "highlightMap 1s ease-in-out";
             mappoolContainer.style.animation = "lowerMappool 1s ease-in-out";
+            chatContainer.style.animation = "raiseChat 1s ease-in-out";
             upcomingText.style.animation = "pickingIn 1s ease-in-out";
             upcomingText.style.opacity = 1;
         }
@@ -723,10 +800,12 @@ function updateElipsis() {
 function cancelPick() {
     picking = true;
     foregroundMap.style.animation = "pickingOut 0.75s ease-in-out";
-    selectedMapContainer.style.transform = "translateY(0px)"
-    mappoolContainer.style.transform = "translateY(0px)"
-    selectedMapContainer.style.animation = "unHighlightMap 1s ease-in-out"
-    mappoolContainer.style.animation = "raiseMappool 1s ease-in-out"
+    selectedMapContainer.style.transform = "translateY(0px)";
+    mappoolContainer.style.transform = "translateY(0px)";
+    chatContainer.style.transform = "translateY(0px)";
+    selectedMapContainer.style.animation = "unHighlightMap 1s ease-in-out";
+    mappoolContainer.style.animation = "raiseMappool 1s ease-in-out";
+    chatContainer.style.animation = "lowerChat 1s ease-in-out";
     upcomingText.style.animation = "pickingOut 1s ease-in-out";
     upcomingText.style.opacity = 0;
     beatmapImage.style.opacity = 0;
@@ -735,7 +814,7 @@ function cancelPick() {
         mapFrame.style.display = `none`;
         foregroundMap.style.animation = "";
         pickingText.style.display = "initial";
-        pickingText.innerHTML = `${currentPlayer} is currently picking`
+        pickingText.innerHTML = `${currentPlayer} is currently picking`;
         pickingText.style.animation = `pickingIn 0.75s ease-in-out`;
     }, 750);
 }
@@ -753,8 +832,14 @@ function addBan(pick,left) {
     banCount++;
     if (currentPlayer == tempRight) {
         currentPlayer = tempLeft;
+        turn = 0;
+        pickOne.style.opacity = 1;
+        pickTwo.style.opacity = 0;
     } else {
         currentPlayer = tempRight;
+        turn = 1;
+        pickOne.style.opacity = 0;
+        pickTwo.style.opacity = 1;
     }
     if (banCount >= 2) {
         currentPhase = "picking";
@@ -786,4 +871,106 @@ function removeBan(pick,left) {
         }
         pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
     }
+}
+
+function markWin(string,win) {
+    let clicker = document.getElementById(string);
+    if (turn == 0) {
+        if (win) {
+            console.log("left pick win");
+            clicker.click();
+        } else {
+            console.log("left pick lose");
+            clicker.dispatchEvent(rightClick);
+        }
+    } else if (turn == 1) {
+        if (!win) {
+            console.log("right pick win");
+            clicker.click();
+        } else {
+            console.log("right pick lose");
+            clicker.dispatchEvent(rightClick);
+        }
+    }
+}
+
+var rightClick = new MouseEvent('contextmenu', {
+    bubbles: true,
+    cancelable: true,
+    view: window,
+    button: 2, // Indicates a right-click
+    buttons: 2 // Indicates the right mouse button is pressed
+});
+
+function paintMatchPick(left) {
+    if (left) {
+        leftPickMatch.style.color = "white";
+        leftPickMatch.style.background = "#b152d8";
+        rightPickMatch.style.color = "rgb(150,150,150)";
+        rightPickMatch.style.background = "#212121";
+    } else {
+        rightPickMatch.style.color = "white";
+        rightPickMatch.style.background = "#56c51b";
+        leftPickMatch.style.color = "rgb(150,150,150)";
+        leftPickMatch.style.background = "#212121";
+    }
+}
+
+function updateChat(data) {
+    if (chatLen == 0 || (chatLen > 0 && chatLen > data.tourney.manager.chat.length)) {
+        // Starts from bottom
+        chats.innerHTML = "";
+        chatLen = 0;
+    }
+
+    // Add the chats
+    for (var i = chatLen; i < data.tourney.manager.chat.length; i++) {
+        tempClass = data.tourney.manager.chat[i].team;
+
+        // Chat variables
+        let chatParent = document.createElement('div');
+        chatParent.setAttribute('class', 'chat');
+
+        let chatTime = document.createElement('div');
+        chatTime.setAttribute('class', 'chatTime');
+
+        let chatName = document.createElement('div');
+        chatName.setAttribute('class', 'chatName');
+
+        let chatText = document.createElement('div');
+        chatText.setAttribute('class', 'chatText');
+
+        chatTime.innerText = data.tourney.manager.chat[i].time;
+        chatName.innerText = data.tourney.manager.chat[i].name + ":\xa0";
+        chatText.innerText = data.tourney.manager.chat[i].messageBody;
+
+        chatName.classList.add(tempClass);
+
+        chatParent.append(chatTime);
+        chatParent.append(chatName);
+        chatParent.append(chatText);
+        chats.append(chatParent);
+    }
+
+    // Update the Length of chat
+    chatLen = data.tourney.manager.chat.length;
+
+    // Update the scroll so it's sticks at the bottom by default
+    chats.scrollTop = chats.scrollHeight;
+}
+
+function promptTB(mapData) {
+    adjustSelectedMap(mapData);
+    pickingText.style.animation = `pickingOut 0.75s ease-in-out`;
+    beatmapOverlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+    pickOne.style.opacity = 0;
+    pickTwo.style.opacity = 0;
+    rightPickMatch.style.color = "rgb(150,150,150)";
+    rightPickMatch.style.background = "#212121";
+    leftPickMatch.style.color = "rgb(150,150,150)";
+    leftPickMatch.style.background = "#212121";
+    setTimeout(function() {
+        pickingText.style.display = `none`;
+        showMap(true);
+    }, 700);
 }

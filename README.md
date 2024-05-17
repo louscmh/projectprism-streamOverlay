@@ -92,6 +92,8 @@ Within the Mappool Overlay there are a few interactable elemenets that requires 
 
 ![how to interact](_shared_assets/design/setup/image-1.png)
 
+For convenience for reading chat to see who is picking/banning first and what is being picked/banned, a chat frame is included below the viewable overlay (Viewable when clicking on the interact button)
+
 **INTERACTING WITH THE BEATMAPS**
 
 ![alt text](_shared_assets/design/setup/image-2.png)

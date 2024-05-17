@@ -93,7 +93,9 @@ Within the Mappool Overlay there are a few interactable elemenets that requires 
 ![how to interact](_shared_assets/design/setup/image-1.png)
 
 **INTERACTING WITH THE BEATMAPS**
+
 ![alt text](_shared_assets/design/setup/image-2.png)
+
 - Left Click to pick for **Player 1**
 - Right Click to pick for **Player 2**
 - Shift + Left Click to ban for **Player 1**
@@ -101,7 +103,9 @@ Within the Mappool Overlay there are a few interactable elemenets that requires 
 - Ctrl + Left Click to retract any actions (This will call back the pick in the player column aswell)
 
 **INTERACTING WITH MAPPICKS**
+
 ![alt text](_shared_assets/design/setup/image-3.png)
+
 - Left Click to set the pick as a **WIN**
 - Right Click to set the pick as a **LOSS**
 - Ctrl + Left Click to retract any actions
@@ -109,7 +113,9 @@ Within the Mappool Overlay there are a few interactable elemenets that requires 
 Under normal circumstances, this will be updated automatically upon reaching tbe result screen of each pick. But should the unique situation occur where this doesn't happen, you can adjust it by yourself by doing the above.
 
 **INTERACTING WITH THE CONTROL PANEL**
+
 ![alt text](_shared_assets/design/setup/image-4.png)
+
 - **BAN PHASE**: Switches phase back to banning on the screen (This is the default phase upon initializing)
 - **PICK PHASE**: Switches phase to picking on the screen (Will automatically switch after both bans)
 - **TOGGLE LEFT PLAYER**: Toggle current player to **Player 1**

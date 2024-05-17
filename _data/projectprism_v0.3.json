@@ -30,8 +30,8 @@
         "monitoring_type": 0,
         "private_settings": {}
     },
-    "current_scene": "Match",
-    "current_program_scene": "Match",
+    "current_scene": "Mappool",
+    "current_program_scene": "Mappool",
     "scene_order": [
         {
             "name": "Countdown"
@@ -2513,8 +2513,8 @@
             "id": "ffmpeg_source",
             "versioned_id": "ffmpeg_source",
             "settings": {
-                "local_file": "C:/Users/louis/Pictures/work/otmt/loop_AME/Comp 1_1.mp4",
-                "looping": true
+                "looping": true,
+                "local_file": "D:/tosu/static/projectprism-streamOverlay/_shared_assets/design/_mappool/mappool_loop_.mp4"
             },
             "mixers": 255,
             "sync": 0,
@@ -2551,7 +2551,7 @@
             "settings": {
                 "url": "http://127.0.0.1:24050/projectprism-streamOverlay/MAPPOOL/",
                 "width": 1920,
-                "height": 1280
+                "height": 1440
             },
             "mixers": 255,
             "sync": 0,

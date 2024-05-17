@@ -835,11 +835,13 @@ function addBan(pick,left) {
         turn = 0;
         pickOne.style.opacity = 1;
         pickTwo.style.opacity = 0;
+        overlay.style.backgroundColor = "rgba(86, 38, 122, 0.5)";
     } else {
         currentPlayer = tempRight;
         turn = 1;
         pickOne.style.opacity = 0;
         pickTwo.style.opacity = 1;
+        overlay.style.backgroundColor = "rgba(25, 103, 25, 0.5)";
     }
     if (banCount >= 2) {
         currentPhase = "picking";

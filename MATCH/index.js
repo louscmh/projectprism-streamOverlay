@@ -167,12 +167,12 @@ socket.onmessage = async event => {
     // Player Names
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
-        adjustFont(playerOne,360,60);
+        adjustFont(playerOne,340,60);
         setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft);
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
-        adjustFont(playerTwo,360,60);
+        adjustFont(playerTwo,340,60);
         setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
     }
 

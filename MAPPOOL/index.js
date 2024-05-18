@@ -127,28 +127,35 @@ const beatmapData = new Set(); // Store beatmapID;
 let cachePlayerOneScore;
 let cacbePlayerTwoScore;
 let currentPick;
-let previousPhase;
 let chatLen;
+let previousPhase;
 
 // MAIN LOOP ////////////////////////////////////////////////////////////////
 socket.onmessage = async event => {
     let data = JSON.parse(event.data);
 
+    if (data.tourney.manager.bools.scoreVisible) {
+        cachedPlayerOneScore = data.tourney.manager.gameplay.score.left;
+        cachedPlayerTwoScore = data.tourney.manager.gameplay.score.right;
+    } 
+    
     if (previousPhase != data.tourney.manager.ipcState) {
-        if (data.tourney.manager.bools.scoreVisible && data.tourney.manager.ipcState != 4) {
-            cachedPlayerOneScore = data.tourney.manager.gameplay.score.left;
-            cachedPlayerTwoScore = data.tourney.manager.gameplay.score.right;
-        } else if (data.tourney.manager.ipcState == 4) {
+        previousPhase = data.tourney.manager.ipcState;
+        console.log(`Player: ${currentPlayer}, Pick: ${currentPick}, Turn: ${turn}, Phase: ${data.tourney.manager.ipcState}`);
+        console.log("player 1 score: " + cachedPlayerOneScore);
+        console.log("player 2 score: " + cachedPlayerTwoScore);
+        if (data.tourney.manager.ipcState == 4) {
             if (cachedPlayerOneScore > cachedPlayerTwoScore) {
                 console.log("happened win");
                 markWin(`pick${currentPick}Clicker`, true);
-            } else {
+            } else if (cachedPlayerOneScore < cachedPlayerTwoScore) {
                 console.log("happened lose");
                 markWin(`pick${currentPick}Clicker`, false);
+            } else {
+                console.log("happened tie");
             }
         }
-        previousPhase = data.tourney.manager.ipcState;
-    }
+    } 
 
     if (tempLeft != data.tourney.manager.teamName.left) {
         tempLeft = data.tourney.manager.teamName.left;

@@ -146,16 +146,15 @@ socket.onmessage = async event => {
                 console.log("happened lose");
                 markWin(`pick${currentPick}Clicker`, false);
             }
-            nextButton.click();
         }
         previousPhase = data.tourney.manager.ipcState;
     }
 
     if (tempLeft != data.tourney.manager.teamName.left) {
-        tempLeft = data.tourney.manager.teamName.left == "" ? "PLAYER 1":data.tourney.manager.teamName.left;
+        tempLeft = data.tourney.manager.teamName.left;
     }
     if (tempRight != data.tourney.manager.teamName.right) {
-        tempRight = data.tourney.manager.teamName.right==""?"PLAYER 2":data.tourney.manager.teamName.right;
+        tempRight = data.tourney.manager.teamName.right;
     }
 
     if (chatLen != data.tourney.manager.chat.length) {
@@ -257,17 +256,18 @@ socket.onmessage = async event => {
 // SETTING UP CONTROL PANEL
 banButton.addEventListener("click", function(event) {
     currentPhase = "banning";
-    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
+    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`;
 })
 
 pickButton.addEventListener("click", function(event) {
     currentPhase = "picking";
-    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
+    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`;
 })
 
 playerOneButton.addEventListener("click", function(event) {
     currentPlayer = tempLeft;
-    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
+    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`;
+    turn = 0;
     if (picking) {
         overlay.style.backgroundColor = "rgba(86, 38, 122, 0.5)";
     }
@@ -275,7 +275,8 @@ playerOneButton.addEventListener("click", function(event) {
 
 playerTwoButton.addEventListener("click", function(event) {
     currentPlayer = tempRight;
-    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`
+    pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`;
+    turn = 1;
     if (picking) {
         overlay.style.backgroundColor = "rgba(25, 103, 25, 0.5)";
     }
@@ -896,6 +897,7 @@ function markWin(string,win) {
             clicker.dispatchEvent(rightClick);
         }
     }
+    nextButton.click();
 }
 
 var rightClick = new MouseEvent('contextmenu', {

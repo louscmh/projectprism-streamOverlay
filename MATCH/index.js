@@ -454,7 +454,7 @@ async function checkState(ipcState) {
     } else {
         winScreen.style.animation = "moveDown 1s ease-in-out";
         winScreen.style.transform = "translateY(0px)";
-        score.style.opacity = 1;
+        score.style.opacity = 0;
         statColumnOne.style.animation ="statOut 1s ease-in-out";
         statColumnTwo.style.animation ="statOut 1s ease-in-out";
         statColumnOne.style.opacity = 0;

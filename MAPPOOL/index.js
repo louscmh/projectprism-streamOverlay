@@ -165,10 +165,12 @@ socket.onmessage = async event => {
     // Player Names
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
+        adjustFont(playerOne,270,30);
         tempLeft != "PLAYER 1" ? setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft):null;
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
+        adjustFont(playerTwo,270,30);
         tempRight != "PLAYER 2" ? setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight):null;
     }
 
@@ -975,4 +977,13 @@ function promptTB(mapData) {
         pickingText.style.display = `none`;
         showMap(true);
     }, 700);
+}
+
+async function adjustFont(title, boundaryWidth, originalFontSize) {
+    if (title.scrollWidth > boundaryWidth) {
+		let ratio = (title.scrollWidth/boundaryWidth);
+        title.style.fontSize = `${originalFontSize/ratio}px`;
+    } else {
+		title.style.fontSize = `${originalFontSize}px`;
+	}
 }

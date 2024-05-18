@@ -167,10 +167,12 @@ socket.onmessage = async event => {
     // Player Names
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
+        adjustFont(playerOne,360,60);
         setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft);
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
+        adjustFont(playerTwo,360,60);
         setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
     }
 
@@ -452,7 +454,7 @@ async function checkState(ipcState) {
     } else {
         winScreen.style.animation = "moveDown 1s ease-in-out";
         winScreen.style.transform = "translateY(0px)";
-        score.style.opacity = 0;
+        score.style.opacity = 1;
         statColumnOne.style.animation ="statOut 1s ease-in-out";
         statColumnTwo.style.animation ="statOut 1s ease-in-out";
         statColumnOne.style.opacity = 0;
@@ -514,4 +516,13 @@ async function paintMod(modText) {
         mapPick.style.borderColor = "white";
         mapPick.style.backgroundColor = "#313131";
     }
+}
+
+async function adjustFont(title, boundaryWidth, originalFontSize) {
+    if (title.scrollWidth > boundaryWidth) {
+		let ratio = (title.scrollWidth/boundaryWidth);
+        title.style.fontSize = `${originalFontSize/ratio}px`;
+    } else {
+		title.style.fontSize = `${originalFontSize}px`;
+	}
 }

@@ -251,7 +251,7 @@
 }
 
 #playerScore {
-    margin-top:-10px;
+    margin-bottom:-10px;
     width: 950px;
     display:flex;
     justify-content: space-evenly;
@@ -293,6 +293,9 @@
 #playerOneName, #playerTwoName {
     font-size:60px;
     margin-top:10px;
+    height:62px;
+    display:flex;
+    align-items: center;
 }
 
 #playerOneSeed, #playerTwoSeed {

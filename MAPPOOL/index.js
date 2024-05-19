@@ -172,18 +172,20 @@ socket.onmessage = async event => {
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
         adjustFont(playerOne,270,30);
-        tempLeft != "PLAYER 1" ? setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft):null;
+        setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft);
+        if (turn == 0) {currentPlayer = tempLeft;}
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
         adjustFont(playerTwo,270,30);
-        tempRight != "PLAYER 2" ? setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight):null;
+        setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
+        if (turn == 1) {currentPlayer = tempRight;}
     }
 
     if (!hasSetup) {
         setupBeatmaps();
-        currentPlayer = tempLeft;
         turn = 0;
+        currentPlayer = tempLeft;
         overlay.style.backgroundColor = "rgba(86, 38, 122, 0.5)";
         pickOne.style.opacity = 1;
         currentPhase = "banning";

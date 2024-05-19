@@ -444,7 +444,7 @@ async function checkState(ipcState) {
         let ratio = oneWinner?cachedDifference/cachedPlayerOneScore:cachedDifference/cachedPlayerTwoScore;
         winnerName.innerHTML = cachedPlayerOneScore > cachedPlayerTwoScore ? playerOne.innerHTML : playerTwo.innerHTML;
         winnerName.style.color = cachedPlayerOneScore > cachedPlayerTwoScore ? "#900f93" : "#377a17";
-        percentage.innerHTML = `${Math.trunc(ratio*100)}%`;
+        percentage.innerHTML = `${(ratio*100).toFixed(2)}%`;
         winScreen.style.animation = "moveUp 1s ease-in-out";
         winScreen.style.transform = "translateY(-275px)";
         statColumnOne.style.animation ="statOut 1s ease-in-out";

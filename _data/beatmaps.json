@@ -6,8 +6,8 @@
     { "beatmapId": 4605560, "pick": "HD2", "modSR":null, "mappers":"", "customName":""},
     { "beatmapId": 4605505, "pick": "HR1", "modSR":null, "mappers":"", "customName":""},
     { "beatmapId": 4605550, "pick": "HR2", "modSR":null, "mappers":"", "customName":""},
-    { "beatmapId": 4605392, "pick": "DT1", "modSR":6.85, "mappers":"", "customName":""},
-    { "beatmapId": 4605563, "pick": "DT2", "modSR":6.67, "mappers":"", "customName":""},
+    { "beatmapId": 4605392, "pick": "DT1", "modSR":5.48, "mappers":"", "customName":""},
+    { "beatmapId": 4605563, "pick": "DT2", "modSR":5.67, "mappers":"", "customName":""},
     { "beatmapId": 4605591, "pick": "FM1", "modSR":null, "mappers":"", "customName":""},
     { "beatmapId": 4605614, "pick": "FL1", "modSR":null, "mappers":"", "customName":""},
     { "beatmapId": 4605621, "pick": "TB", "modSR":null, "mappers":"", "customName":""}

@@ -128,8 +128,10 @@ let cachedPlayerTwoScore;
 let cachedDifference;
 let cachedComboOne;
 let cachedComboTwo;
-let currentFile = "";
+let currentId;
 let barThreshold = 100000;
+let currentTime;
+let songStart = false;
 
 // FOR ANIMATION //////////////////////////////////////////////////
 let animationScore = {
@@ -144,7 +146,17 @@ let animationScore = {
 socket.onmessage = async event => {
     let data = JSON.parse(event.data);
 
-    fill.style.width = `${(data.menu.bm.time.current/data.menu.bm.time.full > 1 ? 1 : data.menu.bm.time.current/data.menu.bm.time.full)*700}px`;
+    if (data.menu.bm.time.current == 0 || data.menu.bm.time.current > data.menu.bm.time.full) {
+        songStart = false;
+    } else {
+        songStart = true;
+    }
+
+    if (songStart) {
+        currentTime = data.menu.bm.time.current;
+    } 
+    
+    fill.style.width = `${(currentTime/data.menu.bm.time.full)*700}px`;
     tempLeft = data.tourney.manager.teamName.left;
     tempRight = data.tourney.manager.teamName.right;
 
@@ -176,9 +188,9 @@ socket.onmessage = async event => {
         setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
     }
 
-    let file = data.menu.bm.path.file;
-    if (currentFile != file) {
-        currentFile = file;
+    let id = data.menu.bm.id;
+    if (currentId != id) {
+        currentId = id;
         updateDetails(data);
     }
     makeScrollingText(beatmapTitle, beatmapTitleDelay,16,630,40);

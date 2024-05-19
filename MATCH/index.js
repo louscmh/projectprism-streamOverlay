@@ -128,7 +128,6 @@ let cachedPlayerTwoScore;
 let cachedDifference;
 let cachedComboOne;
 let cachedComboTwo;
-let currentId;
 let barThreshold = 100000;
 let currentTime;
 let songStart = false;
@@ -155,7 +154,7 @@ socket.onmessage = async event => {
     if (songStart) {
         currentTime = data.menu.bm.time.current;
     } 
-    
+
     fill.style.width = `${(currentTime/data.menu.bm.time.full)*700}px`;
     tempLeft = data.tourney.manager.teamName.left;
     tempRight = data.tourney.manager.teamName.right;
@@ -163,17 +162,6 @@ socket.onmessage = async event => {
     if (previousState != data.tourney.manager.ipcState) {
         checkState(data.tourney.manager.ipcState);
         previousState = data.tourney.manager.ipcState;
-    }
-
-    // BG
-    if(tempBG !== data.menu.bm.path.full){
-        tempBG = data.menu.bm.path.full;
-        data.menu.bm.path.full = data.menu.bm.path.full.replace(/#/g,'%23').replace(/%/g,'%25');
-		bg.setAttribute('src',`http://` + location.host + `/Songs/${data.menu.bm.path.full}?a=${Math.random(10000)}`);
-		bg.onerror = function() {
-			bg.setAttribute('src',`../_shared_assets/design/temporary_bg.png`);
-		};
-		
     }
 
     // Player Names
@@ -188,11 +176,7 @@ socket.onmessage = async event => {
         setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
     }
 
-    let id = data.menu.bm.id;
-    if (currentId != id) {
-        currentId = id;
-        updateDetails(data);
-    }
+    updateDetails(data);
     makeScrollingText(beatmapTitle, beatmapTitleDelay,16,630,40);
 
     if (data.tourney.manager.bools.scoreVisible) {
@@ -316,6 +300,12 @@ async function updateDetails(data) {
     mapSR.innerHTML = `SR ${fullSR}*`;
     mapBPM.innerHTML = `BPM ${min === max ? min : `${min}-${max}`}`;
     mapLength.innerHTML = `Length ${parseTime(full)}`;
+
+    data.menu.bm.path.full = data.menu.bm.path.full.replace(/#/g,'%23').replace(/%/g,'%25');
+    bg.setAttribute('src',`http://` + location.host + `/Songs/${data.menu.bm.path.full}?a=${Math.random(10000)}`);
+    bg.onerror = function() {
+        bg.setAttribute('src',`../_shared_assets/design/temporary_bg.png`);
+    };
 }
 
 async function setPlayerDetails(element, seed, rank, username) {

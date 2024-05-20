@@ -64,9 +64,9 @@ A sample example of the JSON is included as follows:
 ```
 
 ### Commentator Overlay
-In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in Discord!)
+In numerous scenes, there will be an overlay for the commentators in their own scene respectively. Click on the commentator overlay, and add both the server id that contains the voice channel you are in, and the voice channel id that you are streaming in into the URL. (This requires you to turn on Developer Mode in Discord!)
 
-![commentator setup 1](_shared_assets/design/setup/image2.png)
+![alt text](_shared_assets/design/setup/image07.png)
 
 ![commentator setup 2](_shared_assets/design/setup/image3.png)
 

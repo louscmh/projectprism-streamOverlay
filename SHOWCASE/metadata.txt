@@ -1,5 +1,5 @@
 Usecase: obs-overlay
-Name: OTMT-Showcase
+Name: Prism-Showcase
 Author: lous
 CompatibleWith: gosu,tosu
 Resolution: 1920x1080

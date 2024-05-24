@@ -1,0 +1,166 @@
+@font-face {
+    font-family: "Upheavtt";
+    src: url("../_shared_assets/fonts/upheavtt.ttf");
+}
+
+@font-face {
+    font-family: "Madou";
+    src: url("../_shared_assets/fonts/madoufmg.ttf");
+}
+
+#main {
+    font-size: 40px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: white;
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top:0px;
+    left:0px;
+    /* background-color: grey; */
+    display:flex;
+	text-shadow: 0px 0px 8px black;
+}
+
+#button {
+    font-size: 60px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: white;
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    top:440px;
+    left:1920px;
+    background-color: purple;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+	text-shadow: 0px 0px 8px black;
+    transition: 1000ms ease-in-out;
+    border: 5px solid white;
+}
+
+#versusAsset {
+    position:absolute;
+    transition: 1000ms ease-in-out;
+}
+
+#finalPoint {
+    position:absolute;
+    width:inherit;
+    height:inherit;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1000ms ease-in-out;
+}
+
+#headerText {
+    position:absolute;
+    width:inherit;
+    height:inherit;
+    display:flex;
+    justify-content: center;
+}
+
+#winnerText {
+    position: absolute;
+    font-size:90px;
+    margin-top:240px;
+    transition: 1000ms ease-in-out;
+}
+
+#finalText {
+    font-size:60px;
+    margin-top:270px;
+    transition: 1000ms ease-in-out;
+}
+
+#pointOne, #pointTwo {
+    font-size:250px;
+    width:500px;
+    text-align: center;
+    transition: 1000ms ease-in-out;
+}
+
+#playerOneColumn, #playerTwoColumn {
+    width:50%;
+    height:100%;
+    /* background-color: rgba(0,0,0,0.5);
+    border: 2px solid white; */
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+#playerOne, #playerTwo {
+    margin-top:395px;
+    height:fit-content;
+    width:75%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 1000ms ease-in-out;
+}
+
+#playerOne {
+    margin-right: 270px;
+}
+
+#playerTwo {
+    margin-left: 270px;
+}
+
+#playerOnePic, #playerTwoPic {
+    height:300px;
+    width:300px;
+}
+
+#playerOneDetails {
+    height:100%;
+    margin-left:25px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#playerTwoDetails {
+    text-align: right;
+    height:100%;
+    margin-right:25px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#playerOneName, #playerTwoName {
+    margin-top:10px;
+    font-size: 70px;
+}
+
+@keyframes textOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(600px);
+        opacity: 0;
+    }
+}
+
+@keyframes textIn {
+    from {
+        transform: translateX(-600px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

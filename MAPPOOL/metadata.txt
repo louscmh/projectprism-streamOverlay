@@ -1,5 +1,5 @@
 Usecase: obs-tourney
-Name: OTMT-Mappool
+Name: Prism-Mappool
 Author: lous
 CompatibleWith: gosu,tosu
 Resolution: 1920x1080

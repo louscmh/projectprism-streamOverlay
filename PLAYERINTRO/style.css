@@ -1,0 +1,177 @@
+@font-face {
+    font-family: "Upheavtt";
+    src: url("../_shared_assets/fonts/upheavtt.ttf");
+}
+
+@font-face {
+    font-family: "Madou";
+    src: url("../_shared_assets/fonts/madoufmg.ttf");
+}
+
+#main {
+    font-size: 40px;
+    font-family: "Upheavtt";
+    font-weight: normal;
+    color: white;
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top:0px;
+    left:0px;
+    /* background-color: grey; */
+    display:flex;
+	text-shadow: 0px 0px 8px black;
+}
+
+#playerOneColumn, #playerTwoColumn {
+    width:50%;
+    height:100%;
+    /* background-color: rgba(0,0,0,0.5);
+    border: 2px solid white; */
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+#playerOne {
+    margin-top:395px;
+    height:fit-content;
+    width:75%;
+    display:flex;
+    justify-content: start;
+}
+
+#playerTwo {
+    margin-top:395px;
+    height:fit-content;
+    width:75%;
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+}
+
+#playerOnePic, #playerTwoPic {
+    height:250px;
+    width:250px;
+}
+
+#playerOneDetails {
+    height:100%;
+    margin-left:25px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#playerTwoDetails {
+    text-align: right;
+    height:100%;
+    margin-right:25px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#playerOneName, #playerTwoName {
+    font-size: 70px;
+}
+
+#playerOneSeed, #playerOneRank, #playerTwoSeed, #playerTwoRank {
+    margin-top:-10px;
+    font-size: 50px;
+}
+
+#playerOneRank, #playerTwoRank {
+    margin-top:-13px;
+}
+
+#playerOneFlag {
+    display:flex;
+    align-items: center;
+}
+
+#playerTwoFlag {
+    display:flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+#oneFlag, #twoFlag {
+    width:55px;
+    height:30px;
+    border-radius: 9px;
+}
+
+#oneFlagAcronym, #twoFlagAcronym {
+    margin-inline: 10px;
+    margin-top:-3px;
+}
+
+#playerOneHistory {
+    height:fit-content;
+    width:75%;
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 60px;
+    display:none;
+}
+
+#playerTwoHistory {
+    height:fit-content;
+    width:75%;
+    display:flex;
+    flex-direction: column;
+    align-items: end;
+    margin-top: 60px;
+    display:none;
+}
+
+.staticMatchText {
+    width:inherit;
+    text-align: center;
+    font-size:30px;
+}
+
+#textOne {
+    margin-left:30px;
+}
+
+#textTwo {
+    margin-right:30px;
+}
+
+.matchContainerOne, .matchContainerTwo {
+    display:flex;
+    align-items: center;
+    height: fit-content;
+    margin-bottom:5px;
+}
+
+.oppPic {
+    width:25px;
+    height:25px;
+    background-color: white;
+    margin-inline: 15px;
+}
+
+.resultTextWin {
+    margin-inline:5px;
+    font-size:27px;
+    height:inherit;
+    width:fit-content;
+    padding-inline: 20px;
+    background-color: rgb(11, 204, 11);
+    border-radius: 20px;
+}
+
+.resultTextLose {
+    margin-inline:5px;
+    font-size:27px;
+    height:inherit;
+    width:fit-content;
+    padding-inline: 20px;
+    background-color: rgb(204, 11, 11);
+    border-radius: 20px;
+}

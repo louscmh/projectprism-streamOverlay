@@ -93,6 +93,23 @@
     flex-direction: row;
 }
 
+#oneColumnTwo {
+    display:flex;
+    height:32px;
+}
+
+#twoColumnTwo {
+    display:flex;
+    flex-direction: row-reverse;
+    height:32px;
+}
+
+#flagOne, #flagTwo {
+    height:60%;
+    margin-inline: 10px;
+    margin-top:-4px;
+}
+
 .statFont {
     font-size:20px;
     margin-right: 10px;

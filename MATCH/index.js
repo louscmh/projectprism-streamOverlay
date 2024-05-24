@@ -114,6 +114,9 @@ let statColumnTwo = document.getElementById("statColumnTwo");
 
 let chats = document.getElementById("chats");
 
+let flagOne = document.getElementById("flagOne");
+let flagTwo = document.getElementById("flagTwo");
+
 // PLACEHOLDER VARS //////////////////////////////////////////////
 let tempLeft;
 let tempRight;
@@ -168,12 +171,12 @@ socket.onmessage = async event => {
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
         adjustFont(playerOne,340,60);
-        setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft);
+        setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft, flagOne);
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
         adjustFont(playerTwo,340,60);
-        setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
+        setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight, flagTwo);
     }
 
     updateDetails(data);
@@ -308,7 +311,7 @@ async function updateDetails(data) {
     };
 }
 
-async function setPlayerDetails(element, seed, rank, username) {
+async function setPlayerDetails(element, seed, rank, username, flag) {
     if (username === "") {
         return false;
     }
@@ -320,6 +323,7 @@ async function setPlayerDetails(element, seed, rank, username) {
         playerSeed = seeds.find(seed => seed["playerID"] == data.user_id)["Seed"];
         seed.innerHTML = `SEED ${playerSeed}`;
         rank.innerHTML = `RANK #${data.pp_rank}`;
+        flag.setAttribute('src',`https://assets.ppy.sh/old-flags/${data.country}.png`);
         return true;
     } else {
         return false;

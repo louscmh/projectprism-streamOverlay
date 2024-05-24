@@ -1,5 +1,5 @@
 Usecase: obs-tourney
-Name: OTMT-Player-Intro
+Name: Prism-Player-Intro
 Author: lous
 CompatibleWith: gosu,tosu
 Resolution: 1920x1080

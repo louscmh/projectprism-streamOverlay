@@ -110,6 +110,12 @@ let pickTwo = document.getElementById("pickTwo");
 let chatContainer = document.getElementById("chatContainer");
 let beatmapOverlay = document.getElementById("overlay");
 
+let flagOne = document.getElementById("flagOne");
+let flagTwo = document.getElementById("flagTwo");
+
+let mascot = document.getElementById("mascot");
+let mascotVideo = document.getElementById("mascotVideo");
+
 // PLACEHOLDER VARS //////////////////////////////////////////////
 let tempLeft;
 let tempRight;
@@ -141,18 +147,12 @@ socket.onmessage = async event => {
     
     if (previousPhase != data.tourney.manager.ipcState) {
         previousPhase = data.tourney.manager.ipcState;
-        console.log(`Player: ${currentPlayer}, Pick: ${currentPick}, Turn: ${turn}, Phase: ${data.tourney.manager.ipcState}`);
-        console.log("player 1 score: " + cachedPlayerOneScore);
-        console.log("player 2 score: " + cachedPlayerTwoScore);
         if (data.tourney.manager.ipcState == 4) {
             if (cachedPlayerOneScore > cachedPlayerTwoScore) {
-                console.log("happened win");
                 markWin(`pick${currentPick}Clicker`, true);
             } else if (cachedPlayerOneScore < cachedPlayerTwoScore) {
-                console.log("happened lose");
                 markWin(`pick${currentPick}Clicker`, false);
             } else {
-                console.log("happened tie");
             }
         }
     } 
@@ -171,14 +171,14 @@ socket.onmessage = async event => {
     // Player Names
     if (tempLeft != playerOne.innerHTML) {
         playerOne.innerHTML = tempLeft;
-        adjustFont(playerOne,270,30);
-        setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft);
+        adjustFont(playerOne,200,40);
+        setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, tempLeft, flagOne);
         if (turn == 0) {currentPlayer = tempLeft;}
     }
     if (tempRight != playerTwo.innerHTML) {
         playerTwo.innerHTML = tempRight;
-        adjustFont(playerTwo,270,30);
-        setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight);
+        adjustFont(playerTwo,200,40);
+        setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, tempRight, flagTwo);
         if (turn == 1) {currentPlayer = tempRight;}
     }
 
@@ -316,6 +316,10 @@ nextButton.addEventListener("click", function(event) {
     chatContainer.style.animation = "lowerChat 1s ease-in-out";
     upcomingText.style.animation = "pickingOut 1s ease-in-out";
     upcomingText.style.opacity = 0;
+    // mascot.style.transform = "translateY(0)";
+    // mascotVideo.pause();
+    // mascotVideo.autoplay = false;
+    // mascotVideo.loop = false;
     setTimeout(function() {
         beatmapImage.style.opacity = 0;
         selectedMap.style.display = `none`;
@@ -712,7 +716,7 @@ async function formatTime(seconds) {
     return `${minutes}:${remainingSeconds}`;
 }
 
-async function setPlayerDetails(element, seed, rank, username) {
+async function setPlayerDetails(element, seed, rank, username, flag) {
     if (username === "") {
         return false;
     }
@@ -724,6 +728,7 @@ async function setPlayerDetails(element, seed, rank, username) {
         playerSeed = seeds.find(seed => seed["playerID"] == data.user_id)["Seed"];
         seed.innerHTML = `SEED ${playerSeed}`;
         rank.innerHTML = `RANK #${data.pp_rank}`;
+        flag.setAttribute('src',`https://assets.ppy.sh/old-flags/${data.country}.png`);
         return true;
     } else {
         return false;
@@ -793,6 +798,10 @@ function showMap(tb) {
             chatContainer.style.animation = "raiseChat 1s ease-in-out";
             upcomingText.style.animation = "pickingIn 1s ease-in-out";
             upcomingText.style.opacity = 1;
+            // mascot.style.transform = "translateY(-1500px)";
+            // mascotVideo.autoplay = true;
+            // mascotVideo.loop = true;
+            // mascotVideo.play();
         }
     }, 5000);
 }
@@ -821,6 +830,10 @@ function cancelPick() {
     upcomingText.style.animation = "pickingOut 1s ease-in-out";
     upcomingText.style.opacity = 0;
     beatmapImage.style.opacity = 0;
+    // mascot.style.transform = "translateY(0)";
+    // mascotVideo.pause();
+    // mascotVideo.autoplay = false;
+    // mascotVideo.loop = false;
     setTimeout(function() {
         selectedMap.style.display = `none`;
         mapFrame.style.display = `none`;

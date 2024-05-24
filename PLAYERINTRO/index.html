@@ -4,11 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../_shared_assets/deps/reconnecting-websocket.min.js"></script>
 </head>
 
 <body>
 	<div id="main">
-		
+		<div id="playerOneColumn">
+      <div id="playerOne">
+        <img id="playerOnePic"></img>
+        <div id="playerOneDetails">
+          <div id="playerOneName">Player 1</div>
+          <div id="playerOneSeed">SEED X</div>
+          <div id="playerOneRank">RANK #XXXX</div>
+          <div id="playerOneFlag">
+            <img id="oneFlag"></img>
+            <div id="oneFlagAcronym">XXX</div>
+          </div>
+        </div>
+      </div>
+      <div id="playerOneHistory">
+        <div id="textOne" class="staticMatchText">MATCH HISTORY</div>
+        <div id="playerOneMatch">
+          <div class="matchContainerOne">
+            <div class="matchText">RO64 - VS PLAYER X</div>
+            <div class="oppPic"></div>
+            <div class="result">
+              <div class="resultTextWin">WIN 5-1</div>
+            </div>
+          </div>
+          <div class="matchContainerOne">
+            <div class="matchText">RO32 - VS PLAYER X</div>
+            <div class="oppPic"></div>
+            <div class="result">
+              <div class="resultTextLose">LOSE 5-1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		<div id="playerTwoColumn">
+      <div id="playerTwo">
+        <img id="playerTwoPic"></img>
+        <div id="playerTwoDetails">
+          <div id="playerTwoName">Player 1</div>
+          <div id="playerTwoSeed">SEED X</div>
+          <div id="playerTwoRank">RANK #XXXX</div>
+          <div id="playerTwoFlag">
+            <img id="twoFlag"></img>
+            <div id="twoFlagAcronym">XXX</div>
+          </div>
+        </div>
+      </div>
+      <div id="playerTwoHistory">
+        <div id="textTwo" class="staticMatchText">MATCH HISTORY</div>
+        <div id="playerTwoMatch">
+          <div class="matchContainerTwo">
+            <div class="matchText">RO64 - VS PLAYER X</div>
+            <div class="oppPic"></div>
+            <div class="result">
+              <div class="resultTextWin">WIN 5-1</div>
+            </div>
+          </div>
+          <div class="matchContainerTwo">
+            <div class="matchText">RO32 - VS PLAYER X</div>
+            <div class="oppPic"></div>
+            <div class="result">
+              <div class="resultTextLose">LOSE 5-1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 	</div>
 	<script src="index.js"></script>
   </body>

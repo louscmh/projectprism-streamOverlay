@@ -93,11 +93,29 @@
     align-items: end;
 }
 
+#oneColumnTwo {
+    display:flex;
+    height:26px;
+}
+
+#twoColumnTwo {
+    display:flex;
+    flex-direction: row-reverse;
+    height:26px;
+}
+
+#flagOne, #flagTwo {
+    height:60%;
+    margin-inline: 10px;
+    margin-top:-1px;
+}
+
 .playerName {
     display:flex;
     font-size: 40px;
     height:42px;
     align-items: center;
+    white-space: nowrap;
 }
 
 .seed {
@@ -813,4 +831,15 @@
 }
 .right {
 	color: #56c51b;
+}
+
+#mascot {
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    position:absolute;
+    top:1350px;
+    left:0px;
+    width:1920px;
+    transition: 2s ease-out;
 }

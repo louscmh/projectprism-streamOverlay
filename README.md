@@ -24,7 +24,6 @@ Click on "Search Directory..." and select the `_shared_assets` folder in the pro
 To install the application, just download the latest release and export `tosu.exe` in whatever directory you want. Then in that same directory, create a static file and run `tosu.exe`.
 
 To properly import all overlays, download the latest release of this project and import it into the static folder. If you have an osu! client open, the OBS scenes should properly reflect the scenes. If there's any issue projecting the overlay on OBS, you can try finding the URL link of the individual overlays by scrolling down to the target overlay and clicking on the URL parameter.
-![Troubleshooting 1](https://cdn.discordapp.com/attachments/793324125723820086/1236153225892069376/image.png?ex=6636f8e7&is=6635a767&hm=c40919ab0206d5c8f31594228ee5c7dbd23d6d8a98e95b8fc0fc0b9e035e4a38&)
 
 If you open the link in the browser and it doesn't project anything, contact louscmh immediately. If not, then OBS should be able to project the browser source.
 
@@ -83,6 +82,7 @@ Example scene for reference
 The showcase overlay uses the following JSON to function:
 - `beatmaps.json`
 - `api.json`
+- `seeds.json`
 
 For the mappool overlay to properly function & display both player & beatmap details, it will require you to insert an API key into `_data/api.json`.
 
@@ -96,7 +96,7 @@ For convenience for reading chat to see who is picking/banning first and what is
 
 **INTERACTING WITH THE BEATMAPS**
 
-![alt text](_shared_assets/design/setup/image-2.png)
+![Beatmaps 1](_shared_assets/design/setup/image-2.png)
 
 - Left Click to pick for **Player 1**
 - Right Click to pick for **Player 2**
@@ -106,7 +106,7 @@ For convenience for reading chat to see who is picking/banning first and what is
 
 **INTERACTING WITH MAPPICKS**
 
-![alt text](_shared_assets/design/setup/image-3.png)
+![Mappick 1](_shared_assets/design/setup/image-3.png)
 
 - Left Click to set the pick as a **WIN**
 - Right Click to set the pick as a **LOSS**
@@ -116,7 +116,7 @@ Under normal circumstances, this will be updated automatically upon reaching tbe
 
 **INTERACTING WITH THE CONTROL PANEL**
 
-![alt text](_shared_assets/design/setup/image-4.png)
+![Control Panel 1](_shared_assets/design/setup/image-4.png)
 
 - **BAN PHASE**: Switches phase back to banning on the screen (This is the default phase upon initializing)
 - **PICK PHASE**: Switches phase to picking on the screen (Will automatically switch after both bans)
@@ -126,17 +126,39 @@ Under normal circumstances, this will be updated automatically upon reaching tbe
 
 ### Match Overlay
 Example scene for reference
-![alt text](_shared_assets/design/setup/image-5.png)
+![Match 1](_shared_assets/design/setup/image-5.png)
 
 The match overlay uses the following JSON to function:
 - `beatmaps.json`
+- `api.json`
+- `seeds.json`
 
 ### Mappool Showcase
 Example scene for reference
-![alt text](_shared_assets/design/setup/image-6.png)
+![Mappool 1](_shared_assets/design/setup/image-6.png)
 
 The showcase overlay uses the following JSON to function:
 - `beatmaps.json`
+
+### Winner Overlay
+The winner overlay uses the following JSON to function:
+- `seeds.json`
+
+Example scene for reference
+![Winner Image 1](_shared_assets/design/setup/Wimage.png)
+![Winner Image 2](_shared_assets/design/setup/Wimage-1.png)
+
+When a player has won the match by reaching the number of points required to win, the scene will switch to the 2nd screenshot above, and the button to switch back to the 1st screenshot will appear in OBS. Just click on the `Interact` button when selecting the `Winner Overlay` asset and click on the button to the right of the prompted window.
+
+### Player Intro Overlay
+The player intro overlay uses the following JSON to function:
+- `seeds.json`
+
+Example scene for reference
+![Player Intro 1](_shared_assets/design/setup/PY.png)
+
+25/5/2024 - For now the match history will not be displayed in the scene, so assume the above is accurate without the match history!
+
 ___
 ## To-do List
 
@@ -144,15 +166,15 @@ ___
 - [X] Draft Layout of Match Scene
 - [X] Draft Layout of Mappool Scene
 - [X] Draft Layout of Showcase Scene
-- [ ] Draft Layout of Winner Scene
+- [X] Draft Layout of Winner Scene
 - [X] Draft Layout of Schedule Scene
-- [ ] Draft Layout of Player Intro Scene
+- [X] Draft Layout of Player Intro Scene
 ### Implementation (Design + Functionality)
 - [X] Implementation of Match Scene
 - [X] Implementation of Mappool Scene
 - [x] Implementation of Showcase Scene
-- [ ] Implementation of Winner Scene
-- [ ] Implementation of Schedule Scene
+- [X] Implementation of Winner Scene
+- [X] Implementation of Schedule Scene
 - [ ] Implementation of Player Intro Scene
 
 ## Scene Features

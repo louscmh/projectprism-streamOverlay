@@ -75,6 +75,10 @@
 
 #playerOneName, #playerTwoName {
     font-size: 70px;
+    white-space: nowrap;
+    height:72px;
+    display:flex;
+    align-items: center;
 }
 
 #playerOneSeed, #playerOneRank, #playerTwoSeed, #playerTwoRank {
@@ -115,7 +119,7 @@
     flex-direction: column;
     justify-content: start;
     margin-top: 60px;
-    display:none;
+    /* display:none; */
 }
 
 #playerTwoHistory {
@@ -125,7 +129,7 @@
     flex-direction: column;
     align-items: end;
     margin-top: 60px;
-    display:none;
+    /* display:none; */
 }
 
 .staticMatchText {
@@ -142,7 +146,7 @@
     margin-right:30px;
 }
 
-.matchContainerOne, .matchContainerTwo {
+.matchContainer {
     display:flex;
     align-items: center;
     height: fit-content;

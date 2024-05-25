@@ -13,16 +13,22 @@ socket.onerror = error => {
 
 // SEED DATA /////////////////////////////////////////////////////////////////
 let seeds = [];
+let schedules = [];
 (async () => {
     try {
         const seedData = await $.getJSON("../_data/prism_seed.json");
         seedData.map((seed) => {
             seeds.push(seed);
         });
+        const scheduleData = await $.getJSON("../_data/schedule.json");
+        scheduleData.map((schedule) => {
+            schedules.push(schedule);
+        });
     } catch (error) {
         console.error("Could not read JSON file", error);
     }
 })();
+console.log(schedules);
 
 // API /////////////////////////////////////////////////////////////////
 const file = [];
@@ -70,22 +76,24 @@ socket.onmessage = async event => {
         tempRight = data.tourney.manager.teamName.right;
     }
 
-    if (tempLeft != playerOne.innerHTML) {
-        setPlayerDetails(playerOne, playerOnePic, playerOneSeed, playerOneRank, oneFlag, oneFlagAcronym, tempLeft);
-    }
-    if (tempRight != playerTwo.innerHTML) {
-        setPlayerDetails(playerTwo, playerTwoPic, playerTwoSeed, playerTwoRank, twoFlag, twoFlagAcronym, tempRight);
+    if (tempLeft != playerOne.innerHTML || tempRight != playerTwo.innerHTML) {
+        playerOneMatch.textContent = '';
+        playerTwoMatch.textContent = '';
+        playerOne.innerHTML = tempLeft;
+        adjustFont(playerOne, 402.5,72);
+        playerTwo.innerHTML = tempRight;
+        adjustFont(playerTwo, 402.5,72);
+        await setPlayerDetails(playerOnePic, playerOneSeed, playerOneRank, oneFlag, oneFlagAcronym, tempLeft);
+        await setPlayerDetails(playerTwoPic, playerTwoSeed, playerTwoRank, twoFlag, twoFlagAcronym, tempRight);
     }
 }
 
 // FUNCTIONS ////////////////////////////////////////////////////////////////
 
-async function setPlayerDetails(name, element, seed, rank, flag, flagText, username) {
+async function setPlayerDetails(element, seed, rank, flag, flagText, username) {
     if (username === "") {
         return false;
     }
-
-    name.innerHTML = username;
 
     const data = await getUserDataSet(username);
     if (data !== null) {
@@ -96,7 +104,7 @@ async function setPlayerDetails(name, element, seed, rank, flag, flagText, usern
         rank.innerHTML = `RANK #${data.pp_rank}`;
         flagText.innerHTML = data.country;
         flag.setAttribute('src',`https://assets.ppy.sh/old-flags/${data.country}.png`);
-        setMatchHistory(data.user_id, username);
+        await setMatchHistory(data.user_id, username);
         return true;
     } else {
         return false;
@@ -127,10 +135,108 @@ async function setMatchHistory(user_id, user_name) {
     if (playerOne.innerHTML === user_name) {
         matchContainer = playerOneMatch;
     } else if (playerTwo.innerHTML === user_name) {
-        atchContainer = playerTwoMatch;
+        matchContainer = playerTwoMatch;
     } else {
         return false;
     }
-
     
+    matches = getPlayerMatch(user_id);
+
+    for (let i = 0; i<matches.length; i++) {
+        match = matches[i];
+        if (match["playerOneID"] == user_id) {
+            console.log("happened1");
+            opponentData = await getUserDataSet(match["playerTwoID"]);
+            matchFrame = new Match(match["Match ID"],match["resultOne"],match["resultTwo"],true,opponentData);
+            matchFrame.generate(matchContainer);
+        } else {
+            console.log("happened2");
+            opponentData = await getUserDataSet(match["playerOneID"]);
+            matchFrame = new Match(match["Match ID"],match["resultOne"],match["resultTwo"],false,opponentData);
+            matchFrame.generate(matchContainer);
+        }
+    }
 }
+
+function getPlayerMatch(user_id) {
+    matches = schedules
+        .filter(schedule => schedule["playerOneID"] == user_id || schedule["playerTwoID"] == user_id)
+        // .map(schedule => schedule["Match ID"]);
+    console.log(matches);
+    return matches;
+}
+
+function getStageText(match_id) {
+    const stages = [
+        { max: 33, text: "RO64" },
+        { max: 65, text: "RO32" },
+        { max: 97, text: "RO16" },
+        { max: 113, text: "QF" },
+        { max: 121, text: "SF" },
+        { max: 125, text: "F" },
+        { max: Infinity, text: "GF" }
+    ];
+
+    for (let stage of stages) {
+        if (match_id < stage.max) {
+            return stage.text;
+        }
+    }
+
+    return "XX";
+}
+
+async function adjustFont(title, boundaryWidth, originalFontSize) {
+    if (title.scrollWidth > boundaryWidth) {
+		let ratio = (title.scrollWidth/boundaryWidth);
+        title.style.fontSize = `${originalFontSize/ratio}px`;
+    } else {
+		title.style.fontSize = `${originalFontSize}px`;
+	}
+}
+
+class Match {
+    constructor(matchID,scoreOne,scoreTwo,isPlayerOne, opponentData) {
+        this.matchID = matchID;
+        this.scoreOne = scoreOne;
+        this.scoreTwo = scoreTwo;
+        this.isPlayerOne = isPlayerOne;
+        this.opponentPlayerData = opponentData;
+        console.log(this.scoreOne);
+        console.log(this.scoreTwo);
+    }
+
+    generate(matchContainer) {
+        this.container = document.createElement("div");
+        this.container.classList.add("matchContainer");
+        this.container.id = `matchID${this.matchID}`;
+        
+        this.matchText = document.createElement("div");
+        this.matchText.classList.add("matchText");
+        this.matchText.innerHTML = `${getStageText(this.matchID)} - VS ${this.opponentPlayerData.username}`;
+
+        this.oppPic = document.createElement("img");
+        this.oppPic.classList.add("oppPic");
+        this.oppPic.setAttribute("src",`http://s.ppy.sh/a/${this.opponentPlayerData.user_id}`)
+
+        this.result = document.createElement("div");
+        if (this.isPlayerOne) {
+            console.log("happened3");
+            this.result.classList.add(this.scoreOne > this.scoreTwo ? "resultTextWin" : "resultTextLose");
+            this.result.innerHTML = this.scoreOne > this.scoreTwo ? 
+                `WIN ${this.scoreOne}-${this.scoreTwo}` : `LOSE ${this.scoreOne}-${this.scoreTwo}`;
+        } else {
+            console.log("happened4");
+            this.result.classList.add(this.scoreOne < this.scoreTwo ? "resultTextWin" : "resultTextLose");
+            this.result.innerHTML = this.scoreOne < this.scoreTwo ? 
+                `WIN ${this.scoreOne}-${this.scoreTwo}` : `LOSE ${this.scoreOne}-${this.scoreTwo}`;
+        }
+
+        this.container.appendChild(this.matchText);
+        this.container.appendChild(this.oppPic);
+        this.container.appendChild(this.result);
+
+        matchContainer.appendChild(this.container);
+    }
+}
+

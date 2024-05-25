@@ -153,6 +153,7 @@ When a player has won the match by reaching the number of points required to win
 ### Player Intro Overlay
 The player intro overlay uses the following JSON to function:
 - `seeds.json`
+- `schedule.json`
 
 Example scene for reference
 ![Player Intro 1](_shared_assets/design/setup/PY.png)

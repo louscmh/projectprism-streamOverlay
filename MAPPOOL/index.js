@@ -116,6 +116,12 @@ let flagTwo = document.getElementById("flagTwo");
 let mascot = document.getElementById("mascot");
 let mascotVideo = document.getElementById("mascotVideo");
 
+let timeoutFloater = document.getElementById("timeoutFloater");
+let timeoutOverlay = document.getElementById("timeoutOverlay");
+let leftTimeout = document.getElementById("leftTimeout");
+let rightTimeout = document.getElementById("rightTimeout");
+let overlayScreen = document.getElementById("screen");
+
 // PLACEHOLDER VARS //////////////////////////////////////////////
 let tempLeft;
 let tempRight;
@@ -135,6 +141,8 @@ let cacbePlayerTwoScore;
 let currentPick;
 let chatLen;
 let previousPhase;
+let leftIsTimeout = false;
+let rightIsTimeout = false;
 
 // MAIN LOOP ////////////////////////////////////////////////////////////////
 socket.onmessage = async event => {
@@ -152,8 +160,11 @@ socket.onmessage = async event => {
                 markWin(`pick${currentPick}Clicker`, true);
             } else if (cachedPlayerOneScore < cachedPlayerTwoScore) {
                 markWin(`pick${currentPick}Clicker`, false);
-            } else {
             }
+        } else if (data.tourney.manager.ipcState == 3) {
+            mascotVideo.pause();
+            mascotVideo.autoplay = false;
+            mascotVideo.loop = false;
         }
     } 
 
@@ -329,6 +340,58 @@ nextButton.addEventListener("click", function(event) {
         pickingText.innerHTML = `${currentPlayer} is currently ${currentPhase}`;
         pickingText.style.animation = `pickingIn 0.75s ease-in-out`;
     }, 700);
+})
+
+leftTimeout.addEventListener("click", function(event) {
+    if (!leftIsTimeout) {
+        overlayScreen.style.display = `flex`;
+        leftIsTimeout = true;
+        rightIsTimeout = false;
+        leftTimeout.style.backgroundColor = "rgb(156, 116, 56)";
+        rightTimeout.style.backgroundColor = "rgb(194, 139, 57)";
+        timeoutFloater.innerHTML = `Timeout - ${playerOne.innerHTML}`;
+        setTimeout(function () {
+            timeoutFloater.style.backgroundColor = "purple";
+            timeoutFloater.style.transform = "translateY(0)";
+            timeoutOverlay.style.opacity = 1;
+        },500)
+    } else {
+        leftIsTimeout = false;
+        timeoutFloater.style.transform = "translateY(1000px)";
+        timeoutOverlay.style.opacity = 0;
+        leftTimeout.style.backgroundColor = "rgb(194, 139, 57)";
+        setTimeout(function () {
+            overlayScreen.style.display = `none`;
+            timeoutFloater.innerHTML = ``;
+            timeoutFloater.style.backgroundColor = "grey";
+        },1000)
+    }
+})
+
+rightTimeout.addEventListener("click", function(event) {
+    if (!rightIsTimeout) {
+        overlayScreen.style.display = `flex`;
+        rightIsTimeout = true;
+        leftIsTimeout = false;
+        rightTimeout.style.backgroundColor = "rgb(156, 116, 56)";
+        leftTimeout.style.backgroundColor = "rgb(194, 139, 57)";
+        timeoutFloater.innerHTML = `Timeout - ${playerTwo.innerHTML}`;
+        setTimeout(function () {
+            timeoutFloater.style.backgroundColor = "green";
+            timeoutFloater.style.transform = "translateY(0)";
+            timeoutOverlay.style.opacity = 1;
+        },500)
+    } else {
+        rightIsTimeout = false;
+        timeoutFloater.style.transform = "translateY(1000px)";
+        timeoutOverlay.style.opacity = 0;
+        rightTimeout.style.backgroundColor = "rgb(194, 139, 57)";
+        setTimeout(function () {
+            overlayScreen.style.display = `none`;
+            timeoutFloater.innerHTML = ``;
+            timeoutFloater.style.backgroundColor = "grey";
+        },1000)
+    }
 })
 
 // CLASS
@@ -798,13 +861,6 @@ function showMap(tb) {
             chatContainer.style.animation = "raiseChat 1s ease-in-out";
             upcomingText.style.animation = "pickingIn 1s ease-in-out";
             upcomingText.style.opacity = 1;
-            mascot.style.transform = "translateY(-1500px)";
-            mascotVideo.autoplay = true;
-            mascotVideo.loop = true;
-            mascotVideo.play();
-            setTimeout(function() {
-                mascotVideo.pause();
-            }, 60000);
         }
     }, 5000);
 }
@@ -843,6 +899,8 @@ function cancelPick() {
         foregroundMap.style.animation = "";
         pickingText.style.display = "initial";
         pickingText.innerHTML = `${currentPlayer} is currently picking`;
+        overlay.style.backgroundColor = currentPlayer == tempLeft ? 
+            "rgba(86, 38, 122, 0.5)" : "rgba(25, 103, 25, 0.5)";
         pickingText.style.animation = `pickingIn 0.75s ease-in-out`;
     }, 750);
 }
@@ -873,6 +931,12 @@ function addBan(pick,left) {
     }
     if (banCount >= 2) {
         currentPhase = "picking";
+        currentPlayer = currentPlayer == tempLeft ? tempRight : tempLeft;
+        turn = currentPlayer == tempLeft ? 0 : 1;
+        pickOne.style.opacity = currentPlayer == tempLeft ? 1 : 0;
+        pickTwo.style.opacity = currentPlayer == tempLeft ? 0 : 1;
+        overlay.style.backgroundColor = currentPlayer == tempLeft ? 
+            "rgba(86, 38, 122, 0.5)" : "rgba(25, 103, 25, 0.5)";
     } else {
         currentPhase = "banning";
     }
@@ -1003,6 +1067,12 @@ function promptTB(mapData) {
     setTimeout(function() {
         pickingText.style.display = `none`;
         showMap(true);
+        setTimeout(function() {
+            mascot.style.transform = "translateY(-1500px)";
+            mascotVideo.autoplay = true;
+            mascotVideo.loop = true;
+            mascotVideo.play();
+        }, 5000)
     }, 700);
 }
 

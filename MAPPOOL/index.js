@@ -316,10 +316,10 @@ nextButton.addEventListener("click", function(event) {
     chatContainer.style.animation = "lowerChat 1s ease-in-out";
     upcomingText.style.animation = "pickingOut 1s ease-in-out";
     upcomingText.style.opacity = 0;
-    // mascot.style.transform = "translateY(0)";
-    // mascotVideo.pause();
-    // mascotVideo.autoplay = false;
-    // mascotVideo.loop = false;
+    mascot.style.transform = "translateY(0)";
+    mascotVideo.pause();
+    mascotVideo.autoplay = false;
+    mascotVideo.loop = false;
     setTimeout(function() {
         beatmapImage.style.opacity = 0;
         selectedMap.style.display = `none`;
@@ -798,10 +798,13 @@ function showMap(tb) {
             chatContainer.style.animation = "raiseChat 1s ease-in-out";
             upcomingText.style.animation = "pickingIn 1s ease-in-out";
             upcomingText.style.opacity = 1;
-            // mascot.style.transform = "translateY(-1500px)";
-            // mascotVideo.autoplay = true;
-            // mascotVideo.loop = true;
-            // mascotVideo.play();
+            mascot.style.transform = "translateY(-1500px)";
+            mascotVideo.autoplay = true;
+            mascotVideo.loop = true;
+            mascotVideo.play();
+            setTimeout(function() {
+                mascotVideo.pause();
+            }, 60000);
         }
     }, 5000);
 }
@@ -830,10 +833,10 @@ function cancelPick() {
     upcomingText.style.animation = "pickingOut 1s ease-in-out";
     upcomingText.style.opacity = 0;
     beatmapImage.style.opacity = 0;
-    // mascot.style.transform = "translateY(0)";
-    // mascotVideo.pause();
-    // mascotVideo.autoplay = false;
-    // mascotVideo.loop = false;
+    mascot.style.transform = "translateY(0)";
+    mascotVideo.pause();
+    mascotVideo.autoplay = false;
+    mascotVideo.loop = false;
     setTimeout(function() {
         selectedMap.style.display = `none`;
         mapFrame.style.display = `none`;

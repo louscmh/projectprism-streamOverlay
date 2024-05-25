@@ -157,8 +157,6 @@ The player intro overlay uses the following JSON to function:
 Example scene for reference
 ![Player Intro 1](_shared_assets/design/setup/PY.png)
 
-25/5/2024 - For now the match history will not be displayed in the scene, so assume the above is accurate without the match history!
-
 ___
 ## To-do List
 

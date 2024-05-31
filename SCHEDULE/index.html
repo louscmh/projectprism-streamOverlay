@@ -12,23 +12,50 @@
 <body>
 	<div id="main">
 		<div id="leftContainer">
-      <div id="currentTime"></div>
-      <div id="scheduleContainer">
-        <div id="scheduleOne" class="schedule">
-          <div id="time" class="time"></div>
-          <div id="matchBar" class="match">
-            <div id="playerOne" class="playerOne">
-              <div id="pfpOne" class="profilePic"></div>
-              <div id="playerOneName" class="playerName">TEST_NAME</div>
-            </div>
-            <div class="versus">VS</div>
-            <div id="playerTwo" class="playerTwo">
-              <div id="pfpTwo" class="profilePic"></div>
-              <div id="playerTwoName" class="playerName">TEST_NAME_2</div>
-            </div>
+      <div id="top">
+        <div id="timeContainer">
+          <div id="currentText">CURRENT TIME</div>
+          <div id="currentTime">00:00</div>
+          <div id="nextMatch">
+            <div id="nextTime">00:00</div>
+            <div id="nextText">TIME TILL NEXT MATCH</div>
           </div>
         </div>
+        <div id="nowPlaying">
+          <div class="playingText">NOW PLAYING:</div>
+          <div class="playingText" id="songName">SONG NAME</div>
+        </div>
       </div>
+      <div id="scheduleContainer">
+          <div id="matchBar">
+            <!-- <div class="matchContainer">
+              <div class="matchTime">
+                <div class="timeText">00:00 - WINNERS BRACKET</div>
+                <div class="bracket"></div>
+              </div>
+              <div class="matchDetails">
+                <div class="playerOne">
+                  <img class="picOne">
+                  <div class="playerNameOne">
+                    <div class="playerText">PLAYER 1</div>
+                  </div>
+                </div>
+                <div class="versus">VS</div>
+                <div class="playerTwo">
+                  <img class="picTwo">
+                  <div class="playerNameTwo">
+                    <div class="playerText">PLAYER 2</div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+      </div>
+    </div>
+    <div id="mascot">
+      <video id="mascotVideo" width="100%" height="2000" autoplay loop muted playsinline>
+        <source src="../_shared_assets/design/_live2d/zander.webm" type="video/webm">
+      </video>
     </div>
 	</div>
 	<script src="index.js"></script>

@@ -143,6 +143,7 @@ let chatLen;
 let previousPhase;
 let leftIsTimeout = false;
 let rightIsTimeout = false;
+let mascotInterval;
 
 // MAIN LOOP ////////////////////////////////////////////////////////////////
 socket.onmessage = async event => {
@@ -165,6 +166,7 @@ socket.onmessage = async event => {
             mascotVideo.pause();
             mascotVideo.autoplay = false;
             mascotVideo.loop = false;
+            // clearInterval(mascotInterval);
         }
     } 
 
@@ -331,6 +333,7 @@ nextButton.addEventListener("click", function(event) {
     mascotVideo.pause();
     mascotVideo.autoplay = false;
     mascotVideo.loop = false;
+    // clearInterval(mascotInterval);
     setTimeout(function() {
         beatmapImage.style.opacity = 0;
         selectedMap.style.display = `none`;
@@ -893,6 +896,7 @@ function cancelPick() {
     mascotVideo.pause();
     mascotVideo.autoplay = false;
     mascotVideo.loop = false;
+    // clearInterval(mascotInterval);
     setTimeout(function() {
         selectedMap.style.display = `none`;
         mapFrame.style.display = `none`;
@@ -1072,9 +1076,17 @@ function promptTB(mapData) {
             mascotVideo.autoplay = true;
             mascotVideo.loop = true;
             mascotVideo.play();
+            // mascotInterval = setInterval(sway, 4000);
         }, 5000)
     }, 700);
 }
+
+// function sway() {
+//     mascot.style.transform = "translateY(-1450px)";
+//     setTimeout(function() {
+//         mascot.style.transform = "translateY(-1500px)";
+//     },2000);
+// }
 
 async function adjustFont(title, boundaryWidth, originalFontSize) {
     if (title.scrollWidth > boundaryWidth) {

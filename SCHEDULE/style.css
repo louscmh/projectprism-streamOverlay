@@ -20,49 +20,184 @@
     left:0px;
     height:1080px;
     width:1920px;
+	text-shadow: 0px 0px 8px black;
+    display:flex;
     /* background-color: grey; */
 }
 
-#leftContainer {
-    width:50%;
-    height:inherit;
+#mascot {
+    position:absolute;
+    left: 630px;
+    width:1920px;
+    height:1050px;
+    overflow: hidden;
+    display: block;
 }
 
-.match {
+#leftContainer {
+    width:55%;
+    height:inherit;
+    /* background-color:rgba(33, 33, 33,0.9); */
+}
+
+#matchBar {
+    margin-top:180px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.matchContainer {
+    display:flex;
+    flex-direction: column;
+    height:fit-content;
+    align-items: center;
+    justify-content: center;
+    width:fit-content;
+    margin-bottom: 15px;
+}
+
+.matchTime {
+    display:flex;
+    width:100%;
+    margin-bottom:10px;
+    height: fit-content;
+    align-items: center;
+}
+
+.matchDetails {
+    height:60px;
     display:flex;
     flex-direction: row;
-    height:60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeText {
+    margin-right:20px;
+    margin-top:-5px;
+}
+
+.bracket {
+    background-color: white;
+    height:10px;
+    flex-grow:1;
 }
 
 .playerOne {
     display:flex;
     flex-direction: row;
     height:inherit;
+    align-items: center;
 }
 
 .playerTwo {
     display:flex;
     flex-direction: row-reverse;
     height:inherit;
+    align-items: center;
 }
 
-.playerName {
-    background-color: grey;
+.versus {
+    color:white;
+    margin-inline:20px;
+    font-size:62px;
+}
+
+.picOne, .picTwo {
+    height:60px;
+    width:60px;
+    background-color: white;
+}
+
+.picOne {
+    margin-right:10px;
+}
+
+.picTwo {
+    margin-left:10px;
+}
+
+.playerNameOne, .playerNameTwo {
     height:inherit;
     display:flex;
     align-items: center;
     padding-inline: 20px;
+    width: 280px;
+    justify-content: center;
 }
 
-.profilePic {
-    background-color: grey;
-    height:inherit;
-    width:60px;
-    margin-inline: 10px;
+.playerText {
+    font-size: 46px;
+    width:fit-content;
+    white-space: nowrap;
 }
 
-.versus {
+.playerNameOne {
+    background-color: #903ed6;
+}
+
+.playerNameTwo {
+    background-color: #3ed64c;
+}
+
+#top {
+    display:flex;
+    justify-content: space-between;
+}
+
+#timeContainer {
+    margin-top:80px;
+    margin-left: 80.8px;
+}
+
+#nowPlaying {
+    margin-top:80px;
+    margin-right: 80.8px;
+    text-align:right;
+}
+
+.playingText {
+    font-size:25px;
+}
+
+#songName {
+    width:400px;
+    white-space: wrap;
+}
+
+#currentText {
+    font-size: 35px;
+}
+
+#currentTime {
+    font-size: 135px;
     color:black;
-    margin-inline:20px;
-    font-size:50px;
+    background-color: white;
+    width: 450px;
+    text-align: center;
+    padding-bottom:10px;
+    margin-block:10px;
+	text-shadow: none;
+}
+
+#nextMatch {
+    display:flex;
+    height:fit-content;
+    align-items: center;
+}
+
+#nextTime {
+    font-size:45px;
+    color:black;
+    background-color: white;
+	text-shadow: none;
+    width:140px;
+    text-align: center;
+    margin-right:10px;
+}
+
+#nextText {
+    font-size:27px;
 }

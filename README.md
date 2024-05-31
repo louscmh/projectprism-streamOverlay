@@ -158,6 +158,14 @@ The player intro overlay uses the following JSON to function:
 Example scene for reference
 ![Player Intro 1](_shared_assets/design/setup/PY.png)
 
+### Schedules Overlay
+The player intro overlay uses the following JSON to function:
+- `schedule.json`
+
+Example scene for reference
+![Schedule 1](_shared_assets/design/setup/schedule.png)
+
+Note that **Losers 2nd Matches** has to be manually inputed/updated by either the streamer or myself. If you are streaming a Loser 2nd Match and require the time inputted please immedietely contact me to update the json.
 ___
 ## To-do List
 
@@ -174,7 +182,7 @@ ___
 - [x] Implementation of Showcase Scene
 - [X] Implementation of Winner Scene
 - [X] Implementation of Schedule Scene
-- [ ] Implementation of Player Intro Scene
+- [X] Implementation of Player Intro Scene
 
 ## Scene Features
 
@@ -220,5 +228,4 @@ ___
 - PFP
 - Seed
 - Rank
-- Topplays (TENTATIVE)
-- Past Match Result (VERY TENTATIVE)
+- Past Match Result

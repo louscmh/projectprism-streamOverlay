@@ -132,16 +132,18 @@ async function displayCountdown() {
     // console.log(timeDifference);
 
     if (timeDifference <= 0) {
-        return { minutes: 0, seconds: 0 }; // Target date is in the past or now
+        return { hours: 0, minutes: 0, seconds: 0 }; // Target date is in the past or now
     }
 
-    var minutes = Math.floor(timeDifference / (1000 * 60));
+    var hours = Math.floor(timeDifference / (1000 * 60 * 60));
+    var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
+    var hoursString = hours < 10 ? "0" + hours : hours;
     var minutesString = minutes < 10 ? "0" + minutes : minutes;
     var secondsString = seconds < 10 ? "0" + seconds : seconds;
 
-    nextTime.innerHTML = minutes > 59 ? "60:00" : `${minutesString}:${secondsString}`;
+    nextTime.innerHTML = hours > 24 ? "24:00:00" : `${hoursString}:${minutesString}:${secondsString}`;
     // nextTime.innerHTML = `${minutes}:${seconds}`;
 }
 

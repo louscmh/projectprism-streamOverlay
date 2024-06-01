@@ -37,7 +37,7 @@
 #leftContainer {
     width:55%;
     height:inherit;
-    /* background-color:rgba(33, 33, 33,0.9); */
+    background-color:rgba(33, 33, 33,0.9);
 }
 
 #matchBar {
@@ -193,11 +193,13 @@
     color:black;
     background-color: white;
 	text-shadow: none;
-    width:140px;
+    width:260px;
     text-align: center;
     margin-right:10px;
 }
 
 #nextText {
     font-size:27px;
+    line-height: 80%;
+    margin-top: -2.5px;
 }

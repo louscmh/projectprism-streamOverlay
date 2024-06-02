@@ -163,7 +163,7 @@ function parseDateTime(dateTimeString) {
     // console.log(dateTimeString);
     if (dateTimeString == "") return null;
 
-    var [datePart, timePart] = dateTimeString.split(' ');
+    var [datePart, timePart] = dateTimeString.split(' ');
     var [day, month] = datePart.split('/').map(Number);
     var [hours, minutes] = timePart.split(':').map(Number);
 

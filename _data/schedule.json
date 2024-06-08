@@ -644,24 +644,24 @@
    "playerOneID": 8772103,
    "playerTwoID": 9755504,
    "Time": "2/6 12:00",
-   "resultOne": null,
-   "resultTwo": null
+   "resultOne": 2,
+   "resultTwo": 5
  },
  {
    "Match ID": 82,
    "playerOneID": 9057823,
    "playerTwoID": 1926383,
    "Time": "2/6 16:00",
-   "resultOne": null,
-   "resultTwo": null
+   "resultOne": 5,
+   "resultTwo": 2
  },
  {
    "Match ID": 83,
    "playerOneID": 5509009,
    "playerTwoID": 21564948,
    "Time": "2/6 10:00",
-   "resultOne": null,
-   "resultTwo": null
+   "resultOne": -1,
+   "resultTwo": 0
  },
  {
    "Match ID": 84,
@@ -676,8 +676,8 @@
    "playerOneID": 2073644,
    "playerTwoID": 2512120,
    "Time": "2/6 10:00",
-   "resultOne": null,
-   "resultTwo": null
+   "resultOne": -1,
+   "resultTwo": 0
  },
  {
    "Match ID": 86,
@@ -716,8 +716,8 @@
    "playerOneID": 6932501,
    "playerTwoID": 2349769,
    "Time": "2/6 05:00",
-   "resultOne": null,
-   "resultTwo": null
+   "resultOne": 0,
+   "resultTwo": 5
  },
  {
    "Match ID": 91,
@@ -748,22 +748,150 @@
    "playerOneID": 7612550,
    "playerTwoID": 16067522,
    "Time": "2/6 16:00",
-   "resultOne": null,
-   "resultTwo": null
+   "resultOne": 3,
+   "resultTwo": 5
  },
  {
    "Match ID": 95,
    "playerOneID": 8303357,
    "playerTwoID": 12160279,
    "Time": "2/6 11:00",
-   "resultOne": null,
-   "resultTwo": null
+   "resultOne": 5,
+   "resultTwo": 2
  },
  {
    "Match ID": 96,
    "playerOneID": 13249305,
    "playerTwoID": 12703319,
    "Time": "2/6 13:00",
+   "resultOne": 5,
+   "resultTwo": 0
+ },
+ {
+   "Match ID": 97,
+   "playerOneID": 10869389,
+   "playerTwoID": 2512120,
+   "Time": "8/6 06:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 98,
+   "playerOneID": 6932501,
+   "playerTwoID": 13857986,
+   "Time": "8/6 03:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 99,
+   "playerOneID": 15231510,
+   "playerTwoID": 8818089,
+   "Time": "8/6 12:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 100,
+   "playerOneID": 11499467,
+   "playerTwoID": 502722,
+   "Time": "8/6 08:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 101,
+   "playerOneID": 4493348,
+   "playerTwoID": 9755504,
+   "Time": "8/6 14:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 102,
+   "playerOneID": 7612550,
+   "playerTwoID": 9057823,
+   "Time": "8/6 16:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 103,
+   "playerOneID": 12160279,
+   "playerTwoID": 21564948,
+   "Time": "8/6 14:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 104,
+   "playerOneID": 12703319,
+   "playerTwoID": 8697654,
+   "Time": "7/6 14:00",
+   "resultOne": 6,
+   "resultTwo": 3
+ },
+ {
+   "Match ID": 105,
+   "playerOneID": null,
+   "playerTwoID": null,
+   "Time": "",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 106,
+   "playerOneID": null,
+   "playerTwoID": null,
+   "Time": "",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 107,
+   "playerOneID": null,
+   "playerTwoID": null,
+   "Time": "",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 108,
+   "playerOneID": null,
+   "playerTwoID": null,
+   "Time": "",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 109,
+   "playerOneID": 165027,
+   "playerTwoID": 2349769,
+   "Time": "8/6 10:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 110,
+   "playerOneID": 22444525,
+   "playerTwoID": 12014683,
+   "Time": "8/6 20:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 111,
+   "playerOneID": 14947043,
+   "playerTwoID": 16067522,
+   "Time": "8/6 01:00",
+   "resultOne": null,
+   "resultTwo": null
+ },
+ {
+   "Match ID": 112,
+   "playerOneID": 8303357,
+   "playerTwoID": 13249305,
+   "Time": "9/8 11:00",
    "resultOne": null,
    "resultTwo": null
  }

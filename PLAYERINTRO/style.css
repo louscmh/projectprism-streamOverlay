@@ -138,6 +138,12 @@
     font-size:30px;
 }
 
+.matchText {
+    height:42px;
+    display:flex;
+    align-items: center;
+}
+
 #textOne {
     margin-left:30px;
 }

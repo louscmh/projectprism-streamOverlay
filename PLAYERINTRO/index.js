@@ -144,12 +144,12 @@ async function setMatchHistory(user_id, user_name) {
 
     for (let i = 0; i<matches.length; i++) {
         match = matches[i];
-        if (match["playerOneID"] == user_id) {
+        if (match["playerOneID"] == user_id && match["resultOne"] != null && match["resultTwo"] != null) {
             console.log("happened1");
             opponentData = await getUserDataSet(match["playerTwoID"]);
             matchFrame = new Match(match["Match ID"],match["resultOne"],match["resultTwo"],true,opponentData);
             matchFrame.generate(matchContainer);
-        } else {
+        } else if (match["playerTwoID"] == user_id && match["resultOne"] != null && match["resultTwo"] != null) {
             console.log("happened2");
             opponentData = await getUserDataSet(match["playerOneID"]);
             matchFrame = new Match(match["Match ID"],match["resultOne"],match["resultTwo"],false,opponentData);
@@ -224,12 +224,14 @@ class Match {
             console.log("happened3");
             this.result.classList.add(this.scoreOne > this.scoreTwo ? "resultTextWin" : "resultTextLose");
             this.result.innerHTML = this.scoreOne > this.scoreTwo ? 
-                `WIN ${this.scoreOne}-${this.scoreTwo}` : `LOSE ${this.scoreOne}-${this.scoreTwo}`;
+                this.scoreTwo == -1 ? `FF WIN` : `WIN ${this.scoreOne}-${this.scoreTwo}` 
+                    : this.scoreOne == -1 ? `FF LOSE` : `LOSE ${this.scoreOne}-${this.scoreTwo}`;
         } else {
             console.log("happened4");
             this.result.classList.add(this.scoreOne < this.scoreTwo ? "resultTextWin" : "resultTextLose");
             this.result.innerHTML = this.scoreOne < this.scoreTwo ? 
-                `WIN ${this.scoreOne}-${this.scoreTwo}` : `LOSE ${this.scoreOne}-${this.scoreTwo}`;
+                this.scoreOne == -1 ? `FF WIN` : `WIN ${this.scoreOne}-${this.scoreTwo}` 
+                    : this.scoreTwo == -1 ? `FF LOSE` : `LOSE ${this.scoreOne}-${this.scoreTwo}`;
         }
 
         this.container.appendChild(this.matchText);
@@ -237,6 +239,15 @@ class Match {
         this.container.appendChild(this.result);
 
         matchContainer.appendChild(this.container);
+        adjustFont(this.matchText,400,40);
     }
 }
 
+async function adjustFont(title, boundaryWidth, originalFontSize) {
+    if (title.scrollWidth > boundaryWidth) {
+		let ratio = (title.scrollWidth/boundaryWidth);
+        title.style.fontSize = `${originalFontSize/ratio}px`;
+    } else {
+		title.style.fontSize = `${originalFontSize}px`;
+	}
+}

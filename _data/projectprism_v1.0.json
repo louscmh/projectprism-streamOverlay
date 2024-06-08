@@ -64,7 +64,7 @@
             "name": "Error"
         }
     ],
-    "name": "projectprism 2",
+    "name": "projectprism",
     "groups": [
         {
             "prev_ver": 503316482,
@@ -2049,7 +2049,7 @@
                     {
                         "name": "SCHEDULE GF",
                         "source_uuid": "779f6061-456c-4675-b537-20087c6e91de",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -2087,7 +2087,7 @@
                     {
                         "name": "SCHEDULE F",
                         "source_uuid": "bd9af2b7-6a3a-4d31-95b3-031ca0b34cb5",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -2125,7 +2125,7 @@
                     {
                         "name": "SCHEDULE SF",
                         "source_uuid": "7048214a-009d-4db3-9596-110e08f9ba8d",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -2163,7 +2163,7 @@
                     {
                         "name": "SCHEDULE QF",
                         "source_uuid": "7fddf834-806a-417c-8ea9-21ad5522cbdb",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -5680,7 +5680,7 @@
                     {
                         "name": "SCHEDULE GF",
                         "source_uuid": "779f6061-456c-4675-b537-20087c6e91de",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -5718,7 +5718,7 @@
                     {
                         "name": "SCHEDULE F",
                         "source_uuid": "bd9af2b7-6a3a-4d31-95b3-031ca0b34cb5",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -5756,7 +5756,7 @@
                     {
                         "name": "SCHEDULE SF",
                         "source_uuid": "7048214a-009d-4db3-9596-110e08f9ba8d",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -5794,7 +5794,7 @@
                     {
                         "name": "SCHEDULE QF",
                         "source_uuid": "7fddf834-806a-417c-8ea9-21ad5522cbdb",
-                        "visible": true,
+                        "visible": false,
                         "locked": true,
                         "rot": 0.0,
                         "pos": {
@@ -5906,7 +5906,7 @@
                         "private_settings": {
                             "color-preset": 3,
                             "color": "",
-                            "collapsed": true
+                            "collapsed": false
                         }
                     },
                     {
@@ -5946,8 +5946,8 @@
                             "duration": 0
                         },
                         "private_settings": {
-                            "color-preset": 4,
-                            "color": ""
+                            "color": "",
+                            "color-preset": 4
                         }
                     }
                 ]
@@ -6036,9 +6036,9 @@
             "id": "browser_source",
             "versioned_id": "browser_source",
             "settings": {
+                "url": "http://127.0.0.1:24050/projectprism-streamOverlay/SCHEDULE/",
                 "width": 1920,
-                "height": 1080,
-                "url": "http://127.0.0.1:24050/projectprism-streamOverlay/SCHEDULE/"
+                "height": 1080
             },
             "mixers": 255,
             "sync": 0,

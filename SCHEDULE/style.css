@@ -27,11 +27,20 @@
 
 #mascot {
     position:absolute;
-    left: 570px;
-    width:1920px;
-    height:1050px;
+    left:1056px;
+    width:864px;
+    height: 1020px;
+    top:30px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    display: block;
+}
+
+#mascotVideo {
+    width:2600px;
+    margin-left:150px;
+    margin-top:450px;
 }
 
 #leftContainer {

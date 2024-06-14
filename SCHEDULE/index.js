@@ -163,7 +163,14 @@ function parseDateTime(dateTimeString) {
     // console.log(dateTimeString);
     if (dateTimeString == "") return null;
 
-    var [datePart, timePart] = dateTimeString.split(' ');
+    let splitVariable;
+    if (dateTimeString.includes(" ")) {
+        splitVariable = " ";
+    } else if (dateTimeString.includes(" ")){
+        splitVariable = " ";
+    }
+    
+    var [datePart, timePart] = dateTimeString.split(splitVariable);
     var [day, month] = datePart.split('/').map(Number);
     var [hours, minutes] = timePart.split(':').map(Number);
 
@@ -244,6 +251,13 @@ class Match {
     }
 
     generate(matchBar) {
+        let splitVariable;
+        if (this.match[1].includes(" ")) {
+            splitVariable = " ";
+        } else if (this.match[1].includes(" ")){
+            splitVariable = " ";
+        }
+
         this.container = document.createElement("div");
         this.container.classList.add("matchContainer");
         this.container.id = `match${this.match[0]}`;
@@ -253,7 +267,7 @@ class Match {
 
         this.timeText = document.createElement("div");
         this.timeText.classList.add("timeText");
-        this.timeText.innerHTML = `${this.match[1].split(' ')[1]} - ${this.isWinners ? "WINNERS BRACKET" : "LOSERS BRACKET"}`
+        this.timeText.innerHTML = `${this.match[1].split(splitVariable)[1]} - ${this.isWinners ? "WINNERS BRACKET" : "LOSERS BRACKET"}`
 
         this.bracket = document.createElement("bracket");
         this.bracket.classList.add("bracket");

@@ -46,7 +46,7 @@
 #leftContainer {
     width:55%;
     height:inherit;
-    background-color:rgba(33, 33, 33,0.9);
+    /* background-color:rgba(33, 33, 33,0.9); */
 }
 
 #matchBar {

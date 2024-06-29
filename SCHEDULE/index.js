@@ -211,15 +211,17 @@ function getNextMatch(sorted) {
     let counter = 0;
     let matches = []
     for (let match of sorted) {
-        if (parseDateTime(match[1]) > time && !foundNext) {
-            foundNext = true;
-            matches.push(match);
-            counter++;
-        } else if (foundNext && counter < 4) {
-            matches.push(match);
-            counter++;
-        } else if (foundNext && counter >= 4) {
-            return matches;
+        if (match["resultOne"] == null && match["resultTwo"] == null) {
+            if (parseDateTime(match[1]) > time && !foundNext) {
+                foundNext = true;
+                matches.push(match);
+                counter++;
+            } else if (foundNext && counter < 4) {
+                matches.push(match);
+                counter++;
+            } else if (foundNext && counter >= 4) {
+                return matches;
+            }
         }
     }
     return matches;

@@ -269,7 +269,7 @@ class Match {
 
         this.timeText = document.createElement("div");
         this.timeText.classList.add("timeText");
-        this.timeText.innerHTML = `${this.match[1].split(splitVariable)[1]} - ${this.isWinners ? "WINNERS BRACKET" : "LOSERS BRACKET"}`
+        this.timeText.innerHTML = `${this.match[1].split(splitVariable)[1]} - ${this.isWinners ? "WINNERS BRACKET" : "BRACKET RESET"}`
 
         this.bracket = document.createElement("bracket");
         this.bracket.classList.add("bracket");

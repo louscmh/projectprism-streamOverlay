@@ -35,7 +35,7 @@
 }
 
 #playerOne {
-    margin-top:340px;
+    margin-top:300px;
     height:fit-content;
     width:75%;
     display:flex;
@@ -43,7 +43,7 @@
 }
 
 #playerTwo {
-    margin-top:340px;
+    margin-top:300px;
     height:fit-content;
     width:75%;
     display:flex;
@@ -118,7 +118,7 @@
     display:flex;
     flex-direction: column;
     justify-content: start;
-    margin-top: 60px;
+    margin-top: 35px;
     /* display:none; */
 }
 
@@ -128,7 +128,7 @@
     display:flex;
     flex-direction: column;
     align-items: end;
-    margin-top: 60px;
+    margin-top: 35px;
     /* display:none; */
 }
 
